@@ -1,0 +1,11 @@
+{
+  "name": "orent-back",
+  "version": "1.0.0",
+  "description": "Backend of ORent Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexandre Demartin",
+  "license": "ISC"
+}
