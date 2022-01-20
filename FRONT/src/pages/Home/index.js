@@ -1,9 +1,6 @@
-import Counter from '../../components/Counter';
-
 const Home = () => (
-  <div>
-    Page d'accueil
-    <Counter />
+  <div id="container">
+    PAGE D'ACCUEIL
   </div>
 );
 
