@@ -1,7 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
 
 import {
-  Home, BookingDetails, BookingsList, MyAccount, PropertiesList, PropertyDetail, PropertyForm, UserProperties,
+  Home,
+  BookingDetails,
+  BookingsList,
+  MyAccount, PropertiesList, PropertyDetail, PropertyForm, UserProperties,
 } from './pages';
 
 import Layout from './components/Layout';
