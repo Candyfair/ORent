@@ -18,9 +18,9 @@ const rootReactElement = (
       <Router>
         <App />
       </Router>
-    </Provider>;
+    </Provider>
   </StrictMode>
-);
+)
 
 // 2. La cible du DOM (là où la structure doit prendre vie dans le DOM)
 const target = document.getElementById('root');
