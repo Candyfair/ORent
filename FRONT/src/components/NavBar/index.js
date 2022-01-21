@@ -1,15 +1,13 @@
 // === Imports
-import SearchBar from "../SearchBar";
-import Login from "../Login";
+import SearchBar from './SearchBar';
+import Login from './LoginButtons';
 
-const NavBar = () => {
-
-    return (
-        <div>
-            <SearchBar />
-            <Login />
-        </div>
-    );
-};
+const NavBar = () => (
+  <div className="navbar">
+    <div>Logo O'Rent</div>
+    <SearchBar />
+    <Login />
+  </div>
+);
 
 export default NavBar;
