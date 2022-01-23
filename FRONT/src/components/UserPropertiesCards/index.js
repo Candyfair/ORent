@@ -1,16 +1,14 @@
+/* eslint-disable linebreak-style */
 // === Imports
-import UserPropertyCard from "../UserPropertyCard";
+import UserPropertyCard from './UserPropertyCard';
 
-const UserPropertiesCards = () => {
-
-    return (
-        <div>
-            <UserPropertyCard />
-            <UserPropertyCard />
-            <UserPropertyCard />
-            <UserPropertyCard />
-        </div>
-    );
-};
+const UserPropertiesCards = () => (
+  <div>
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+  </div>
+);
 
 export default UserPropertiesCards;

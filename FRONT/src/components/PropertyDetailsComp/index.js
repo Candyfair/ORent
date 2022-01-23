@@ -1,19 +1,17 @@
+/* eslint-disable linebreak-style */
 // === Imports
-import Pictures from "../Pictures";
-import Description from "../Description";
-import VacancyList from "../VacancyList";
+import Pictures from './Pictures';
+import Description from './Description';
+import VacanciesList from './VacanciesList';
 
-const PropertyDetailsComp = () => {
-
-    return (
-        <div>
-            <Pictures />
-            <div className="PropertyDetailsContainer">
-                <Description />
-                <VacancyList />
-            </div>
-        </div>
-    );
-};
+const PropertyDetailsComp = () => (
+  <div>
+    <Pictures />
+    <div className="PropertyDetailsContainer">
+      <Description />
+      <VacanciesList />
+    </div>
+  </div>
+);
 
 export default PropertyDetailsComp;
