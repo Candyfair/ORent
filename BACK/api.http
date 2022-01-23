@@ -1,0 +1,28 @@
+@host=http://localhost:4500
+
+// ROUTES AUTH
+
+### Register
+POST {{host}}/register
+Content-Type: application/json
+
+{
+    "username": "alex",
+    "firstname": "Alexandre",
+    "lastname": "Demartin",
+    "email": "alex@gmail.com",
+    "password": "123456"
+}
+
+### Login
+POST {{host}}/login
+Content-Type: application/json
+
+{
+    "email": "alex@gmail.com",
+    "password": "123456"
+}
+
+### refreshToken
+POST {{host}}/refresh-token
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY0Mjk1Mzc1MSwiZXhwIjoxNjQzNTU4NTUxfQ.Ht-2rITNkoqL8zttwZQ1TxPpCeeviRzyZG3RhWo3rKw
