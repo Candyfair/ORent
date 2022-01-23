@@ -2,6 +2,17 @@ const client = require('../../configs/database');
 const bcrypt = require('bcrypt');
 const {userSchema} = require('../schemas/userSchema');
 
+/**
+* @typedef {Object} Users
+* @property {number} id
+* @property {string} username
+* @property {string} firstname
+* @property {string} lastname
+* @property {string} email
+* @property {string} created_at
+* @property {string} updated_at
+* @property {array<number>} bookings
+*/
 
 class User {
 
@@ -11,6 +22,13 @@ class User {
         }
     } 
 
+    /**
+     * Retrieves one User from database
+     * @static
+     * @async
+     * @returns {Users | null} the instance identified with its id, null if no record was found
+     * @throws {Error} An error
+     */
     async findOne() {
 		try {
             if(this.login){
@@ -82,7 +100,12 @@ class User {
         }
     };
     
-
+    /**
+     * Adds or updates an instance of User in database
+     * @async
+     * @returns {Users | undefined} the inserted instance or undefined when uptading one
+     * @throws {Error} An error
+     */
     async save(userInfos) {
         try {
             const {username, firstname, lastname, email, password} = userInfos

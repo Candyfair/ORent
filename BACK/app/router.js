@@ -11,7 +11,7 @@ const authController = require('./controllers/authController');
 /**
  * GET /
  * @summary Welcome Route
- * @tags O'Rent
+ * @tags Test
  * @returns {string} 200 - `Bienvenue sur l'API Orent`
  */
 router.get('/', (req, res) => {
@@ -31,6 +31,12 @@ router.get('/', (req, res) => {
 */
 
 /**
+* @typedef UserLogin
+* @property {string} email
+* @property {string} password
+*/
+
+/**
  * POST /register
  * @summary Adds a new user in database
  * @tags Auth
@@ -40,6 +46,14 @@ router.get('/', (req, res) => {
  */
 router.post('/register', authController.register);
 
+/**
+ * POST /login
+ * @summary Find the user according to username/password combo in database
+ * @tags Auth
+ * @param {UserLogin} request.body.required User email/password combo to access user infos
+ * @returns {User} 200 - Users retrieved (view)
+ * @return {string} 401 - An unauthorized error message because the user email/password combo doesn't exist
+ */
 router.post('/login', authController.login);
 
 router.post('/refresh-token', checkRefreshJWT, authController.refreshToken)
