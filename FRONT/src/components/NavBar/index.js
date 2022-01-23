@@ -4,11 +4,15 @@ import { Box } from '@mui/material/';
 // === Imports
 import SearchBar from './SearchBar';
 import Login from './LoginButtons';
+import logo from '../../assets/images/logo.png';
 
 const useStyles = makeStyles((theme) => ({
   navbar: {
     display: 'flex',
   },
+  logo: {
+    height: 50,
+  }
 }));
 
 const NavBar = () => {
@@ -20,7 +24,7 @@ const NavBar = () => {
       justifyContent="space-between"
       className="navbar"
     >
-      <div>Logo O'Rent</div>
+      <img src={logo} alt="Logo O'Rent" className="logo" />
       <SearchBar />
       <Login />
     </Box>
