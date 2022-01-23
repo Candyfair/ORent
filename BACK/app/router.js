@@ -3,8 +3,8 @@ const {Router} = require('express');
 const router = Router();
 
 
-router.get('/hello', (req, res) => {
-    res.send('Hello World');
+router.get('/', (req, res) => {
+    res.send(`Hello World, je suis sur l'API Orent`);
 })
 
 

@@ -63,3 +63,8 @@ npm start
 ```
 
 joi views fonctions
+
+
+COMMANDES :
+
+git subtree push --prefix BACK  heroku viewsCreation:main
