@@ -1,8 +1,8 @@
 const JsDocSwaggeroptions = {
     info: {
       version: '1.0.0',
-      title: 'Oblog',
-      description: 'A blog REST API',
+      title: 'ORent',
+      description: 'ORent REST API',
       license: {
         name: 'MIT',
       },
