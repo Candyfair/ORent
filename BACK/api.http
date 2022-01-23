@@ -7,10 +7,10 @@ POST {{host}}/register
 Content-Type: application/json
 
 {
-    "username": "alex",
-    "firstname": "Alexandre",
-    "lastname": "Demartin",
-    "email": "alex@gmail.com",
+    "username": "LauraX",
+    "firstname": "Laura",
+    "lastname": "Khul",
+    "email": "laura@gmail.com",
     "password": "123456"
 }
 
