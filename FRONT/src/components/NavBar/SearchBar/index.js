@@ -22,16 +22,16 @@ const SearchBar = () => {
   const classes = useStyles();
 
   return (
-    <form
-      className={classes.form}
+    <Stack
+      direction="row"
+      alignItems="center"
+      justifyContent="center"
+      spacing={-0.1}
+      flexGrow={1}
+      className={classes.search}
     >
-      <Stack
-        direction="row"
-        alignItems="center"
-        justifyContent="center"
-        spacing={-0.1}
-        flexGrow={1}
-        className={classes.search}
+      <form
+        className={classes.form}
       >
         {/* Location search input */}
         <InputBase
@@ -45,8 +45,8 @@ const SearchBar = () => {
           placeholder="Add guests"
           className={classes.guestsInput}
         />
-      </Stack>
-    </form>
+      </form>
+    </Stack>
   );
 };
 
