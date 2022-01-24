@@ -1,10 +1,8 @@
-const PropertiesMap = () => {
-
-    return (
-        <div>
-            PropertiesMap
-        </div>
-    );
-};
+/* eslint-disable linebreak-style */
+const PropertiesMap = () => (
+  <div>
+    PropertiesMap
+  </div>
+);
 
 export default PropertiesMap;

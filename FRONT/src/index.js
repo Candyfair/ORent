@@ -1,8 +1,12 @@
 // == Import : npm
+import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
 import { StrictMode } from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
+
+// MaterialUI theme components
+import lightTheme from './styles/themes/lightTheme';
 
 // == Import : local
 // Composants
@@ -13,14 +17,19 @@ import store from './redux/store';
 // 1. Élément React racine (celui qui contient l'ensemble de l'app)
 //    => crée une structure d'objets imbriqués (DOM virtuel)
 const rootReactElement = (
+
   <StrictMode>
-    <Provider store={store}>
-      <Router>
-        <App />
-      </Router>
-    </Provider>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={lightTheme}>
+        <Provider store={store}>
+          <Router>
+            <App />
+          </Router>
+        </Provider>
+      </ThemeProvider>
+    </StyledEngineProvider>
   </StrictMode>
-)
+);
 
 // 2. La cible du DOM (là où la structure doit prendre vie dans le DOM)
 const target = document.getElementById('root');
