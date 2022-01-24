@@ -1,5 +1,3 @@
--- Revert orent:views from pg
-
 BEGIN;
 
 DROP VIEW "properties";

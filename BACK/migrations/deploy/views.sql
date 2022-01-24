@@ -1,5 +1,3 @@
--- Deploy orent:views to pg
-
 BEGIN;
 
 
