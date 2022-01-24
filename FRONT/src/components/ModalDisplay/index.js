@@ -1,6 +1,4 @@
 /* eslint-disable linebreak-style */
-// import { Stack, Button } from '@mui/material';
-
 // MaterialUI import
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -51,7 +49,6 @@ const LoginButton = () => {
       onClose={() => dispatch(setModal(false, 'none'))}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
-      className={classes.parentModal}
     >
       <Box className={classes.modal}>
         <ModalHeader />
@@ -68,17 +65,3 @@ const LoginButton = () => {
 };
 
 export default LoginButton;
-
-// <Stack
-//   alignItems="center"
-//   justifyContent="center"
-// >
-//   <Button
-//     variant="contained"
-//     color="secondary"
-//     disableElevation
-//   >
-//     Login
-//   </Button>
-// </Stack>
-// );
