@@ -7,4 +7,13 @@ import PropertyDetail from './PropertyDetails';
 import PropertyForm from './PropertyForm';
 import UserProperties from './UserProperties';
 
-export { Home, BookingDetails, BookingsList, MyAccount, PropertiesList, PropertyDetail, PropertyForm, UserProperties };
+export {
+  Home,
+  BookingDetails,
+  BookingsList,
+  MyAccount,
+  PropertiesList,
+  PropertyDetail,
+  PropertyForm,
+  UserProperties,
+};
