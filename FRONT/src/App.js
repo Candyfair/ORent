@@ -1,4 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
+import { CssBaseline } from '@mui/material';
+import ScrollTop from 'src/components/ScrollTop';
 
 import {
   Home,
@@ -12,6 +14,8 @@ import Layout from './components/Layout';
 // == Composant
 const App = () => (
   <div className="app">
+    <CssBaseline />
+    <ScrollTop />
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
