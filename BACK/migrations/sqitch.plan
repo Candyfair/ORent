@@ -1,3 +1,5 @@
 %syntax-version=1.0.0
 %project=orent
 
+init 2022-01-24T09:42:51Z AlexandreDemartin <alx.demartin@gmail.com> # initialisation des tables
+views 2022-01-24T09:43:18Z AlexandreDemartin <alx.demartin@gmail.com> # initialisation des views
