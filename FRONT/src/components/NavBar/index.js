@@ -1,5 +1,5 @@
 // MaterialUI imports
-import { Stack, AppBar, Toolbar } from '@mui/material/';
+import { AppBar, Toolbar } from '@mui/material/';
 import { makeStyles } from '@mui/styles';
 // === Imports
 import SearchBar from './SearchBar';
@@ -12,17 +12,18 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     justifyContent: 'space-between',
+    backgroundColor: theme.palette.common.white,
   },
 }));
 
 // Exported component
 const Navbar = () => {
-
   const classes = useStyles();
 
   return (
     <AppBar
-      position='fixed'
+      // position="fixed"
+      elevation={0}
       className={classes.appbar}
     >
       <Toolbar
@@ -37,27 +38,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
-// const NavBar = () => (
-//   <Grid
-//     display="flex"
-//     direction="row"
-//     alignItems="center"
-//     justifyContent="center"
-//   >
-//     {/* Logo */}
-//     <Grid item xs={2}>
-//       <img src={logo} alt="Logo O'Rent" />
-//     </Grid>
-//     {/* Search bar component */}
-//     <Grid item xs={8}>
-//       <SearchBar />
-//     </Grid>
-//     {/* Login Component */}
-//     <Grid item xs={2}>
-//       <Login />
-//     </Grid>
-//   </Grid>
-// );
-// export default NavBar;
