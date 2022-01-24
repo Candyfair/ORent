@@ -1,7 +1,7 @@
 import { SET_MODAL } from '../actions/modals';
 
 export const initialState = {
-  modal: false,
+  modal: true,
   element: 'register',
 };
 
