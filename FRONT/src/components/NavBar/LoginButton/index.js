@@ -2,7 +2,7 @@
 // MaterialUI import
 import { Stack, Button } from '@mui/material';
 
-const Login = () => (
+const LoginButton = () => (
   <Stack
     alignItems="center"
     justifyContent="center"
@@ -10,10 +10,11 @@ const Login = () => (
     <Button
       variant="contained"
       color="secondary"
+      disableElevation
     >
       Login
     </Button>
   </Stack>
 );
 
-export default Login;
+export default LoginButton;
