@@ -1,21 +1,29 @@
 // MaterialUI imports
-import { makeStyles } from '@mui/styles';
-import { Box } from '@mui/material/';
+import { Grid } from '@mui/material/';
 // === Imports
 import SearchBar from './SearchBar';
 import Login from './LoginButtons';
 import logo from '../../assets/images/logo.png';
 
 const NavBar = () => (
-  <Box
-    sx={{ p: 2 }}
-    flexDirection="row"
-    justifyContent="space-between"
-    className="navbar"
+  <Grid
+    display="flex"
+    direction="row"
+    alignItems="center"
+    justifyContent="center"
   >
-    <img src={logo} alt="Logo O'Rent" />
-    <SearchBar />
-    <Login />
-  </Box>
+    {/* Logo */}
+    <Grid item xs={2}>
+      <img src={logo} alt="Logo O'Rent" />
+    </Grid>
+    {/* Search bar component */}
+    <Grid item xs={8}>
+      <SearchBar />
+    </Grid>
+    {/* Login Component */}
+    <Grid item xs={2}>
+      <Login />
+    </Grid>
+  </Grid>
 );
 export default NavBar;
