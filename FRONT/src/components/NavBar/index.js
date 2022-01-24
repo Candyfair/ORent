@@ -41,7 +41,7 @@ const Navbar = () => {
   return (
 
     <AppBar
-      // position="fixed"
+      position="fixed"
       elevation={0}
       className={classes.appbar}
     >
