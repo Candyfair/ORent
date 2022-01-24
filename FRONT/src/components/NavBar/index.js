@@ -50,9 +50,16 @@ const Navbar = () => {
         <Toolbar
           className={classes.toolbar}
         >
-          <img src={logo} alt="Logo O'Rent" />
-          <SearchBar />
-          <LoginButton />
+          <Stack className={classes.desktop}>
+            <img src={logo} alt="Logo O'Rent" />
+            <Box className={classes.searchBarDe}>
+              <SearchBar />
+            </Box>
+            <LoginButton />
+          </Stack>
+          <Stack className={classes.mobile}>
+              <SearchBar />
+          </Stack>
         </Toolbar>
       </div>
 
