@@ -1,5 +1,3 @@
 %syntax-version=1.0.0
 %project=orent
 
-init 2022-01-20T13:03:40Z AlexandreDemartin <alx.demartin@gmail.com> # initialisation des tables
-views 2022-01-20T13:44:53Z AlexandreDemartin <alx.demartin@gmail.com> # Creations of necessary views for the Front
