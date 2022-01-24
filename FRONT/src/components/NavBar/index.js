@@ -1,5 +1,5 @@
 // MaterialUI imports
-import { Stack, AppBar, Toolbar } from '@mui/material/';
+import { AppBar, Toolbar } from '@mui/material/';
 import { makeStyles } from '@mui/styles';
 // === Imports
 import SearchBar from './SearchBar';
@@ -9,55 +9,68 @@ import logo from '../../assets/images/logo.png';
 const useStyles = makeStyles((theme) => ({
   appbar: {
     display: 'flex',
+    backgroundColor: theme.palette.common.white,
   },
   toolbar: {
     justifyContent: 'space-between',
+    [theme.breakpoints.down('md')]: {
+      flexWrap: 'wrap',
+      marginBottom: '10px',
+    },
+  },
+  searchbarDesktop: {
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    },
+  },
+  searchbarMobile: {
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+  },
+  logoMobile: {
+    flexGrow: 1,
+    textAlign: 'left',
   },
 }));
 
 // Exported component
 const Navbar = () => {
-
   const classes = useStyles();
 
   return (
+
     <AppBar
-      position='fixed'
+      position="fixed"
+      elevation={0}
       className={classes.appbar}
     >
-      <Toolbar
-        className={classes.toolbar}
-      >
-        <img src={logo} alt="Logo O'Rent" />
-        <SearchBar />
-        <LoginButton />
-      </Toolbar>
+      {/* Navigation for desktop */}
+      <div className={classes.searchbarDesktop}>
+        <Toolbar
+          className={classes.toolbar}
+        >
+          <img src={logo} alt="Logo O'Rent" />
+          <SearchBar />
+          <LoginButton />
+        </Toolbar>
+      </div>
+
+      {/* Navigation for mobile */}
+      <div className={classes.searchbarMobile}>
+        <Toolbar
+          className={classes.toolbar}
+        >
+          <div className={classes.logoMobile}>
+            <img src={logo} alt="Logo O'Rent" />
+          </div>
+          <LoginButton />
+          <SearchBar />
+        </Toolbar>
+      </div>
+
     </AppBar>
   );
 };
 
 export default Navbar;
-
-
-// const NavBar = () => (
-//   <Grid
-//     display="flex"
-//     direction="row"
-//     alignItems="center"
-//     justifyContent="center"
-//   >
-//     {/* Logo */}
-//     <Grid item xs={2}>
-//       <img src={logo} alt="Logo O'Rent" />
-//     </Grid>
-//     {/* Search bar component */}
-//     <Grid item xs={8}>
-//       <SearchBar />
-//     </Grid>
-//     {/* Login Component */}
-//     <Grid item xs={2}>
-//       <Login />
-//     </Grid>
-//   </Grid>
-// );
-// export default NavBar;
