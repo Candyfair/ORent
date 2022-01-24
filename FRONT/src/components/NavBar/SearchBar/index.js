@@ -41,8 +41,7 @@ const SearchBar = () => {
     <Stack
       direction="row"
       alignItems="center"
-      justifyContent="center"
-      spacing={0}
+      justifyContent="space-between"
       flexGrow={1}
       className={classes.search}
     >
