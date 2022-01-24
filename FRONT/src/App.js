@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { CssBaseline } from '@mui/material';
 import ScrollTop from 'src/components/ScrollTop';
+import ModalDisplay from './components/ModalDisplay';
 
 import {
   Home,
@@ -27,6 +28,7 @@ const App = () => (
         <Route path="/trips" element={<BookingsList />} />
         <Route path="/trips/:tripId" element={<BookingDetails />} />
       </Routes>
+      <ModalDisplay />
     </Layout>
   </div>
 );

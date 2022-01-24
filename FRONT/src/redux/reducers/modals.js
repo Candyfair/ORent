@@ -1,8 +1,8 @@
 import { SET_MODAL } from '../actions/modals';
 
 export const initialState = {
-  modal: false,
-  element: '',
+  modal: true,
+  element: 'register',
 };
 
 const reducer = (state = initialState, action = {}) => {
