@@ -3,22 +3,25 @@ import { createStore, compose, applyMiddleware } from 'redux';
 
 // == Import : local
 import rootReducer from 'src/redux/reducers';
-import logMiddleware from '../../middleware/logMiddleware';
+// import logMiddleware from '../../middleware/logMiddleware';
+
+const initalState = {
+
+};
 
 // == Enhancers
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const enhancers = composeEnhancers(
   applyMiddleware(
-    logMiddleware,
-    // secondMiddleware,
+    // ...logMiddleware,
   ),
 );
 
 // == Store
 const store = createStore(
   rootReducer,
-  // preloadedState,
+  initalState,
   enhancers,
 );
 
