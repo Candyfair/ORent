@@ -11,6 +11,7 @@ const router = require('./app/router');
 const app = express();
 const port = process.env.PORT || 5000;
 
+expressJSDocSwagger(app)(JsDocSwaggerOptions);
 
 app.use(cors());
 
@@ -19,7 +20,7 @@ app.use(express.urlencoded({extended:false}));
 
 app.use(bodySanitizer);
 
-expressJSDocSwagger(app)(JsDocSwaggerOptions);
+
 
 app.use(router);
 

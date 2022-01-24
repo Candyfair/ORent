@@ -1,8 +1,8 @@
 const JsDocSwaggeroptions = {
     info: {
       version: '1.0.0',
-      title: 'Oblog',
-      description: 'A blog REST API',
+      title: 'ORent',
+      description: 'ORent REST API',
       license: {
         name: 'MIT',
       },
@@ -15,7 +15,7 @@ const JsDocSwaggeroptions = {
     },
     baseDir: __dirname,
     // Glob pattern to find your jsdoc files (multiple patterns can be added in an array)
-    filesPattern: './**/*.js',
+    filesPattern: '../**/*.js',
     // URL where SwaggerUI will be rendered
     swaggerUIPath: '/api-docs',
     // Expose OpenAPI UI
