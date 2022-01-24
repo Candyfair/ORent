@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
-// Hooks imports
-import { useSelector } from 'react-redux';
-// MaterialUI imports
+// IMPORTS
+import { useDispatch, useSelector } from 'react-redux';
+
 import { makeStyles } from '@mui/styles';
 import {
   Stack, Typography, TextField, Button, FormControl,
@@ -9,7 +9,14 @@ import {
 } from '@mui/material/';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
-// MaterialUI customised styles
+// import { useHistory } from 'react-router';
+import { setModal } from '../../../../redux/actions/modals';
+import {
+  changeNewUserField, passwordMatch, register, verifyRegisterFields,
+} from '../../../../redux/actions/userCreate';
+import { showPassword } from '../../../../redux/actions/displayOptions';
+
+// MUI STYLES
 const useStyles = makeStyles((theme) => ({
   loginForm: {
     width: '325px',
@@ -39,14 +46,59 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// Exported component
+// COMPONENT
 const RegisterForm = () => {
-  // MaterialUI hook
+  // const history = useHistory();
+  const dispatch = useDispatch();
+
   const classes = useStyles();
 
+  const { showPasswordStatus } = useSelector((state) => state.displayOptions);
+  const {
+    firstname, lastname, username, email, password, passwordVerification,
+    passwordMatchValue, usernameAvailability, emailAvailability,
+  } = useSelector((state) => state.userNew);
   const { element } = useSelector((state) => state.modals);
 
-  // Do not display if state is not 'register'
+  const handleSignUpFormSubmit = (event) => {
+    event.preventDefault();
+    if (password === passwordVerification) {
+      dispatch(register());
+      dispatch(passwordMatch(false));
+      // history.push('/');
+    }
+    else {
+      dispatch(passwordMatch(true));
+    }
+  };
+
+  // Rajouter dans le state
+  const handleChangeFirstname = (e) => {
+    dispatch(verifyRegisterFields(e.target.value, 'firstname'));
+    dispatch(changeNewUserField(e.target.value, 'firstname'));
+  };
+
+  // Rajouter dans le state
+  const handleChangeLastname = (e) => {
+    dispatch(verifyRegisterFields(e.target.value, 'lastname'));
+    dispatch(changeNewUserField(e.target.value, 'lastname'));
+  };
+
+  const handleChangeUsername = (e) => {
+    dispatch(verifyRegisterFields(e.target.value, 'username'));
+    dispatch(changeNewUserField(e.target.value, 'username'));
+  };
+
+  const handleChangeEmail = (e) => {
+    dispatch(verifyRegisterFields(e.target.value, 'email'));
+    dispatch(changeNewUserField(e.target.value, 'email'));
+  };
+
+  let disabledRegister = false;
+  if (usernameAvailability || emailAvailability) {
+    disabledRegister = true;
+  }
+
   if (element !== 'register') return null;
 
   return (
@@ -62,87 +114,81 @@ const RegisterForm = () => {
       >
         Register
       </Typography>
-      <form autoComplete="off" className={classes.form}>
-        {/* <form autoComplete="off" className={classes.form} onSubmit={handleSignUpFormSubmit}> */}
-
+      <form autoComplete="off" className={classes.form} onSubmit={handleSignUpFormSubmit}>
         <TextField
           required
           id="firstname_register_form_input"
           label="First name"
           type="text"
-          // value={firstname}
+          value={firstname}
           variant="outlined"
-          // error={firstnameAvailability}
-          // helperText={firstnameAvailability ? 'This first name already exists' : ''}
-          // onChange={handleChangeFirstname}
+          onChange={handleChangeFirstname}
         />
         <TextField
           required
           id="lastname_register_form_input"
           label="Last name"
           type="text"
-          // value={lastname}
+          value={lastname}
           variant="outlined"
-          // error={lastnameAvailability}
-          // helperText={lastnameAvailability ? 'This last name already exists' : ''}
-          // onChange={handleChangeLastname}
+          onChange={handleChangeLastname}
         />
         <TextField
           required
           id="username_register_form_input"
           label="Username"
           type="text"
-          // value={username}
+          value={username}
           variant="outlined"
-          // error={usernameAvailability}
-          // helperText={usernameAvailability ? 'This username already exists' : ''}
-          // onChange={handleChangeUsername}
+          error={usernameAvailability}
+          helperText={usernameAvailability ? 'This username already exists.' : ''}
+          onChange={handleChangeUsername}
         />
         <TextField
           required
           id="email_register_form_input"
           label="Email"
           type="email"
-          // value={email}
+          value={email}
           variant="outlined"
-          // error={emailAvailability}
-          // helperText={emailAvailability ? 'This email address is already registered on O\'Rent' : ''}
-          // onChange={handleChangeEmail}
+          error={emailAvailability}
+          helperText={emailAvailability ? 'This email is already registered at ORent' : ''}
+          onChange={handleChangeEmail}
         />
         <FormControl variant="outlined">
           <InputLabel htmlFor="password_register_form_input">Password *</InputLabel>
           <OutlinedInput
             required
             id="password_register_form_input"
-            label="Password *"
-            // type={showPasswordStatus ? 'text' : 'password'}
-            // value={password}
-            // onChange={(e) => dispatch(changeNewUserField(e.target.value, 'password'))}
-            // endAdornment={(
-            //   <InputAdornment position="end">
-            //     { showPasswordStatus ? (
-            //       <IconButton
-            //         aria-label="toggle password visibility"
-            //         onClick={() => dispatch(showPassword(false))}
-            //         onMouseDown={(e) => e.preventDefault()}
-            //         edge="end"
-            //       >
-            //         <VisibilityOff />
-            //       </IconButton>
-            //     )
-            //       : (
-            //         <IconButton
-            //           aria-label="toggle password visibility"
-            //           onClick={() => dispatch(showPassword(true))}
-            //           onMouseDown={(e) => e.preventDefault()}
-            //           edge="end"
-            //         >
-            //           <Visibility />
-            //         </IconButton>
-            //       )}
+            type={showPasswordStatus ? 'text' : 'password'}
+            value={password}
+            onChange={(e) => dispatch(changeNewUserField(e.target.value, 'password'))}
+            endAdornment={(
+              <InputAdornment position="end">
+                { showPasswordStatus ? (
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={() => dispatch(showPassword(false))}
+                    onMouseDown={(e) => e.preventDefault()}
+                    edge="end"
+                  >
+                    <VisibilityOff />
+                  </IconButton>
+                )
+                  : (
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={() => dispatch(showPassword(true))}
+                      onMouseDown={(e) => e.preventDefault()}
+                      edge="end"
+                    >
+                      <Visibility />
+                    </IconButton>
+                  )}
 
-            //   </InputAdornment>
-            //   )}
+              </InputAdornment>
+                    )}
+            label="Password *"
           />
         </FormControl>
         <TextField
@@ -150,11 +196,11 @@ const RegisterForm = () => {
           id="passwordVerification_register_form_input"
           label="Password verification"
           type="password"
-          // value={passwordVerification}
+          value={passwordVerification}
           variant="outlined"
-          // error={passwordMatchValue}
-          // helperText={passwordMatchValue ? 'The password doesn\'t match.' : ''}
-          // onChange={(e) => dispatch(changeNewUserField(e.target.value, 'passwordVerification'))}
+          error={passwordMatchValue}
+          helperText={passwordMatchValue ? 'The password doesn\'t match.' : ''}
+          onChange={(e) => dispatch(changeNewUserField(e.target.value, 'passwordVerification'))}
         />
         <Button
           className={classes.button}
@@ -162,7 +208,7 @@ const RegisterForm = () => {
           disableElevation
           size="large"
           type="submit"
-          // disabled={disabledRegister}
+          disabled={disabledRegister}
         >
           Register
         </Button>
@@ -180,7 +226,7 @@ const RegisterForm = () => {
           <Button
             className={classes.registerButton}
             size="small"
-            // onClick={() => dispatch(setModal(true, 'login'))}
+            onClick={() => dispatch(setModal(true, 'login'))}
           >
             Login
           </Button>
