@@ -1,7 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
+import { CssBaseline } from '@mui/material';
+import ScrollTop from 'src/components/ScrollTop';
 
 import {
-  Home, BookingDetails, BookingsList, MyAccount, PropertiesList, PropertyDetail, PropertyForm, UserProperties,
+  Home,
+  BookingDetails,
+  BookingsList,
+  MyAccount, PropertiesList, PropertyDetail, PropertyForm, UserProperties,
 } from './pages';
 
 import Layout from './components/Layout';
@@ -9,6 +14,8 @@ import Layout from './components/Layout';
 // == Composant
 const App = () => (
   <div className="app">
+    <CssBaseline />
+    <ScrollTop />
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
