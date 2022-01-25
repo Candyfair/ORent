@@ -1,6 +1,8 @@
 import { setModal } from '../redux/actions/modals';
 import { REGISTER, resetNewUserFields } from '../redux/actions/userCreate';
-import { connectUser, disconnectUser, LOGIN, LOGOUT, resetCurrentUserFields } from '../redux/actions/userCurrent';
+import {
+  connectUser, disconnectUser, LOGIN, LOGOUT, REFRESH_TOKEN, resetCurrentUserFields,
+} from '../redux/actions/userCurrent';
 
 import api from './api';
 
@@ -61,6 +63,33 @@ const authMiddleware = (store) => (next) => (action) => {
         )
         .catch(
           (error) => console.log('Error login: ', error),
+        );
+
+      next(action);
+      break;
+    }
+
+    case REFRESH_TOKEN: {
+      const refreshToken = localStorage.getItem('userRefreshToken'); // Get the key
+
+      api.defaults.headers.common.Authorization = `Bearer ${refreshToken}`; // Store refreshToken instead of accessToken in the header
+      console.log('Je suis sur la route Refresh token et mon token est :', refreshToken);
+
+      api.post('/refresh-token')
+        .then((response) => {
+          console.log('Refresh token réussi et la response est : ', response);
+
+          localStorage.setItem('userRefreshToken', response.data.refreshToken); // store refreshToken sent by server in localStorage
+
+          api.defaults.headers.common.Authorization = `Bearer ${response.data.accessToken}`; // store new accessToken in header
+
+          store.dispatch(connectUser(response.data.user)); // Connects the user
+        })
+        .catch(
+          (error) => {
+            console.log('Error refresh token: ', error);
+            store.dispatch(disconnectUser());
+          },
         );
 
       next(action);

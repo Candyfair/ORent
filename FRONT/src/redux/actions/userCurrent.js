@@ -46,3 +46,10 @@ export const resetCurrentUserFields = () => (
     type: RESET_CURRENT_USER_FIELDS,
   }
 );
+
+export const REFRESH_TOKEN = 'REFRESH_TOKEN';
+export const refreshToken = () => (
+  {
+    type: REFRESH_TOKEN,
+  }
+);
