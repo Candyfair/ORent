@@ -13,19 +13,16 @@ const port = process.env.PORT || 5000;
 
 expressJSDocSwagger(app)(JsDocSwaggerOptions);
 
-app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
 app.use(bodySanitizer);
 
-
+app.use(cors());
 
 app.use(router);
 
 app.listen(port, () => {
     console.log(`Server started on http://localhost:${port}`);
 });
-
-// TEST GIT PULL
