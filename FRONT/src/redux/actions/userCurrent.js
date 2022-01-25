@@ -33,3 +33,11 @@ export const DISCONNECT_USER = 'DISCONNECT_USER';
 export const disconnectUser = () => ({
   type: DISCONNECT_USER,
 });
+
+// Empty fields
+export const RESET_CURRENT_USER_FIELDS = 'RESET_CURRENT_USER_FIELDS';
+export const resetCurrentUserFields = () => (
+  {
+    type: RESET_CURRENT_USER_FIELDS,
+  }
+);
