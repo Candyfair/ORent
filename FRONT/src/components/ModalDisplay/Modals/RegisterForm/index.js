@@ -64,12 +64,10 @@ const RegisterForm = () => {
     }
   };
 
-  // Rajouter dans le state
   const handleChangeFirstname = (e) => {
     dispatch(changeNewUserField(e.target.value, 'firstname'));
   };
 
-  // Rajouter dans le state
   const handleChangeLastname = (e) => {
     dispatch(changeNewUserField(e.target.value, 'lastname'));
   };

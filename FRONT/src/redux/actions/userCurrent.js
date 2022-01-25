@@ -21,6 +21,11 @@ export const login = () => ({
   type: LOGIN,
 });
 
+export const LOGOUT = 'LOGOUT';
+export const logout = () => ({
+  type: LOGOUT,
+});
+
 export const CONNECT_USER = 'CONNECT_USER';
 export const connectUser = (data) => (
   {
@@ -33,3 +38,18 @@ export const DISCONNECT_USER = 'DISCONNECT_USER';
 export const disconnectUser = () => ({
   type: DISCONNECT_USER,
 });
+
+// Empty fields
+export const RESET_CURRENT_USER_FIELDS = 'RESET_CURRENT_USER_FIELDS';
+export const resetCurrentUserFields = () => (
+  {
+    type: RESET_CURRENT_USER_FIELDS,
+  }
+);
+
+export const REFRESH_TOKEN = 'REFRESH_TOKEN';
+export const refreshToken = () => (
+  {
+    type: REFRESH_TOKEN,
+  }
+);

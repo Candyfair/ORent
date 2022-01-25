@@ -3,6 +3,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
+    "bd": "yarn build && surge --domain orent.surge.sh --project ./dist/",
     "lint": "eslint src/**/*.js",
     "lint:fix": "eslint --fix src/**/*.js",
     "clean": "rm -rf dist",
@@ -62,6 +63,7 @@
     "react-router": "^6.2.1",
     "react-router-dom": "^6.2.1",
     "redux": "^4.1.2",
-    "redux-devtools-extension": "^2.13.9"
+    "redux-devtools-extension": "^2.13.9",
+    "surge": "^0.23.1"
   }
 }
