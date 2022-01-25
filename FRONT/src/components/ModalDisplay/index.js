@@ -9,7 +9,7 @@ import { Box } from '@mui/system';
 import { setModal } from '../../redux/actions/modals';
 import ModalHeader from './ModalHeader';
 import LoginForm from './Modals/LoginForm';
-import AddCardLoginNeededModal from './Modals/AddCardLoginNeededModal';
+import BookingLoginNeeded from './Modals/BookingLoginNeeded';
 import RegisterForm from './Modals/RegisterForm';
 
 const useStyles = makeStyles((theme) => ({
@@ -57,7 +57,7 @@ const LoginButton = () => {
         >
           <LoginForm />
           <RegisterForm />
-          <AddCardLoginNeededModal />
+          <BookingLoginNeeded />
         </Stack>
       </Box>
     </Modal>

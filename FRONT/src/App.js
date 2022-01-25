@@ -7,7 +7,11 @@ import {
   Home,
   BookingDetails,
   BookingsList,
-  MyAccount, PropertiesList, PropertyDetail, PropertyForm, UserProperties,
+  MyAccount,
+  PropertiesList,
+  PropertyDetails,
+  PropertyForm,
+  UserProperties,
 } from './pages';
 
 import Layout from './components/Layout';
@@ -21,7 +25,7 @@ const App = () => (
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/homes" element={<PropertiesList />} />
-        <Route path="/homes/:id" element={<PropertyDetail />} />
+        <Route path="/homes/:id" element={<PropertyDetails />} />
         <Route path="/account/:username" element={<MyAccount />} />
         <Route path="/properties/:id/management" element={<PropertyForm />} />
         <Route path="/properties/:username" element={<UserProperties />} />

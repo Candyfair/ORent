@@ -1,10 +1,10 @@
 import {
   SET_LOADING,
-  // SET_MODE,
   SET_REDIRECT_TO_FALSE,
   SET_REDIRECT_TO_TRUE,
   SET_SNACKBAR,
   SHOW_PASSWORD,
+  // SET_MODE,
 } from '../actions/displayOptions';
 
 export const initialState = {

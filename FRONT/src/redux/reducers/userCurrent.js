@@ -3,8 +3,6 @@ import {
   CONNECT_USER,
   DISCONNECT_USER,
   SET_LOGGED,
-  // SAVE_BOOKMARKED_CARDS,
-  // UPDATE_USER_DATA,
 } from '../actions/userCurrent';
 
 export const initialState = {
@@ -16,14 +14,6 @@ export const initialState = {
   password: '',
   loginPasswordError: false,
   connexionErrorValue: false,
-  // newPassword: '',
-  // newEmail: '',
-  // newPasswordVerification: '',
-  // thumb: 'favorites',
-  // bookmarks: [],
-  // bookmarkedCards: [],
-  // contributions: [],
-  // createdAt: '',
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -53,31 +43,7 @@ const reducer = (state = initialState, action = {}) => {
         username: '',
         password: '',
         connexionErrorValue: false,
-        // newEmail: '',
-        // newPassword: '',
-        // newPasswordVerification: '',
-        // thumb: 'favorites',
-        // bookmarks: [],
-        // bookmarkedCards: [],
-        // contributions: [],
-        // createdAt: '',
       };
-      // case SAVE_BOOKMARKED_CARDS:
-      //     const height: randomIntFromInterval(250, 350)
-      //     return {
-      //         ...state,
-      //         bookmarkedCards: action.data.map((card) => ({ ...card, height })),
-      //     };
-      // case UPDATE_USER_DATA:
-      //     return{
-      //         ...state,
-      //         [action.fieldName]: action.data
-      //     }
-    // case ADD_ID_TO_USER_BOOKMARKS:
-    //   return {
-    //     ...state,
-    //     bookmarks: [...state.bookmarks, action.data],
-    //   };
     default:
       return state;
   }
