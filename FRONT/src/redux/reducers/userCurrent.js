@@ -2,6 +2,7 @@ import {
   CHANGE_CURRENT_USER_FIELD,
   CONNECT_USER,
   DISCONNECT_USER,
+  RESET_CURRENT_USER_FIELDS,
   SET_LOGGED,
 } from '../actions/userCurrent';
 
@@ -9,11 +10,13 @@ export const initialState = {
   isLogged: false,
   id: '',
   email: '',
-  loginEmailError: false,
+  firstname: '',
+  lastname: '',
   username: '',
   password: '',
-  loginPasswordError: false,
-  connexionErrorValue: false,
+  bookings: [],
+  created_at: '',
+  updated_at: '',
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -34,15 +37,25 @@ const reducer = (state = initialState, action = {}) => {
         ...action.data,
         isLogged: true,
       };
+    case RESET_CURRENT_USER_FIELDS:
+      return {
+        ...state,
+        email: '',
+        password: '',
+      };
     case DISCONNECT_USER:
       return {
         ...state,
         isLogged: false,
         id: '',
         email: '',
+        firstname: '',
+        lastname: '',
         username: '',
         password: '',
-        connexionErrorValue: false,
+        bookings: [],
+        created_at: '',
+        updated_at: '',
       };
     default:
       return state;
