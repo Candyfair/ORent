@@ -2,32 +2,32 @@
 // MaterialUI import
 import { Stack, Button } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { setModal } from '../../../redux/actions/modals';
+import { logout } from '../../../redux/actions/userCurrent';
 
-const LoginButton = () => {
+const LoggedButtons = () => {
   const dispatch = useDispatch();
 
   const { isLogged } = useSelector((state) => state.userCurrent);
 
-  if (isLogged) return null;
+  if (!isLogged) return null;
 
   return (
     <Stack
       alignItems="center"
       justifyContent="center"
     >
+
       <Button
-        variant="contained"
+        variant="outlined"
         color="secondary"
         disableElevation
-        onClick={() => dispatch(setModal(true, 'login'))}
+        onClick={() => dispatch(logout())}
       >
-        Login
+        Log out
       </Button>
-
     </Stack>
 
   );
 };
 
-export default LoginButton;
+export default LoggedButtons;

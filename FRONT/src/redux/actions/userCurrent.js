@@ -21,6 +21,11 @@ export const login = () => ({
   type: LOGIN,
 });
 
+export const LOGOUT = 'LOGOUT';
+export const logout = () => ({
+  type: LOGOUT,
+});
+
 export const CONNECT_USER = 'CONNECT_USER';
 export const connectUser = (data) => (
   {

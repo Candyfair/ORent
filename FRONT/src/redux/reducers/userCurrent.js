@@ -49,8 +49,13 @@ const reducer = (state = initialState, action = {}) => {
         isLogged: false,
         id: '',
         email: '',
+        firstname: '',
+        lastname: '',
         username: '',
         password: '',
+        bookings: [],
+        created_at: '',
+        updated_at: '',
       };
     default:
       return state;

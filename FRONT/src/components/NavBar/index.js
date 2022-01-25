@@ -6,6 +6,7 @@ import { makeStyles } from '@mui/styles';
 // === Imports
 import SearchBar from './SearchBar';
 import LoginButton from './LoginButton';
+import LoggedButtons from './LoggedButtons';
 import NavBarOffset from './NavBarOffset';
 import logo from '../../assets/images/logo.png';
 
@@ -67,6 +68,7 @@ const Navbar = () => {
                 <SearchBar />
               </Stack>
               <LoginButton />
+              <LoggedButtons />
             </Stack>
 
             {/* Navigation for mobile: searchbar */}
