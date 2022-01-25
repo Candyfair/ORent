@@ -1,6 +1,16 @@
 import { combineReducers } from 'redux';
-import counter from './counter';
+import modalsReducer from './modals';
+import userCurrentReducer from './userCurrent';
+import userCreateReducer from './userCreate';
+import displayOptionsReducer from './displayOptions';
+import formErrorsReducer from './formErrors';
 
-export default combineReducers({
-  counter,
+const rootReducer = combineReducers({
+  modals: modalsReducer,
+  userCurrent: userCurrentReducer,
+  userCreate: userCreateReducer,
+  displayOptions: displayOptionsReducer,
+  formErrors: formErrorsReducer,
 });
+
+export default rootReducer;
