@@ -10,7 +10,7 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 // MaterialUI theme import
 const useStyles = makeStyles((theme) => ({
   search: {
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: theme.palette.background.paper,
     maxWidth: '500px',
   },
   locationInput: {
