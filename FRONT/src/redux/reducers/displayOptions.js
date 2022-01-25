@@ -9,7 +9,7 @@ import {
 
 export const initialState = {
   loading: false,
-  mode: 'dark',
+  mode: 'light',
   redirect: false,
   showPasswordStatus: false,
   snackbar: false,
