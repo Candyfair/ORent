@@ -3,7 +3,7 @@ import BookingDetails from './BookingDetails';
 import BookingsList from './BookingsList';
 import MyAccount from './MyAccount';
 import PropertiesList from './PropertiesList';
-import PropertyDetail from './PropertyDetails';
+import PropertyDetails from './PropertyDetails';
 import PropertyForm from './PropertyForm';
 import UserProperties from './UserProperties';
 
@@ -13,7 +13,7 @@ export {
   BookingsList,
   MyAccount,
   PropertiesList,
-  PropertyDetail,
+  PropertyDetails,
   PropertyForm,
   UserProperties,
 };

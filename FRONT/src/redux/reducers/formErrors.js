@@ -1,17 +1,16 @@
-import { SET_MODAL } from '../actions/modals';
+import { SET_FORM_ERROR } from '../actions/formErrors';
 
 export const initialState = {
-  modal: false,
-  element: '',
+  loginEmailError: false,
+  loginPasswordError: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case SET_MODAL:
+    case SET_FORM_ERROR:
       return {
         ...state,
-        modal: action.value,
-        element: action.element,
+        [action.fieldName]: action.value,
       };
     default:
       return state;

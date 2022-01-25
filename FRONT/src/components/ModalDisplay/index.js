@@ -1,6 +1,4 @@
 /* eslint-disable linebreak-style */
-// import { Stack, Button } from '@mui/material';
-
 // MaterialUI import
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -11,7 +9,7 @@ import { Box } from '@mui/system';
 import { setModal } from '../../redux/actions/modals';
 import ModalHeader from './ModalHeader';
 import LoginForm from './Modals/LoginForm';
-import AddCardLoginNeededModal from './Modals/AddCardLoginNeededModal';
+import BookingLoginNeeded from './Modals/BookingLoginNeeded';
 import RegisterForm from './Modals/RegisterForm';
 
 const useStyles = makeStyles((theme) => ({
@@ -51,7 +49,6 @@ const LoginButton = () => {
       onClose={() => dispatch(setModal(false, 'none'))}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
-      className={classes.parentModal}
     >
       <Box className={classes.modal}>
         <ModalHeader />
@@ -60,7 +57,7 @@ const LoginButton = () => {
         >
           <LoginForm />
           <RegisterForm />
-          <AddCardLoginNeededModal />
+          <BookingLoginNeeded />
         </Stack>
       </Box>
     </Modal>
@@ -68,17 +65,3 @@ const LoginButton = () => {
 };
 
 export default LoginButton;
-
-// <Stack
-//   alignItems="center"
-//   justifyContent="center"
-// >
-//   <Button
-//     variant="contained"
-//     color="secondary"
-//     disableElevation
-//   >
-//     Login
-//   </Button>
-// </Stack>
-// );
