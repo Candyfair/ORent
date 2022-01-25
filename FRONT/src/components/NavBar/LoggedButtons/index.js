@@ -1,9 +1,13 @@
 /* eslint-disable linebreak-style */
 // IMPORTS
+import { Link } from 'react-router-dom';
+
 import {
-  Stack, Button, Avatar, Menu, MenuItem, IconButton,
+  Stack, Avatar, Menu, MenuItem, IconButton, ListItemIcon, ListItemText, Divider,
 } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+import {
+  MenuIcon, ExploreIcon, CardTravelIcon, FavoriteIcon, MapsHomeWorkIcon, LogoutIcon,
+} from '@mui/icons-material';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
@@ -45,29 +49,71 @@ const LoggedButtons = () => {
       >
         <MenuIcon />
       </IconButton>
+
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
         open={open}
         onClose={handleClose}
         MenuListProps={{
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Explore</MenuItem>
-        <MenuItem onClick={handleClose}>My trips</MenuItem>
-        <MenuItem onClick={handleClose}>Wishlist</MenuItem>
-        <MenuItem onClick={handleClose}>My properties</MenuItem>
+        <MenuItem
+          onClick={handleClose}
+        >
+          <ListItemIcon>
+            <ExploreIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Explore</ListItemText>
+        </MenuItem>
+
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon>
+            <CardTravelIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>My trips</ListItemText>
+        </MenuItem>
+
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon>
+            <FavoriteIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Wishlist</ListItemText>
+        </MenuItem>
+
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon>
+            <MapsHomeWorkIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>My properties</ListItemText>
+        </MenuItem>
+
+        <Divider variant="middle" />
+
         <MenuItem
           onClick={() => dispatch(logout())}
         >
-          Logout
+          <ListItemIcon>
+            <LogoutIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Logout</ListItemText>
         </MenuItem>
 
       </Menu>
 
-      {/* Shows username's initial as avatar */}
-      <Avatar>
+      <Avatar
+        sx={{ bgcolor: deepOrange[500] }}
+      >
+        {/* Shows username's initial as avatar */}
         {
           getInitialsOfUsername(username)
         }
