@@ -1,5 +1,7 @@
 // MaterialUI imports
-import { AppBar, Toolbar } from '@mui/material/';
+import {
+  AppBar, Toolbar, Stack, Box,
+} from '@mui/material/';
 import { makeStyles } from '@mui/styles';
 // === Imports
 import SearchBar from './SearchBar';
@@ -12,10 +14,17 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.common.white,
   },
   toolbar: {
+    flexGrow: 1,
+    marginBottom: theme.spacing(2),
+    gap: theme.spacing(1),
+  },
+  desktop: {
     justifyContent: 'space-between',
-    [theme.breakpoints.down('md')]: {
-      flexWrap: 'wrap',
-      marginBottom: '10px',
+    alignItems: 'center',
+  },
+  mobile: {
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
     },
   },
   searchbarDesktop: {
@@ -27,10 +36,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       display: 'none',
     },
-  },
-  logoMobile: {
-    flexGrow: 1,
-    textAlign: 'left',
   },
 }));
 
@@ -46,28 +51,31 @@ const Navbar = () => {
       className={classes.appbar}
     >
       {/* Navigation for desktop */}
-      <div className={classes.searchbarDesktop}>
-        <Toolbar
+      <Toolbar>
+        <Stack
+          flexDirection="column"
           className={classes.toolbar}
         >
-          <img src={logo} alt="Logo O'Rent" />
-          <SearchBar />
-          <LoginButton />
-        </Toolbar>
-      </div>
-
-      {/* Navigation for mobile */}
-      <div className={classes.searchbarMobile}>
-        <Toolbar
-          className={classes.toolbar}
-        >
-          <div className={classes.logoMobile}>
+          <Stack
+            flexDirection="row"
+            className={classes.desktop}
+          >
             <img src={logo} alt="Logo O'Rent" />
-          </div>
-          <LoginButton />
-          <SearchBar />
-        </Toolbar>
-      </div>
+            <Stack className={classes.searchbarDesktop}>
+              <SearchBar />
+            </Stack>
+            <LoginButton />
+          </Stack>
+
+          {/* Navigation for mobile: searchbar */}
+          <Stack className={classes.mobile}>
+            <Box className={classes.searchbarMobile}>
+              <SearchBar />
+            </Box>
+          </Stack>
+
+        </Stack>
+      </Toolbar>
 
     </AppBar>
   );
