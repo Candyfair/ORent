@@ -13,7 +13,10 @@ const DarkModeSwitch = () => {
   const dispatch = useDispatch();
 
   return (
-    <Box>
+    <Tooltip
+      title={mode === 'light' ? 'Dark Mode' : 'Light Mode'}
+      arrow
+    >
       <IconButton
         onClick={() => dispatch(setMode(mode === 'light' ? 'dark' : 'light'))}
         color="inherit"
@@ -22,7 +25,7 @@ const DarkModeSwitch = () => {
           ? <LightModeIcon color="disabled" />
           : <Brightness2Icon color="disabled" />}
       </IconButton>
-    </Box>
+    </Tooltip>
   );
 };
 export default DarkModeSwitch;
