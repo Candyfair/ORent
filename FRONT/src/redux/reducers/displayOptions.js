@@ -4,12 +4,12 @@ import {
   SET_REDIRECT_TO_TRUE,
   SET_SNACKBAR,
   SHOW_PASSWORD,
-  // SET_MODE,
+  SET_MODE,
 } from '../actions/displayOptions';
 
 export const initialState = {
   loading: false,
-  // mode: 'light',
+  mode: 'dark',
   redirect: false,
   showPasswordStatus: false,
   snackbar: false,
@@ -26,11 +26,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         loading: action.value,
       };
-      // case SET_MODE:
-      //     return {
-      //         ...state,
-      //         mode: action.value,
-      //     }
+    case SET_MODE:
+      return {
+        ...state,
+        mode: action.value,
+      };
     case SHOW_PASSWORD:
       return {
         ...state,

@@ -1,12 +1,9 @@
 // == Import : npm
-import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
+import { StyledEngineProvider } from '@mui/material/styles';
 import { StrictMode } from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
-
-// MaterialUI theme components
-import lightTheme from './styles/themes/lightTheme';
 
 // == Import : local
 // Composants
@@ -20,13 +17,11 @@ const rootReactElement = (
 
   <StrictMode>
     <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={lightTheme}>
-        <Provider store={store}>
-          <Router>
-            <App />
-          </Router>
-        </Provider>
-      </ThemeProvider>
+      <Provider store={store}>
+        <Router>
+          <App />
+        </Router>
+      </Provider>
     </StyledEngineProvider>
   </StrictMode>
 );
