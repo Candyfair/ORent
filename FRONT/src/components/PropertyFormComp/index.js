@@ -2,9 +2,11 @@
 // IMPORTS
 import { makeStyles } from '@mui/styles';
 import {
-  Stack, Typography, TextField, FormControl, Button, InputAdornment, InputBase, Input,
+  Stack, Typography, TextField, Button, InputAdornment, Select, MenuItem, FormControl, InputLabel,
 } from '@mui/material/';
 import PhotoIcon from '@mui/icons-material/Photo';
+
+import { useState } from 'react';
 
 // MUI STYLES
 const useStyles = makeStyles((theme) => ({
@@ -26,10 +28,23 @@ const useStyles = makeStyles((theme) => ({
   btsave: {
     width: '50%',
   },
+  price: {
+    '& .MuiOutlinedInput-input': {
+      '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+        '-webkit-appearance': 'none',
+      },
+    },
+  },
+
 }));
 
 const PropertyFormComp = () => {
   const classes = useStyles();
+
+  const [country, setCountry] = useState('');
+  const handleChange = (event) => {
+    setCountry(event.target.value);
+  };
 
   return (
     <form>
@@ -66,7 +81,7 @@ const PropertyFormComp = () => {
 
         </Stack>
 
-        {/* Address */}
+        {/* ADDRESS */}
         <Stack
           spacing={1}
         >
@@ -77,10 +92,12 @@ const PropertyFormComp = () => {
             label="Number"
           />
           <TextField
+            required
             id="street"
             label="Street"
           />
           <TextField
+            required
             id="zipcode"
             label="Zip code"
           />
@@ -89,14 +106,28 @@ const PropertyFormComp = () => {
             id="city"
             label="City"
           />
-          <TextField
-            required
-            id="country"
-            label="Country"
-          />
+          {/* Country select field */}
+          <FormControl>
+            <InputLabel id="country-label">Country *</InputLabel>
+            <Select
+              required
+              id="Country"
+              label="Country"
+              labelId="country-label"
+              value={country}
+              onChange={handleChange}
+            >
+              <MenuItem value={1}>France</MenuItem>
+              <MenuItem value={2}>Italy</MenuItem>
+              <MenuItem value={3}>Greece</MenuItem>
+              <MenuItem value={5}>Spain</MenuItem>
+              <MenuItem value={6}>United Kingdom</MenuItem>
+
+            </Select>
+          </FormControl>
         </Stack>
 
-        {/* Features */}
+        {/* FEATURES */}
         <Stack
           spacing={1}
         >
@@ -108,22 +139,29 @@ const PropertyFormComp = () => {
           >
             <TextField
               required
+              type="number"
               id="capacity"
               label="Capacity"
               variant="outlined"
               className={classes.featuresItem}
             />
             <TextField
+              required
+              type="number"
               id="bedrooms"
               label="Bedrooms"
               className={classes.featuresItem}
             />
             <TextField
+              required
+              type="number"
               id="beds"
               label="Beds"
               className={classes.featuresItem}
             />
             <TextField
+              required
+              type="number"
               id="bathrooms"
               label="Bathrooms"
               className={classes.featuresItem}
@@ -131,12 +169,13 @@ const PropertyFormComp = () => {
           </Stack>
         </Stack>
 
-        {/* Description */}
+        {/* DESCRIPTION */}
         <Stack
           spacing={1}
         >
-          <Typography variant="h5">Description *</Typography>
+          <Typography variant="h5">Description</Typography>
           <TextField
+            required
             id="description"
             label="Enter a description of your property"
             multiline
@@ -144,7 +183,7 @@ const PropertyFormComp = () => {
           />
         </Stack>
 
-        {/* Price */}
+        {/* PRICE */}
         <Stack
           spacing={1}
         >
@@ -152,7 +191,9 @@ const PropertyFormComp = () => {
           <TextField
             required
             id="price"
-            label="Price"
+            label="Price per night"
+            type="number"
+            className={classes.price}
             InputProps={{
               startAdornment: <InputAdornment position="start">€</InputAdornment>,
             }}
