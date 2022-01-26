@@ -6,7 +6,7 @@ const Layout = ({ children }) => (
     <div className="header">
       <NavBar />
     </div>
-    <div className="pages" style={{ flexGrow: 1 }}>
+    <div className="pages" style={{ flexGrow: 1, width: '100vw' }}>
       {children}
     </div>
     <div className="footer">
