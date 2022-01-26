@@ -1,6 +1,8 @@
 import { makeStyles } from '@mui/styles';
 import { Stack, Button, Typography } from '@mui/material/';
 
+import homepageImg from '../../assets/images/homepage.jpg';
+
 // MaterialUI theme import
 const useStyles = makeStyles((theme) => ({
   home: {
@@ -12,6 +14,26 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: theme.palette.common.white,
     },
+  },
+  container: {
+    position: 'relative',
+    textAlign: 'center',
+  },
+  centeredblock: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    color: theme.palette.common.white,
+  },
+  btexplore: {
+    padding: theme.spacing(1),
+    color: theme.palette.common.white,
+    fontSize: '1rem',
+    width: '400px',
   },
 }));
 
@@ -27,27 +49,24 @@ const Home = () => {
       justifyContent="flex-start"
       alignItems="center"
     >
-      <Typography
-        variant="h3"
-      >
-        PAGE D'ACCUEIL
-      </Typography>
       <Stack
-        flexDirection="column"
-        justifyContent="space-between"
+        className={classes.container}
       >
-        <Button
-          variant="contained"
-          className={classes.button}
+        <img src={homepageImg} alt="Find inspiration for your next vacation" />
+        <Stack
+          spacing={4}
+          className={classes.centeredblock}
         >
-          Contained
-        </Button>
-        <Button
-          variant="contained"
-          className={classes.button}
-        >
-          Contained
-        </Button>
+          <Typography variant="h3">Find inspiration for your next vacation</Typography>
+          <Button
+            variant="contained"
+            color="secondary"
+            className={classes.btexplore}
+          >
+            Explore
+          </Button>
+
+        </Stack>
       </Stack>
     </Stack>
   );
