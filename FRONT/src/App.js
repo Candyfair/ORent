@@ -59,6 +59,7 @@ const App = () => {
       </div>
     </ThemeProvider>
   );
-}
+};
+
 // == Export
 export default App;
