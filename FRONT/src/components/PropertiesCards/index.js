@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
 
 const PropertiesCards = () => {
   const classes = useStyles();
-  console.log('cards : ', cards);
 
   return (
   // <PropertyCard />

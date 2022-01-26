@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   map: {
-    height: '90vh',
+    height: '96.5vh',
   },
   popup: {
     display: 'flex',
