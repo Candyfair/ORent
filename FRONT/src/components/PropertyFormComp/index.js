@@ -1,7 +1,10 @@
 /* eslint-disable linebreak-style */
 // IMPORTS
 import { makeStyles } from '@mui/styles';
-import { Stack, Typography, TextField } from '@mui/material/';
+import {
+  Stack, Typography, TextField, FormControl, Button, InputAdornment, InputBase,
+} from '@mui/material/';
+import PhotoIcon from '@mui/icons-material/Photo';
 
 // MUI STYLES
 const useStyles = makeStyles((theme) => ({
@@ -20,6 +23,9 @@ const useStyles = makeStyles((theme) => ({
   featuresItem: {
     width: '48%',
   },
+  btsave: {
+    width: '50%',
+  },
 }));
 
 const PropertyFormComp = () => {
@@ -27,110 +33,134 @@ const PropertyFormComp = () => {
 
   return (
     <form>
-      <Stack
-        className={classes.propertyContainer}
-        spacing={3}
-      >
-        {/* Property name & photo upload */}
+      <FormControl>
         <Stack
-          spacing={1}
+          className={classes.propertyContainer}
+          spacing={3}
         >
-          <TextField
-            id="name"
-            label="Name of your property *"
-          />
-
-          <TextField
-            id="upload-photo"
-            label="Upload photo"
-          />
-        </Stack>
-
-        {/* Address */}
-        <Stack
-          spacing={1}
-        >
-          <Typography variant="h5">Address</Typography>
-
-          <TextField
-            id="number"
-            label="Number"
-          />
-          <TextField
-            id="street"
-            label="Street"
-          />
-          <TextField
-            id="zipcode"
-            label="Zip code"
-          />
-          <TextField
-            id="city"
-            label="City"
-          />
-          <TextField
-            id="country"
-            label="Country"
-          />
-        </Stack>
-
-        {/* Features */}
-        <Stack
-          spacing={1}
-        >
-          <Typography variant="h5">Features</Typography>
+          {/* Property name & photo upload */}
           <Stack
-            flexDirection="row"
-            className={classes.features}
-            gap={2}
-
+            spacing={1}
           >
             <TextField
-              id="capacity"
-              label="Capacity"
-              className={classes.featuresItem}
+              required
+              id="name"
+              label="Name of your property"
+            />
+
+            <InputBase
+              id="upload"
+              label="Upload photos"
+              endAdornment={(
+                <InputAdornment position="end">
+                  <PhotoIcon fontSize="small" />
+                </InputAdornment>
+              )}
+            />
+
+          </Stack>
+
+          {/* Address */}
+          <Stack
+            spacing={1}
+          >
+            <Typography variant="h5">Address</Typography>
+
+            <TextField
+              id="number"
+              label="Number"
             />
             <TextField
-              id="bedrooms"
-              label="Bedrooms"
-              className={classes.featuresItem}
+              id="street"
+              label="Street"
             />
             <TextField
-              id="beds"
-              label="Beds"
-              className={classes.featuresItem}
+              id="zipcode"
+              label="Zip code"
             />
             <TextField
-              id="bathrooms"
-              label="Bathrooms"
-              className={classes.featuresItem}
+              required
+              id="city"
+              label="City"
+            />
+            <TextField
+              required
+              id="country"
+              label="Country"
             />
           </Stack>
-        </Stack>
 
-        {/* Description */}
-        <Stack
-          spacing={1}
-        >
-          <Typography variant="h5">Description *</Typography>
-          <TextField
-            id="description"
-            label="Enter a description of your property"
-          />
-        </Stack>
+          {/* Features */}
+          <Stack
+            spacing={1}
+          >
+            <Typography variant="h5">Features</Typography>
+            <Stack
+              flexDirection="row"
+              className={classes.features}
+              gap={2}
+            >
+              <TextField
+                required
+                id="capacity"
+                label="Capacity"
+                className={classes.featuresItem}
+              />
+              <TextField
+                id="bedrooms"
+                label="Bedrooms"
+                className={classes.featuresItem}
+              />
+              <TextField
+                id="beds"
+                label="Beds"
+                className={classes.featuresItem}
+              />
+              <TextField
+                id="bathrooms"
+                label="Bathrooms"
+                className={classes.featuresItem}
+              />
+            </Stack>
+          </Stack>
 
-        {/* Price */}
-        <Stack
-          spacing={1}
-        >
-          <Typography variant="h5">Price *</Typography>
-          <TextField
-            required
-            id="price"
-            label="Price per night"
-          />
+          {/* Description */}
+          <Stack
+            spacing={1}
+          >
+            <Typography variant="h5">Description *</Typography>
+            <TextField
+              id="description"
+              label="Enter a description of your property"
+              multiline
+              minRows={4}
+            />
+          </Stack>
+
+          {/* Price */}
+          <Stack
+            spacing={1}
+          >
+            <Typography variant="h5">Price</Typography>
+            <TextField
+              required
+              id="price"
+              label="Price"
+            />
+          </Stack>
+          <Stack
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Button
+              variant="contained"
+              className={classes.btsave}
+            >
+              Save & Publish
+            </Button>
+          </Stack>
         </Stack>
-      </Stack>
+      </FormControl>
     </form>
   );
 };
