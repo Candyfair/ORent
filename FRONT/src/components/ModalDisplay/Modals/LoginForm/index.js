@@ -83,7 +83,7 @@ const LoginForm = () => {
         variant="h6"
         className={classes.title}
       >
-        Se connecter
+        Login
       </Typography>
       <form
         autoComplete="off"
@@ -108,7 +108,7 @@ const LoginForm = () => {
             htmlFor="outlined-adornment-password"
             error={loginPasswordError}
           >
-            Mot de passe *
+            Password *
           </InputLabel>
           <OutlinedInput
             required
@@ -144,7 +144,7 @@ const LoginForm = () => {
 
               </InputAdornment>
                       )}
-            label="Mot de passe *"
+            label="Password *"
           />
           <FormHelperText
             id="outlined-adornment-password-helper-text"
@@ -160,7 +160,7 @@ const LoginForm = () => {
           size="large"
           type="submit"
         >
-          Se connecter
+          Login
         </Button>
       </form>
       <Stack>
@@ -171,21 +171,21 @@ const LoginForm = () => {
           gap={1}
         >
           <Typography variant="body2">
-            Vous n'avez pas de compte ?
+            You have no account ?
           </Typography>
           <Button
             className={classes.registerButton}
             size="small"
             onClick={() => dispatch(setModal(true, 'register'))}
           >
-            S'inscrire
+            Register
           </Button>
         </Stack>
         <Button
           className={classes.forgotButton}
           size="small"
         >
-          J'ai oublié mon mot de passe
+          I forgot my password
         </Button>
       </Stack>
 
