@@ -20,7 +20,8 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   map: {
-    height: '96.5vh',
+    width: '100%',
+    height: '100vh',
   },
   popup: {
     display: 'flex',
@@ -42,10 +43,9 @@ const PropertiesMap = () => {
     >
       <MapContainer
         className={classes.map}
-        center={centerCoordinates} // [51.505, -0.09]
+        center={centerCoordinates}
         zoom={6}
         scrollWheelZoom
-        dragging
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

@@ -13,13 +13,14 @@ const useStyles = makeStyles((theme) => ({
   propertyCard: {
     display: 'flex',
     flexDirection: 'row',
+    height: '100%',
     [theme.breakpoints.down('md')]: {
       flexDirection: 'column',
     },
   },
   image: {
-    width: '250px',
-    height: '250px',
+    width: '260px',
+    height: '100%',
     [theme.breakpoints.down('md')]: {
       width: '100%',
       height: '350px',

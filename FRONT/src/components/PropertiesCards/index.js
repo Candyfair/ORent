@@ -12,9 +12,11 @@ import cards from '../../data/fakeCards';
 const useStyles = makeStyles((theme) => ({
   propertiesCards: {
     width: '100%',
+    height: '100vh',
   },
   box: {
     boxShadow: theme.custom.shadow.primary,
+    flexGrow: 4,
   },
 }));
 
