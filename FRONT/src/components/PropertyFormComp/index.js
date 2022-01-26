@@ -64,6 +64,7 @@ const PropertyFormComp = () => {
             variant="outlined"
           />
 
+          {/* Upload photos */}
           <TextField
             accept="image/*"
             id="upload"
@@ -199,6 +200,8 @@ const PropertyFormComp = () => {
             }}
           />
         </Stack>
+
+        {/* Save & Publish button */}
         <Stack
           justifyContent="center"
           alignItems="center"
