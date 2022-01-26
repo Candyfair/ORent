@@ -76,9 +76,9 @@ const Navbar = () => {
                 gap={2}
                 className={classes.buttonsDesktop}
               >
-                <DarkModeSwitch />
-                <LoginButton />
                 <LoggedButtons />
+                <LoginButton />
+                <DarkModeSwitch />
               </Stack>
             </Stack>
 

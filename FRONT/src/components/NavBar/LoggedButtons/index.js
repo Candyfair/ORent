@@ -1,16 +1,18 @@
 /* eslint-disable linebreak-style */
 // IMPORTS
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 
 import {
   Stack, Avatar, Menu, MenuItem, IconButton, ListItemIcon, ListItemText, Divider,
 } from '@mui/material';
-import {
-  MenuIcon, ExploreIcon, CardTravelIcon, FavoriteIcon, MapsHomeWorkIcon, LogoutIcon,
-} from '@mui/icons-material';
+import MenuIcon from '@mui/icons-material/Menu';
+import ExploreIcon from '@mui/icons-material/Explore';
+import CardTravelIcon from '@mui/icons-material/CardTravel';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork';
+import LogoutIcon from '@mui/icons-material/Logout';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
 import { logout } from '../../../redux/actions/userCurrent';
 import { getInitialsOfUsername } from '../../../utils/utils';
 
@@ -110,9 +112,7 @@ const LoggedButtons = () => {
 
       </Menu>
 
-      <Avatar
-        sx={{ bgcolor: deepOrange[500] }}
-      >
+      <Avatar>
         {/* Shows username's initial as avatar */}
         {
           getInitialsOfUsername(username)
