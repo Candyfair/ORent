@@ -28,8 +28,8 @@ CREATE TABLE "property"(
     "zip_code" posint NOT NULL,
     "city" TEXT NOT NULL,
     "country" TEXT NOT NULL,
-	"latitude" INT,
-    "longitude" INT,
+	"latitude" REAL,
+    "longitude" REAL,
     "user_id" INTEGER NOT NULL REFERENCES "user"(id),
 	"created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 	"updated_at" TIMESTAMPTZ

@@ -1,5 +1,6 @@
 @host=http://localhost:4500
 
+//-------------------------------------------------------------------------------
 // ROUTES AUTH
 
 ### Register
@@ -19,10 +20,66 @@ POST {{host}}/login
 Content-Type: application/json
 
 {
-    "email": "alex@gmail.com",
+    "email": "laura@gmail.com",
     "password": "123456"
 }
 
 ### refreshToken
 POST {{host}}/refresh-token
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY0Mjk1Mzc1MSwiZXhwIjoxNjQzNTU4NTUxfQ.Ht-2rITNkoqL8zttwZQ1TxPpCeeviRzyZG3RhWo3rKw
+
+//-------------------------------------------------------------------------------
+// ROUTES PROPERTIES
+
+### Tous les jeux
+GET {{host}}/properties
+
+### Un jeu
+GET {{host}}/properties/1
+
+### Nouvelle propriété
+POST {{host}}/properties
+Content-Type: application/json
+
+{
+    "name": "Mille bornas",
+    "description": "Une moche maison",
+    "capacity": 4,
+    "bedrooms_count": 2,
+    "beds_count": 4,
+    "bathrooms_count": 1,
+    "type": "maison",
+    "street_number": 11,
+    "street_name": "Avenue Stephane Mallarme",
+    "zip_code": 75017,
+    "city": "Paris",
+    "country": "France",
+    "latitude": 45.2,
+    "longitude": 45.7,
+    "user_id": 1
+}
+
+### Mise à jour jeu
+PATCH {{host}}/properties
+Content-Type: application/json
+
+{
+    "id": 1,
+    "name": "Mille bonjours",
+    "description": "Une jolie maison",
+    "capacity": 4,
+    "bedrooms_count": 2,
+    "beds_count": 4,
+    "bathrooms_count": 1,
+    "type": "maison",
+    "street_number": 11,
+    "street_name": "Avenue Stephane Mallarme",
+    "zip_code": 75017,
+    "city": "Paris",
+    "country": "Espagne",
+    "latitude": 45.2,
+    "longitude": 45.7
+}
+
+### Suppression
+DELETE {{host}}/boardgames/1
