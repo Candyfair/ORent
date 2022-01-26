@@ -49,6 +49,7 @@ const PropertiesMap = ({ cards }) => {
         center={centerCoordinates}
         zoom={6}
         scrollWheelZoom
+        draggable
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

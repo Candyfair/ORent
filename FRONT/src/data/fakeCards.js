@@ -34,7 +34,7 @@ const cards = [
     type: 'maison',
     streetNumber: 45,
     streetName: 'Peckham Road',
-    zipCode: 'SE5 7DD',
+    zipCode: 28711,
     city: 'London',
     country: 'United Kingdom',
     latitude: 51.47371148296525,
