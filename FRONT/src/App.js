@@ -17,7 +17,8 @@ import {
   MyAccount,
   PropertiesList,
   PropertyDetails,
-  PropertyForm,
+  AddPropertyForm,
+  ManagePropertyForm,
   UserProperties,
 } from './pages';
 
@@ -47,10 +48,11 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/homes" element={<PropertiesList />} />
-            <Route path="/homes/:id" element={<PropertyDetails />} />
-            <Route path="/account/:username" element={<MyAccount />} />
-            <Route path="/properties/:id/management" element={<PropertyForm />} />
-            <Route path="/properties/:username" element={<UserProperties />} />
+            <Route path="/homes/:slug/:id" element={<PropertyDetails />} />
+            <Route path="/:username/account/" element={<MyAccount />} />
+            <Route path="/:username/properties/:id/management" element={<ManagePropertyForm />} />
+            <Route path="/:username/add-property" element={<AddPropertyForm />} />
+            <Route path="/:username/properties/" element={<UserProperties />} />
             <Route path="/trips" element={<BookingsList />} />
             <Route path="/trips/:tripId" element={<BookingDetails />} />
           </Routes>

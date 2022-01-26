@@ -4,7 +4,7 @@ import BookingsList from './BookingsList';
 import MyAccount from './MyAccount';
 import PropertiesList from './PropertiesList';
 import PropertyDetails from './PropertyDetails';
-import PropertyForm from './PropertyForm';
+import AddPropertyForm from './AddPropertyForm';
 import UserProperties from './UserProperties';
 
 export {
@@ -14,6 +14,6 @@ export {
   MyAccount,
   PropertiesList,
   PropertyDetails,
-  PropertyForm,
+  AddPropertyForm,
   UserProperties,
 };

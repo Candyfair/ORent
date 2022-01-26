@@ -1,10 +1,10 @@
 import PropertyFormComp from '../../components/PropertyFormComp';
 
-const PropertyForm = () => (
+const AddPropertyForm = () => (
   <div>
-    ADD/MODIFY A PROPERTY
+    ADD A PROPERTY
     <PropertyFormComp />
   </div>
 );
 
-export default PropertyForm;
+export default AddPropertyForm;
