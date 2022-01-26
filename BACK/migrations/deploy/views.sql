@@ -36,8 +36,8 @@ SELECT DISTINCT
     "user".firstname,
     "user".lastname,
     "user".email,
-    "user".created_at,
-    "user".updated_at,
+    "user".created_at AS createdAt,
+    "user".updated_at AS updatedAt,
     "users_bookings".bookings AS bookings
 FROM "user"
    LEFT JOIN "users_bookings" ON "users_bookings".id = "user".id
@@ -49,13 +49,13 @@ SELECT DISTINCT
     "property".name,
     "property".description,
     "property".capacity,
-    "property".bedrooms_count,
-    "property".beds_count,
-    "property".bathrooms_count,
+    "property".bedrooms_count AS bedroomsCount,
+    "property".beds_count AS bedsCount,
+    "property".bathrooms_count AS bathroomsCount,
     "property".type,
-    "property". street_number,
-    "property".street_name,
-    "property".zip_code,
+    "property". street_number AS streetNumber,
+    "property".street_name AS streetName,
+    "property".zip_code AS zipCode,
     "property".city,
     "property".country,
     "property".latitude,
@@ -63,8 +63,8 @@ SELECT DISTINCT
     "user".username AS host,
     "properties_has_images".images AS images,
     "properties_offers_vacancies".vacancies AS vacancies,
-    "property".created_at,
-    "property".updated_at
+    "property".created_at AS createdAt,
+    "property".updated_at AS updatedAt
 FROM "property"
     JOIN "user" ON "user".id = "property".user_id
     JOIN "properties_has_images" ON "properties_has_images".id="property".id

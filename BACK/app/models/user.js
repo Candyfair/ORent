@@ -9,8 +9,8 @@ const {userSchema} = require('../schemas/userSchema');
 * @property {string} firstname
 * @property {string} lastname
 * @property {string} email
-* @property {string} created_at
-* @property {string} updated_at
+* @property {string} createdAt
+* @property {string} updatedAt
 * @property {array<number>} bookings
 */
 

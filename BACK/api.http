@@ -1,5 +1,6 @@
 @host=http://localhost:4500
 
+//-------------------------------------------------------------------------------
 // ROUTES AUTH
 
 ### Register
@@ -26,3 +27,13 @@ Content-Type: application/json
 ### refreshToken
 POST {{host}}/refresh-token
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY0Mjk1Mzc1MSwiZXhwIjoxNjQzNTU4NTUxfQ.Ht-2rITNkoqL8zttwZQ1TxPpCeeviRzyZG3RhWo3rKw
+
+//-------------------------------------------------------------------------------
+// ROUTES PROPERTIES
+
+
+### Find all properties
+GET {{host}}/properties/
+
+### Find a property by ID
+GET {{host}}/properties/1
