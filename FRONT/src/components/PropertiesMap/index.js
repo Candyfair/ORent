@@ -1,13 +1,19 @@
 /* eslint-disable linebreak-style */
+// === Leaflet imports
 import {
   MapContainer, TileLayer, Marker, Popup,
 } from 'react-leaflet';
+
+// === React imports
 import { useNavigate } from 'react-router';
 
+// === Material-UI imports
 import { makeStyles } from '@mui/styles';
 import { Stack, Button, Typography } from '@mui/material/';
 
+// === Internal module imports
 import cards from '../../data/fakeCards';
+import getMapCenter from '../../utils/utils';
 
 const useStyles = makeStyles((theme) => ({
   propertiesMap: {
@@ -29,19 +35,21 @@ const PropertiesMap = () => {
 
   const navigate = useNavigate();
 
+  const centerCoordinates = getMapCenter(cards);
   return (
     <Stack
       className={classes.propertiesMap}
     >
       <MapContainer
         className={classes.map}
-        center={[51.505, -0.09]}
+        center={centerCoordinates} // [51.505, -0.09]
         zoom={6}
         scrollWheelZoom
+        dragging
       >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
         {
           cards.map(
