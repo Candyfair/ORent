@@ -2,7 +2,7 @@
 // IMPORTS
 import { makeStyles } from '@mui/styles';
 import {
-  Stack, Typography, TextField, FormControl, Button, InputAdornment, InputBase,
+  Stack, Typography, TextField, FormControl, Button, InputAdornment, InputBase, Input,
 } from '@mui/material/';
 import PhotoIcon from '@mui/icons-material/Photo';
 
@@ -48,7 +48,8 @@ const PropertyFormComp = () => {
               label="Name of your property"
             />
 
-            <InputBase
+            <Input
+              type="file"
               id="upload"
               label="Upload photos"
               endAdornment={(
@@ -56,8 +57,8 @@ const PropertyFormComp = () => {
                   <PhotoIcon fontSize="small" />
                 </InputAdornment>
               )}
+              variant="outlined"
             />
-
           </Stack>
 
           {/* Address */}
