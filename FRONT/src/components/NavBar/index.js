@@ -8,6 +8,7 @@ import SearchBar from './SearchBar';
 import LoginButton from './LoginButton';
 import LoggedButtons from './LoggedButtons';
 import NavBarOffset from './NavBarOffset';
+import DarkModeSwitch from './DarkModeSwitch';
 import logo from '../../assets/images/logo.png';
 
 const useStyles = makeStyles((theme) => ({
@@ -29,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       display: 'none',
     },
+  },
+  buttonsDesktop: {
+    justifyContent: 'flex-end',
   },
   searchbarDesktop: {
     [theme.breakpoints.down('md')]: {
@@ -67,8 +71,15 @@ const Navbar = () => {
               <Stack className={classes.searchbarDesktop}>
                 <SearchBar />
               </Stack>
-              <LoginButton />
-              <LoggedButtons />
+              <Stack
+                flexDirection="row"
+                gap={2}
+                className={classes.buttonsDesktop}
+              >
+                <LoggedButtons />
+                <LoginButton />
+                <DarkModeSwitch />
+              </Stack>
             </Stack>
 
             {/* Navigation for mobile: searchbar */}
