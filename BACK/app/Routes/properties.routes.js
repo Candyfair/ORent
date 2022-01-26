@@ -4,6 +4,7 @@ const router = Router();
 const checkJWT = require('../middlewares/checkJWT')
 
 const propertyController = require('../controllers/propertyController');
+const geocoding = require('../services/geocoding');
 
 /**
  * GET /properties
@@ -43,7 +44,7 @@ const propertyController = require('../controllers/propertyController');
  * @returns {Properties} 201 - The newly created Properties (view)
  * @returns {string} 500 - An error message
  */
- router.post('/properties', propertyController.save);
+ router.post('/properties', geocoding, propertyController.save);
 
 /**
  * PATCH /properties

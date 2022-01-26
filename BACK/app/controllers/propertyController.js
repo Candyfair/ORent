@@ -25,6 +25,8 @@ module.exports = {
     },
     save: async (request, response) => {
         try {
+
+            
             const instance = new Property(request.body);
             const game = await instance.save();
             if (game) {

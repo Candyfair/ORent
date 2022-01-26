@@ -66,9 +66,9 @@ SELECT DISTINCT
     "property".created_at AS createdAt,
     "property".updated_at AS updatedAt
 FROM "property"
-    JOIN "user" ON "user".id = "property".user_id
-    JOIN "properties_has_images" ON "properties_has_images".id="property".id
-    JOIN "properties_offers_vacancies" ON "properties_offers_vacancies".id="property".id
+    LEFT JOIN "user" ON "user".id = "property".user_id
+    LEFT JOIN "properties_has_images" ON "properties_has_images".id="property".id
+    LEFT JOIN "properties_offers_vacancies" ON "properties_offers_vacancies".id="property".id
 ORDER BY "property".created_at DESC;
 
 COMMIT;
