@@ -98,7 +98,7 @@ const LoginForm = () => {
           value={email}
           variant="outlined"
           error={loginEmailError}
-          helperText={loginEmailError ? 'Aucun compte n\'existe avec cette adresse email.' : ''}
+          helperText={loginEmailError ? 'No account exists with this email address.' : ''}
           onChange={(e) => dispatch(changeCurrentUserField(e.target.value, 'email'))}
         />
         <FormControl
@@ -150,7 +150,7 @@ const LoginForm = () => {
             id="outlined-adornment-password-helper-text"
             error={loginPasswordError}
           >
-            {loginPasswordError ? 'Le mot de passe est incorrect.' : ''}
+            {loginPasswordError ? 'Password is incorrect' : ''}
           </FormHelperText>
         </FormControl>
         <Button
