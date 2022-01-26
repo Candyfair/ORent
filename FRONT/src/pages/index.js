@@ -5,6 +5,7 @@ import MyAccount from './MyAccount';
 import PropertiesList from './PropertiesList';
 import PropertyDetails from './PropertyDetails';
 import AddPropertyForm from './AddPropertyForm';
+import ManagePropertyForm from './ManagePropertyForm';
 import UserProperties from './UserProperties';
 
 export {
@@ -15,5 +16,6 @@ export {
   PropertiesList,
   PropertyDetails,
   AddPropertyForm,
+  ManagePropertyForm,
   UserProperties,
 };
