@@ -1,14 +1,13 @@
 /* eslint-disable linebreak-style */
+import PropTypes from 'prop-types';
+
 import { Stack, Box } from '@mui/material/';
 import { makeStyles } from '@mui/styles';
 
 // === Imports
 import PropertyCard from './PropertyCard';
 
-import cards from '../../data/fakeCards';
-
-// === Notre tableau d'objet avec des fake data
-
+// === Styles
 const useStyles = makeStyles((theme) => ({
   propertiesCards: {
     width: '100%',
@@ -20,7 +19,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PropertiesCards = () => {
+// === Code
+const PropertiesCards = ({ cards }) => {
   const classes = useStyles();
 
   return (
@@ -44,6 +44,32 @@ const PropertiesCards = () => {
       ))}
     </Stack>
   );
+};
+
+// === propTypes
+PropertiesCards.propTypes = {
+  // validation des éléments du tableau + forme des éléments du tableau
+  cards: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    slug: PropTypes.string,
+    description: PropTypes.string,
+    capacity: PropTypes.number,
+    bedroomsCount: PropTypes.number,
+    bedsCount: PropTypes.number,
+    bathrooms_count: PropTypes.number,
+    type: PropTypes.string,
+    streetNumber: PropTypes.number,
+    streetName: PropTypes.string,
+    zipCode: PropTypes.number,
+    city: PropTypes.string,
+    country: PropTypes.string,
+    weekPrice: PropTypes.number,
+    latitude: PropTypes.number,
+    longitude: PropTypes.number,
+    images: PropTypes.array,
+    user_id: PropTypes.number,
+  })).isRequired,
 };
 
 export default PropertiesCards;

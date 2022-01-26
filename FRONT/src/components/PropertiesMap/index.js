@@ -1,4 +1,6 @@
 /* eslint-disable linebreak-style */
+import PropTypes from 'prop-types';
+
 // === Leaflet imports
 import {
   MapContainer, TileLayer, Marker, Popup,
@@ -12,9 +14,9 @@ import { makeStyles } from '@mui/styles';
 import { Stack, Button, Typography } from '@mui/material/';
 
 // === Internal module imports
-import cards from '../../data/fakeCards';
 import getMapCenter from '../../utils/utils';
 
+// === Styles
 const useStyles = makeStyles((theme) => ({
   propertiesMap: {
     width: '100%',
@@ -30,13 +32,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PropertiesMap = () => {
-  // right side : propertiesMap display
+// === Code
+const PropertiesMap = ({ cards }) => {
   const classes = useStyles();
 
   const navigate = useNavigate();
 
   const centerCoordinates = getMapCenter(cards);
+
   return (
     <Stack
       className={classes.propertiesMap}
@@ -83,6 +86,32 @@ const PropertiesMap = () => {
       </MapContainer>
     </Stack>
   );
+};
+
+// === propTypes
+PropertiesMap.propTypes = {
+  // validation des éléments du tableau + forme des éléments du tableau
+  cards: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    slug: PropTypes.string,
+    description: PropTypes.string,
+    capacity: PropTypes.number,
+    bedroomsCount: PropTypes.number,
+    bedsCount: PropTypes.number,
+    bathrooms_count: PropTypes.number,
+    type: PropTypes.string,
+    streetNumber: PropTypes.number,
+    streetName: PropTypes.string,
+    zipCode: PropTypes.number,
+    city: PropTypes.string,
+    country: PropTypes.string,
+    weekPrice: PropTypes.number,
+    latitude: PropTypes.number,
+    longitude: PropTypes.number,
+    images: PropTypes.array,
+    user_id: PropTypes.number,
+  })).isRequired,
 };
 
 export default PropertiesMap;
