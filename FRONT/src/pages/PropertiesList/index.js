@@ -3,6 +3,8 @@ import { Stack, Box } from '@mui/material/';
 import PropertiesCards from '../../components/PropertiesCards';
 import PropertiesMap from '../../components/PropertiesMap';
 
+import cards from '../../data/fakeCards';
+
 const useStyles = makeStyles((theme) => ({
   propertiesList: {
     padding: `${theme.spacing(2)} 0`,
@@ -21,18 +23,22 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
+
 const PropertiesList = () => {
   const classes = useStyles();
+
+  if (cards.length === 0) return null;
+
   return (
     <Stack
       className={classes.propertiesList}
       flexDirection="row"
     >
       <Box className={classes.cards}>
-        <PropertiesCards />
+        <PropertiesCards cards={cards} />
       </Box>
       <Box className={classes.map}>
-        <PropertiesMap />
+        <PropertiesMap cards={cards} />
       </Box>
     </Stack>
   );

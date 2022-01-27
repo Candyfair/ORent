@@ -1,5 +1,6 @@
 /* eslint-disable linebreak-style */
 import PropTypes from 'prop-types';
+
 // === Material UI compoments imports
 import { makeStyles } from '@mui/styles';
 
@@ -9,17 +10,19 @@ import {
 
 import { useNavigate } from 'react-router';
 
+// === Styles
 const useStyles = makeStyles((theme) => ({
   propertyCard: {
     display: 'flex',
     flexDirection: 'row',
+    height: '100%',
     [theme.breakpoints.down('md')]: {
       flexDirection: 'column',
     },
   },
   image: {
-    width: '250px',
-    height: '250px',
+    width: '260px',
+    height: '100%',
     [theme.breakpoints.down('md')]: {
       width: '100%',
       height: '350px',
@@ -33,23 +36,31 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'flex-start',
   },
   type: {
-
+    fontSize: '1rem',
   },
   name: {
-
+    fontSize: '1.5rem',
+    fontWeight: '700',
+    margin: '8px 0',
   },
   description: {
     flexGrow: 1,
+    fontSize: '0.9rem',
+    lineHeight: '1.3',
+    fontStyle: 'italic',
   },
   price: {
+    fontWeight: 'bold',
+    fontSize: '0.9rem',
 
   },
   button: {
-
+    fontSize: '0.7rem',
   },
 
 }));
 
+// === Code
 const PropertyCard = ({
   image,
   type,
@@ -125,6 +136,7 @@ const PropertyCard = ({
   );
 };
 
+// === propTypes
 PropertyCard.propTypes = {
   image: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,

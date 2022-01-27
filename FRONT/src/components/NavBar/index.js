@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router';
+
 // MaterialUI imports
 import {
   AppBar, Toolbar, Stack, Box,
@@ -49,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
 // Exported component
 const Navbar = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
 
   return (
     <Box>
@@ -67,7 +70,7 @@ const Navbar = () => {
               flexDirection="row"
               className={classes.desktop}
             >
-              <img src={logo} alt="Logo O'Rent" />
+              <img src={logo} alt="Logo O'Rent" onClick={() => navigate('/')} />
               <Stack className={classes.searchbarDesktop}>
                 <SearchBar />
               </Stack>
