@@ -34,7 +34,7 @@ module.exports = {
             throw new Error('Token not valid');
         }
     },
-    refreshToken: (userId) => {heroku run bash
+    refreshToken: (userId) => {
         console.log('je suis dans le validate du refresh')
         try {
             return JWT.sign(
