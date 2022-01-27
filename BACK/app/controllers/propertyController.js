@@ -1,4 +1,4 @@
-const Property = require('../models/PropertyNew');
+const Property = require('../models/Property');
 
 module.exports = {
 

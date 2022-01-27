@@ -1,4 +1,4 @@
-const User = require('../models/UserNew')
+const User = require('../models/User')
 const jwt = require('../services/jwt');
 
 module.exports = {
