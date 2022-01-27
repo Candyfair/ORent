@@ -1,9 +1,12 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { makeStyles } from '@mui/styles';
 import { Stack, Box } from '@mui/material/';
 import PropertiesCards from '../../components/PropertiesCards';
 import PropertiesMap from '../../components/PropertiesMap';
 
 import cards from '../../data/fakeCards';
+import { fetchProperties } from '../../redux/actions/propertiesFetch';
 
 const useStyles = makeStyles((theme) => ({
   propertiesList: {
@@ -26,6 +29,11 @@ const useStyles = makeStyles((theme) => ({
 
 const PropertiesList = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProperties());
+  }, []);
 
   if (cards.length === 0) return null;
 
