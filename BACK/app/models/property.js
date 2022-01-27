@@ -42,7 +42,7 @@ class Property {
      static async findAll() {
         try {
             const {rows} = await db.query('SELECT * FROM properties');
-            return rows.map(row => new Boardgame(row));
+            return rows.map(row => new Property(row));
         } catch (error) {
             if (error.detail) {
                 throw new Error(error.detail);
@@ -63,7 +63,7 @@ class Property {
         try {
             const {rows} = await db.query('SELECT * FROM properties WHERE id=$1', [id]);
             if (rows[0]) {
-                return new Boardgame(rows[0]);
+                return new Property(rows[0]);
             }
             return null;
 
