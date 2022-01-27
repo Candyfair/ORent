@@ -9,12 +9,13 @@ import {
 
 import { useState } from 'react';
 import UploadFormComp from './UploadFormComp';
+import { changeNewPropertyField } from '../../redux/actions/propertyCreate';
 
 // MUI STYLES
 const useStyles = makeStyles((theme) => ({
   propertyContainer: {
-    textAlign: 'left',
-    width: '50%',
+    // textAlign: 'left',
+    maxWidth: '500px',
     [theme.breakpoints.down('md')]: {
       width: '100%',
     },
@@ -29,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
   },
   btsave: {
     width: '50%',
+  },
+  country: {
+    textAlign: 'left',
   },
   // price: {
   //   '&> .MuiOutlinedInput-input': {
@@ -46,22 +50,28 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
+// COMPONENT
 const PropertyFormComp = () => {
   const classes = useStyles();
 
+  // Dispatch functions
+  const dispatch = useDispatch();
+
   const {
-    propertyname, number, street, zipcode, city, countryId,
-    capacity, bedrooms, beds, bathrooms,
+    propertyname, number, street, zipcode, city,
+    capacity, bedrooms, beds, bathrooms, country,
     description, price,
   } = useSelector((state) => state.propertyCreate);
 
-  const [country, setCountry] = useState('');
-  const handleChange = (event) => {
-    setCountry(event.target.value);
+  const handlePropertyFormSubmit = (event) => {
+    event.preventDefault();
   };
 
   return (
-    <form>
+    <form
+      autoComplete="off"
+      onSubmit={handlePropertyFormSubmit}
+    >
 
       <Stack
         className={classes.propertyContainer}
@@ -74,8 +84,10 @@ const PropertyFormComp = () => {
           <TextField
             required
             id="propertyname"
+            value={propertyname}
             label="Name of your property"
             variant="outlined"
+            onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'propertyname'))}
           />
 
           {/* Upload photos */}
@@ -92,38 +104,48 @@ const PropertyFormComp = () => {
           <TextField
             id="number"
             label="Number"
+            value={number}
+            onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'number'))}
+
           />
           <TextField
             required
             id="street"
             label="Street"
+            value={street}
+            onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'street'))}
           />
           <TextField
             required
             id="zipcode"
             label="Zip code"
+            value={zipcode}
+            onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'zipcode'))}
           />
           <TextField
             required
             id="city"
             label="City"
+            value={city}
+            onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'city'))}
           />
           {/* Country select field */}
           <FormControl>
             <InputLabel id="country-label">Country *</InputLabel>
             <Select
               required
-              id="countryId"
+              id="country"
               label="Country"
               labelId="country-label"
               value={country}
-              onChange={handleChange}
+              className={classes.country}
+              onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'country'))}
             >
-              <MenuItem value={1}>France</MenuItem>
-              <MenuItem value={2}>Italy</MenuItem>
-              <MenuItem value={3}>Greece</MenuItem>
-              <MenuItem value={5}>Spain</MenuItem>
-              <MenuItem value={6}>United Kingdom</MenuItem>
+              <MenuItem value="France">France</MenuItem>
+              <MenuItem value="Italy">Italy</MenuItem>
+              <MenuItem value="Greece">Greece</MenuItem>
+              <MenuItem value="Spain">Spain</MenuItem>
+              <MenuItem value="United Kingdom">United Kingdom</MenuItem>
 
             </Select>
           </FormControl>
@@ -143,6 +165,8 @@ const PropertyFormComp = () => {
               required
               type="number"
               id="capacity"
+              value={capacity}
+              onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'capacity'))}
               label="Capacity"
               variant="outlined"
               className={classes.featuresItem}
@@ -151,6 +175,8 @@ const PropertyFormComp = () => {
               required
               type="number"
               id="bedrooms"
+              value={bedrooms}
+              onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'bedrooms'))}
               label="Bedrooms"
               className={classes.featuresItem}
             />
@@ -158,6 +184,8 @@ const PropertyFormComp = () => {
               required
               type="number"
               id="beds"
+              value={beds}
+              onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'beds'))}
               label="Beds"
               className={classes.featuresItem}
             />
@@ -165,6 +193,8 @@ const PropertyFormComp = () => {
               required
               type="number"
               id="bathrooms"
+              value={bathrooms}
+              onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'bathrooms'))}
               label="Bathrooms"
               className={classes.featuresItem}
             />
@@ -182,6 +212,8 @@ const PropertyFormComp = () => {
             label="Enter a description of your property"
             multiline
             minRows={4}
+            value={description}
+            onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'description'))}
           />
         </Stack>
 
@@ -193,6 +225,8 @@ const PropertyFormComp = () => {
           <TextField
             required
             id="price"
+            value={price}
+            onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'price'))}
             label="Price per night"
             type="tel"
             // className={classes.price}
@@ -209,6 +243,7 @@ const PropertyFormComp = () => {
         >
           <Button
             variant="contained"
+            type="submit"
             className={classes.btsave}
           >
             Save & Publish

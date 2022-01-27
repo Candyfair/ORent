@@ -8,6 +8,14 @@ export const changeNewPropertyField = (value, fieldName) => (
   }
 );
 
+// Empty fields
+export const RESET_NEW_PROPERTY_FIELDS = 'RESET_NEW_PROPERTY_FIELDS';
+export const resetNewPropertyFields = () => (
+  {
+    type: RESET_NEW_PROPERTY_FIELDS,
+  }
+);
+
 // Send form to API
 export const ADD_PROPERTY = 'ADD_PROPERTY';
 export const addProperty = () => ({
