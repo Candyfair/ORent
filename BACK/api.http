@@ -42,7 +42,7 @@ POST {{host}}/properties
 Content-Type: application/json
 
 {
-    "name": "Mille bornas",
+    "name": "Milles Bornes",
     "description": "Une moche maison",
     "capacity": 4,
     "bedrooms_count": 2,
@@ -54,8 +54,7 @@ Content-Type: application/json
     "zip_code": 75017,
     "city": "Paris",
     "country": "France",
-    "latitude": 45.2,
-    "longitude": 45.7,
+    "week_price": 300,
     "user_id": 1
 }
 
