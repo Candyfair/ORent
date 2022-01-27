@@ -8,6 +8,34 @@ const UserPropertiesCards = () => (
     <UserPropertyCard />
     <UserPropertyCard />
     <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
+    <UserPropertyCard />
   </div>
 );
 
