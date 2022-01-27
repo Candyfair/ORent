@@ -1,12 +1,14 @@
 /* eslint-disable linebreak-style */
 // IMPORTS
+import { useDispatch, useSelector } from 'react-redux';
+
 import { makeStyles } from '@mui/styles';
 import {
   Stack, Typography, TextField, Button, InputAdornment, Select, MenuItem, FormControl, InputLabel,
 } from '@mui/material/';
-import PhotoIcon from '@mui/icons-material/Photo';
 
 import { useState } from 'react';
+import UploadFormComp from './UploadFormComp';
 
 // MUI STYLES
 const useStyles = makeStyles((theme) => ({
@@ -28,18 +30,30 @@ const useStyles = makeStyles((theme) => ({
   btsave: {
     width: '50%',
   },
-  price: {
-    '& .MuiOutlinedInput-input': {
-      '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
-        '-webkit-appearance': 'none',
-      },
-    },
-  },
+  // price: {
+  //   '&> .MuiOutlinedInput-input': {
+  //     '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+  //       '-webkit-appearance': 'none',
+  //     },
+  //   },
+  // },
+  // price: {
+  //   '&> input[type=number]::-webkit-inner-spin-button': {
+  //     '-webkit-appearance': 'none',
+  //     'margin': 0,
+  //   },
+  // },
 
 }));
 
 const PropertyFormComp = () => {
   const classes = useStyles();
+
+  const {
+    propertyname, number, street, zipcode, city, countryId,
+    capacity, bedrooms, beds, bathrooms,
+    description, price,
+  } = useSelector((state) => state.propertyCreate);
 
   const [country, setCountry] = useState('');
   const handleChange = (event) => {
@@ -59,26 +73,13 @@ const PropertyFormComp = () => {
         >
           <TextField
             required
-            id="name"
+            id="propertyname"
             label="Name of your property"
             variant="outlined"
           />
 
           {/* Upload photos */}
-          <TextField
-            accept="image/*"
-            id="upload"
-            label="Upload photos"
-            variant="outlined"
-            multiple
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <PhotoIcon fontSize="small" />
-                </InputAdornment>
-              ),
-            }}
-          />
+          <UploadFormComp />
 
         </Stack>
 
@@ -112,7 +113,7 @@ const PropertyFormComp = () => {
             <InputLabel id="country-label">Country *</InputLabel>
             <Select
               required
-              id="Country"
+              id="countryId"
               label="Country"
               labelId="country-label"
               value={country}
@@ -193,8 +194,8 @@ const PropertyFormComp = () => {
             required
             id="price"
             label="Price per night"
-            type="number"
-            className={classes.price}
+            type="tel"
+            // className={classes.price}
             InputProps={{
               startAdornment: <InputAdornment position="start">€</InputAdornment>,
             }}
