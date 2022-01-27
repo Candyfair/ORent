@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router';
 import { makeStyles } from '@mui/styles';
 import { Stack, Button, Typography } from '@mui/material/';
 
@@ -40,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
 // Exported component
 const Home = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
 
   return (
     <Stack
@@ -59,6 +61,7 @@ const Home = () => {
         >
           <Typography variant="h3">Find inspiration for your next vacation</Typography>
           <Button
+            onClick={() => navigate('/homes')}
             variant="contained"
             color="secondary"
             className={classes.btexplore}
