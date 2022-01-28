@@ -3,6 +3,7 @@ import { Stack, Box } from '@mui/material/';
 import PropertiesCards from '../../components/PropertiesCards';
 import PropertiesMap from '../../components/PropertiesMap';
 
+import Layout from '../../components/Layout';
 import cards from '../../data/fakeCards';
 
 const useStyles = makeStyles((theme) => ({
@@ -28,7 +29,6 @@ const PropertiesList = () => {
   const classes = useStyles();
 
   if (cards.length === 0) return null;
-
   return (
     <Stack
       className={classes.propertiesList}

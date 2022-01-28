@@ -1,3 +1,4 @@
+// IMPORTS
 import { useNavigate } from 'react-router';
 import { makeStyles } from '@mui/styles';
 import { Stack, Button, Typography } from '@mui/material/';
@@ -5,11 +6,12 @@ import { Stack, Button, Typography } from '@mui/material/';
 import UserPropertiesCards from '../../components/UserPropertiesCards';
 import cards from '../../data/fakeCards';
 
+// MUI STYLES
 const useStyles = makeStyles((theme) => ({
   userProperties: {
-    padding: `${theme.spacing(3)} 0`,
+    padding: `${theme.spacing(2)} 0`,
     width: '100%',
-    height: '100vh',
+    height: '100%',
   },
   cards: {
     width: '100%',
@@ -19,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// COMPONENT
 const UserProperties = () => {
   const classes = useStyles();
   const navigate = useNavigate();
@@ -29,8 +32,8 @@ const UserProperties = () => {
     <Stack
       className={classes.userProperties}
       flexDirection="column"
-      spacing={5}
-      justifyContent="flex-start"
+      spacing={4}
+      justifyContent="center"
       alignItems="center"
     >
       <Typography

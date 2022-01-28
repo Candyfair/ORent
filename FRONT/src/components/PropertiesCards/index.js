@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+// === IMPORTS
 import PropTypes from 'prop-types';
 
 import { Stack, Box } from '@mui/material/';
@@ -7,7 +8,7 @@ import { makeStyles } from '@mui/styles';
 // === Imports
 import PropertyCard from './PropertyCard';
 
-// === Styles
+// === MUI
 const useStyles = makeStyles((theme) => ({
   propertiesCards: {
     width: '100%',
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// === Code
+// === COMPONENT
 const PropertiesCards = ({ cards }) => {
   const classes = useStyles();
 
