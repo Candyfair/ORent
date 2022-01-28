@@ -3,6 +3,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 
+import { makeStyles } from '@mui/styles';
 import {
   Stack, Avatar, Menu, MenuItem, IconButton, ListItemIcon, ListItemText, Divider,
 } from '@mui/material';
@@ -17,7 +18,15 @@ import { logout } from '../../../redux/actions/userCurrent';
 import { getInitialsOfUsername } from '../../../utils/utils';
 
 // COMPONENT
+const useStyles = makeStyles((theme) => ({
+  avatar: {
+    backgroundColor: theme.palette.primary.main,
+  },
+}));
+
+
 const LoggedButtons = () => {
+  const classes = useStyles();
   // Material UI Menu
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -112,7 +121,9 @@ const LoggedButtons = () => {
 
       </Menu>
 
-      <Avatar>
+      <Avatar
+        className={classes.avatar}
+      >
         {/* Shows username's initial as avatar */}
         {
           getInitialsOfUsername(username)

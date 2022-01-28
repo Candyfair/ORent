@@ -8,8 +8,10 @@ import {
 } from '@mui/material/';
 
 import { useState } from 'react';
-import UploadFormComp from './UploadFormComp';
-import { changeNewPropertyField } from '../../redux/actions/propertyCreate';
+import { changeNewPropertyField, uploadImage } from '../../redux/actions/propertyCreate';
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+
+import PropertyImagesPreviewDisplay from './PropertyImagesPreviewDisplay'
 
 // MUI STYLES
 const useStyles = makeStyles((theme) => ({
@@ -34,6 +36,11 @@ const useStyles = makeStyles((theme) => ({
   country: {
     textAlign: 'left',
   },
+  addPictureButton: {
+    color: theme.palette.common.white,
+    textTransform: 'none',
+    fontWeight: 700
+  }
   // price: {
   //   '&> .MuiOutlinedInput-input': {
   //     '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
@@ -41,13 +48,6 @@ const useStyles = makeStyles((theme) => ({
   //     },
   //   },
   // },
-  // price: {
-  //   '&> input[type=number]::-webkit-inner-spin-button': {
-  //     '-webkit-appearance': 'none',
-  //     'margin': 0,
-  //   },
-  // },
-
 }));
 
 // COMPONENT
@@ -60,12 +60,18 @@ const PropertyFormComp = () => {
   const {
     propertyname, number, street, zipcode, city,
     capacity, bedrooms, beds, bathrooms, country,
-    description, price,
+    description, price, uploadFile, images
   } = useSelector((state) => state.propertyCreate);
 
   const handlePropertyFormSubmit = (event) => {
     event.preventDefault();
   };
+
+  const handlePropertyImageChange = (e) => {
+    dispatch(changeNewPropertyField(e.target.files[0], 'uploadFile'))
+    console.log(uploadFile)
+    dispatch(uploadImage());
+  }
 
   return (
     <form
@@ -79,8 +85,28 @@ const PropertyFormComp = () => {
       >
         {/* Property name & photo upload */}
         <Stack
-          spacing={1}
+          spacing={2}
         >
+          
+          {/* Upload photos */}
+          <Button
+            className={classes.addPictureButton}
+            variant="contained"
+            component="label"
+            disableElevation
+            startIcon={<AddAPhotoIcon />}
+          >
+            Upload your property pictures
+            <input
+              name='property_image'
+              type="file"
+              onChange={handlePropertyImageChange}
+              hidden
+              multiple
+            />
+          </Button>
+          <PropertyImagesPreviewDisplay />
+
           <TextField
             required
             id="propertyname"
@@ -90,14 +116,11 @@ const PropertyFormComp = () => {
             onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'propertyname'))}
           />
 
-          {/* Upload photos */}
-          <UploadFormComp />
-
         </Stack>
 
         {/* ADDRESS */}
         <Stack
-          spacing={1}
+          spacing={2}
         >
           <Typography variant="h5">Address</Typography>
 
@@ -153,7 +176,7 @@ const PropertyFormComp = () => {
 
         {/* FEATURES */}
         <Stack
-          spacing={1}
+          spacing={2}
         >
           <Typography variant="h5">Features</Typography>
           <Stack
@@ -203,7 +226,7 @@ const PropertyFormComp = () => {
 
         {/* DESCRIPTION */}
         <Stack
-          spacing={1}
+          spacing={2}
         >
           <Typography variant="h5">Description</Typography>
           <TextField
@@ -219,7 +242,7 @@ const PropertyFormComp = () => {
 
         {/* PRICE */}
         <Stack
-          spacing={1}
+          spacing={2}
         >
           <Typography variant="h5">Price</Typography>
           <TextField

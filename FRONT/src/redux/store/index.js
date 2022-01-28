@@ -5,12 +5,13 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import rootReducer from '../reducers/index';
 import authMiddleware from '../../middleware/authMiddleware';
+import propertyMiddleware from '../../middleware/propertyMiddleware';
 
 const initalState = {
 
 };
 
-const middlewares = [authMiddleware];
+const middlewares = [authMiddleware, propertyMiddleware];
 
 const store = createStore(
   rootReducer, initalState, composeWithDevTools(applyMiddleware(...middlewares)),

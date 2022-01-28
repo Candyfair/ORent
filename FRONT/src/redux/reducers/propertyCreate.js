@@ -1,8 +1,8 @@
-import { CHANGE_NEW_PROPERTY_FIELD, RESET_NEW_PROPERTY_FIELDS } from '../actions/propertyCreate';
+import { CHANGE_NEW_PROPERTY_FIELD, CHANGE_NEW_PROPERTY_IMAGES, RESET_NEW_PROPERTY_FIELDS } from '../actions/propertyCreate';
 
 export const initialState = {
-  propertyname: '',
-  image: '',
+  uploadFile: '',
+  images: [],
   number: '',
   street: '',
   zipcode: '',
@@ -41,6 +41,12 @@ const reducer = (state = initialState, action = {}) => {
         description: '',
         price: '',
       };
+    case CHANGE_NEW_PROPERTY_IMAGES: {
+      return {
+        ...state,
+        images: [...state.images, action.value]
+      }
+    }
 
     default:
       return state;
