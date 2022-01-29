@@ -4,12 +4,9 @@ export function getInitialsOfUsername(username) {
 }
 
 export default function getMapCenter(cards) {
-  let latitudeAverage = 0;
-  let longitudeAverage = 0;
-  // eslint-disable-next-line no-restricted-syntax
-  for (const card of cards) {
-    latitudeAverage += card.latitude / cards.length;
-    longitudeAverage += card.longitude / cards.length;
-  }
-  return [latitudeAverage, longitudeAverage];
+  const latitudesArray = cards.map((card) => card.latitude);
+  const longitudesArray = cards.map((card) => card.longitude);
+  const latitudeOfCenter = (Math.max(...latitudesArray) + Math.min(...latitudesArray)) / 2;
+  const longitudeOfCenter = (Math.max(...longitudesArray) + Math.min(...longitudesArray)) / 2;
+  return [latitudeOfCenter, longitudeOfCenter];
 }

@@ -1,16 +1,13 @@
 /* eslint-disable linebreak-style */
+// === IMPPORTS
+import { useNavigate } from 'react-router';
 import PropTypes from 'prop-types';
-
-// === Material UI compoments imports
 import { makeStyles } from '@mui/styles';
-
 import {
   Card, CardMedia, CardContent, Button, Typography,
 } from '@mui/material/';
 
-import { useNavigate } from 'react-router';
-
-// === Styles
+// === MUI
 const useStyles = makeStyles((theme) => ({
   propertyCard: {
     display: 'flex',
@@ -60,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-// === Code
+// === COMPONENT
 const PropertyCard = ({
   image,
   type,

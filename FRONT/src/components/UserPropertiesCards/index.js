@@ -3,18 +3,20 @@
 import PropTypes from 'prop-types';
 import { makeStyles } from '@mui/styles';
 import {
-  CssBaseline,
+  Box,
   Stack,
-  Grid,
 } from '@mui/material';
 import UserPropertyCard from './UserPropertyCard';
 
 // === MUI
-const useStyles = makeStyles(() => ({
-  cardGrid: {
-    width: '100vw',
+const useStyles = makeStyles((theme) => ({
+  userPropertiesCards: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    padding: `${theme.spacing(2)} 0`,
+    width: '100%',
     height: '100%',
-    // justifyContent: 'center',
   },
 }));
 
@@ -22,21 +24,30 @@ const useStyles = makeStyles(() => ({
 const UserPropertiesCards = ({ cards }) => {
   const classes = useStyles();
   return (
-    <Stack>
-      <CssBaseline />
-      <Grid container className={classes.cardGrid} spacing={4}>
-        {cards.map((card) => (
-          <Grid item key={card.id} xs={12} sm={3}>
-            <UserPropertyCard
-              name={card.name}
-              image={card.images[0]}
-              type={card.type}
-              // slug={card.slug}
-              // id={card.id}
-            />
-          </Grid>
-        ))}
-      </Grid>
+    <Stack
+      className={classes.userPropertiesCards}
+      gap={8}
+    >
+      {cards.map((card) => (
+        <Box key={card.id}>
+          <UserPropertyCard
+            name={card.name}
+            image={card.images[0]}
+            type={card.type}
+            slug={card.slug}
+            id={card.id}
+          />
+        </Box>
+      ))}
+      <Box>
+        <UserPropertyCard
+          name=""
+          image=""
+          type=""
+          slug=""
+          id={0}
+        />
+      </Box>
     </Stack>
   );
 };
