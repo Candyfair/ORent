@@ -3,6 +3,8 @@ import { CHANGE_NEW_PROPERTY_FIELD, CHANGE_NEW_PROPERTY_IMAGES, RESET_NEW_PROPER
 export const initialState = {
   uploadFile: '',
   images: [],
+  name: '',
+  type: '',
   number: '',
   street: '',
   zipcode: '',
@@ -27,8 +29,8 @@ const reducer = (state = initialState, action = {}) => {
     case RESET_NEW_PROPERTY_FIELDS:
       return {
         ...state,
-        propertyname: '',
-        image: '',
+        name: '',
+        type: '',
         number: '',
         street: '',
         zipcode: '',

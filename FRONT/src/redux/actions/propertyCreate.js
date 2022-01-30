@@ -34,3 +34,11 @@ export const UPLOAD_IMAGE = 'UPLOAD_IMAGE';
 export const uploadImage = () => ({
   type: UPLOAD_IMAGE,
 });
+
+export const ADD_PROPERTY_IMAGE = 'ADD_PROPERTY_IMAGE';
+export const addPropertyImage = (url, name, propertyId) => ({
+  type: ADD_PROPERTY_IMAGE,
+  url,
+  name,
+  propertyId,
+});
