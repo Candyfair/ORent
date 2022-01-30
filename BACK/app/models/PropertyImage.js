@@ -22,7 +22,7 @@ class PropertyImage {
     }
 
 
-     static async findAllFromProperty(id) {
+     static async findOne(id) {
         try {
             const {rows} = await db.query('SELECT * FROM property_image WHERE property_id=$1', [id]);
             if (rows[0]) {

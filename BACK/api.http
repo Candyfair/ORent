@@ -35,28 +35,27 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhd
 GET {{host}}/properties
 
 ### Un jeu
-GET {{host}}/properties/1
+GET {{host}}/properties/2
 
 ### Nouvelle propriété
 POST {{host}}/properties
 Content-Type: application/json
 
 {
-    "name": "Milles Bornes",
+    "name": "Milles Champddaadaaaasfe test",
     "description": "Une moche maison",
     "capacity": 4,
     "bedrooms_count": 2,
     "beds_count": 4,
     "bathrooms_count": 1,
     "type": "maison",
-    "street_number": 11,
-    "street_name": "Avenue Stephane Mallarme",
-    "zip_code": 75017,
+    "street_number": 70,
+    "street_name": "Avenue des champs élysées",
+    "zip_code": 75008,
     "city": "Paris",
     "country": "France",
-    "week_price": 300,
-    "user_id": 1,
-    "images": []
+    "week_price": 100,
+    "user_id": 1
 }
 
 ### Mise à jour jeu
@@ -83,3 +82,36 @@ Content-Type: application/json
 
 ### Suppression
 DELETE {{host}}/boardgames/1
+
+
+//-------------------------------------------------------------------------------
+// ROUTES PROPERTIES IMAGES
+
+### Tous les images de propriétés
+GET {{host}}/properties-images
+
+### une image de propriété
+GET {{host}}/properties-images/2
+
+### Nouvelle image de propriété
+POST {{host}}/properties-images
+Content-Type: application/json
+
+{
+    "url": "https://www.ouestfrance-immo.com/photo-vente-maison-dinge-35/207/maison-a-vendre-dinge-15716995_1_1633042576_8db11d1850ddca5c28260d2fb3dadb7d.jpg",
+    "name": "Milles Borrétfsdarédazfgretdagrerznes",
+    "property_id": 2
+}
+
+### Mise à jour jeu
+PATCH {{host}}/properties-images
+Content-Type: application/json
+
+{
+    "url": "https://www.ouestfrance-immo.com/photo-vente-maison-dinge-35/207/maison-a-vendre-dinge-15716995_1_1633042576_8db11d1850ddca5c28260d2fb3dadb7d.jpg",
+    "name": "Milles Borrétfsdarédazfgretdagrerznes",
+    "property_id": 1
+}
+
+### Suppression
+DELETE {{host}}/properties-images/1

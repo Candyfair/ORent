@@ -7,6 +7,7 @@ const bodySanitizer = require('./app/middlewares/bodySanitizer');
 
 const authRouter = require('./app/Routes/auth.routes');
 const propertiesRouter = require('./app/Routes/properties.routes');
+const propertiesImagesRouter = require('./app/Routes/propertiesImages.routes');
 const welcomeRouter = require('./app/Routes/welcome.routes');
 const uploadRoutes = require('./app/Routes/upload.routes');
 
@@ -29,6 +30,7 @@ app.use(welcomeRouter);
 app.use(uploadRoutes)
 app.use(authRouter);
 app.use(propertiesRouter)
+app.use(propertiesImagesRouter)
 
 app.listen(port, () => {
     console.log(`Server started on http://localhost:${port}`);
