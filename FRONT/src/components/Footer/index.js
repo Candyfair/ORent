@@ -1,21 +1,22 @@
 /* eslint-disable linebreak-style */
+// === IMPORTS
+import { useNavigate } from 'react-router';
 import { Stack, Typography, Button } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
+// === MUI
 const useStyles = makeStyles(() => ({
   footerFields: {
-    textDecoration: 'underline',
     fontSize: '0.7rem',
   },
 }));
 
+// === COMPONENT
 const Footer = () => {
+  const navigate = useNavigate();
   const classes = useStyles();
   return (
     <footer>
-      {/* <Typography variant="h6" align="center" gutterBottom>
-        Terms
-      </Typography> */}
       <Stack
         flexDirection="row"
         justifyContent="center"
@@ -25,7 +26,7 @@ const Footer = () => {
           className={classes.footerFields}
           variant="h6"
           align="center"
-          onClick={() => console.log('Go to the Terms page !')}
+          onClick={() => navigate('/terms-of-use')}
         >
           Terms
         </Button>
@@ -33,7 +34,7 @@ const Footer = () => {
           className={classes.footerFields}
           variant="h6"
           align="center"
-          onClick={() => console.log('Go to the Privacy Policy page !')}
+          onClick={() => navigate('/privacy-policy')}
         >
           Privacy Policy
         </Button>
@@ -41,7 +42,7 @@ const Footer = () => {
           className={classes.footerFields}
           variant="h6"
           align="center"
-          onClick={() => console.log('Go to the About page !')}
+          onClick={() => navigate('/about')}
         >
           About
         </Button>
@@ -49,7 +50,7 @@ const Footer = () => {
           className={classes.footerFields}
           variant="h6"
           align="center"
-          onClick={() => console.log('Go to the FAQs page !')}
+          onClick={() => navigate('/faq')}
         >
           FAQs
         </Button>
