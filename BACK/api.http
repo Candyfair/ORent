@@ -55,7 +55,8 @@ Content-Type: application/json
     "city": "Paris",
     "country": "France",
     "week_price": 300,
-    "user_id": 1
+    "user_id": 1,
+    "images": []
 }
 
 ### Mise à jour jeu

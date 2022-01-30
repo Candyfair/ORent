@@ -25,13 +25,11 @@ module.exports = {
     },
     save: async (request, response) => {
         try {
-
-            
             const instance = new Property(request.body);
-            const game = await instance.save();
-            if (game) {
+            const property = await instance.save();
+            if (property) {
                 //on a fait un insert
-                return response.status(201).json(game);
+                return response.status(201).json(property);
             }
             //sinon, on a fait un update
             response.status(204).json('Enregistrmeent mis à jour');
