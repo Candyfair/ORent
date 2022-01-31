@@ -1,14 +1,11 @@
 /* eslint-disable linebreak-style */
-// === IMPORTS
+// === IMPPORTS
+import { useNavigate } from 'react-router';
 import PropTypes from 'prop-types';
-
 import { makeStyles } from '@mui/styles';
-
 import {
   Card, CardMedia, CardContent, Button, Typography, Stack,
 } from '@mui/material/';
-
-import { useNavigate } from 'react-router';
 
 // === MUI
 const useStyles = makeStyles((theme) => ({

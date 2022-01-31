@@ -1,13 +1,13 @@
 /* eslint-disable linebreak-style */
+// === React imports
+import { useNavigate } from 'react-router';
+
 import PropTypes from 'prop-types';
 
 // === Leaflet imports
 import {
   MapContainer, TileLayer, Marker, Popup,
 } from 'react-leaflet';
-
-// === React imports
-import { useNavigate } from 'react-router';
 
 // === Material-UI imports
 import { makeStyles } from '@mui/styles';
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
   popup: {
     display: 'flex',
-    flexDirectino: 'column',
+    flexDirection: 'column',
     gap: theme.spacing(1),
   },
 }));
@@ -69,7 +69,7 @@ const PropertiesMap = ({ cards }) => {
                   <Typography
                     variant="body1"
                   >
-                    {card.weekPrice} €/week
+                    {card.weekprice} €/week
                   </Typography>
                   <Button
                     className={classes.button}
@@ -108,7 +108,7 @@ PropertiesMap.propTypes = {
     zipCode: PropTypes.number,
     city: PropTypes.string,
     country: PropTypes.string,
-    weekPrice: PropTypes.number,
+    weekprice: PropTypes.number,
     latitude: PropTypes.number,
     longitude: PropTypes.number,
     images: PropTypes.array,
