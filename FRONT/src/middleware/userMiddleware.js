@@ -6,7 +6,7 @@ import api from './api';
 const userMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case FETCH_USER_INFOS: {
-        console.log(`Je suis bien dans le properties middleware sur la route GET /users/me`);
+        console.log(`Je suis bien dans le user middleware sur la route GET /users/me`);
         store.dispatch(setLoading(true));
         api.get(
           `/users/me`,

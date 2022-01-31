@@ -30,7 +30,7 @@ module.exports = {
                 }
             );
         } catch (error) {
-            console.log(error);
+            console.log(`Je suis là lol`,error);
             throw new Error('Token not valid');
         }
     },
@@ -64,6 +64,7 @@ module.exports = {
                 }
             );
         } catch (error) {
+            console.log('je suis aussi là ! hihi')
             console.log('Validation Refresh Token error', error);
             throw error;
         }
