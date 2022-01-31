@@ -1,5 +1,5 @@
 /* eslint-disable linebreak-style */
-// === IMPPORTS
+// === IMPORTS
 import { useNavigate } from 'react-router';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@mui/styles';

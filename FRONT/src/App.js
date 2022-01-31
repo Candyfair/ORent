@@ -24,6 +24,11 @@ import {
 
 import Layout from './components/Layout';
 import { refreshToken } from './redux/actions/userCurrent';
+import TermsOfUse from './pages/TermsOfUse';
+import Faq from './pages/Faq';
+import About from './pages/About';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import Error404 from './pages/Error404';
 
 // == Composant
 const App = () => {
@@ -55,6 +60,11 @@ const App = () => {
             <Route path="/:username/properties/" element={<UserProperties />} />
             <Route path="/trips" element={<BookingsList />} />
             <Route path="/trips/:tripId" element={<BookingDetails />} />
+            <Route path="/terms-of-use" element={<TermsOfUse />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/faq" element={<Faq />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="*" element={<Error404 />} />
           </Routes>
           <ModalDisplay />
         </Layout>
