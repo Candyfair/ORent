@@ -8,7 +8,7 @@ import PropertyDetailsComp from '../../components/PropertyDetailsComp';
 const useStyles = makeStyles((theme) => ({
   propertyDetail: {
     padding: theme.spacing(3),
-    width: '100%',
+    maxWidth: 1165,
   },
 }));
 
@@ -28,7 +28,7 @@ const PropertyDetails = () => {
         variant="h4"
         align="left"
       >
-        Nom de la propriété
+        [Nom de la propriété]
       </Typography>
 
       <PropertyDetailsComp />
