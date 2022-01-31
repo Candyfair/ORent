@@ -7,7 +7,8 @@ import { makeStyles } from '@mui/styles';
 // === MUI
 const useStyles = makeStyles(() => ({
   footerFields: {
-    fontSize: '0.7rem',
+    fontSize: '0.8rem',
+    margin: '16px 0',
   },
 }));
 
@@ -20,44 +21,48 @@ const Footer = () => {
       <Stack
         flexDirection="row"
         justifyContent="center"
-        gap={1}
+        gap={20}
       >
-        <Button
+        <Typography
+          className={classes.footerFields}
+          variant="h6"
+          align="center"
+        >
+          &copy; 2022 - O'RENT
+        </Typography>
+        <Typography
           className={classes.footerFields}
           variant="h6"
           align="center"
           onClick={() => navigate('/terms-of-use')}
         >
           Terms
-        </Button>
-        <Button
+        </Typography>
+        <Typography
           className={classes.footerFields}
           variant="h6"
           align="center"
           onClick={() => navigate('/privacy-policy')}
         >
           Privacy Policy
-        </Button>
-        <Button
+        </Typography>
+        <Typography
           className={classes.footerFields}
           variant="h6"
           align="center"
           onClick={() => navigate('/about')}
         >
           About
-        </Button>
-        <Button
+        </Typography>
+        <Typography
           className={classes.footerFields}
           variant="h6"
           align="center"
           onClick={() => navigate('/faq')}
         >
-          FAQs
-        </Button>
+          FAQ
+        </Typography>
       </Stack>
-      <Typography variant="subtitle1" align="center" color="textSecondary" fontSize="0.8rem">
-        &copy; 2022 O'RENT
-      </Typography>
     </footer>
 
   );
