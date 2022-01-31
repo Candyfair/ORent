@@ -4,6 +4,7 @@ import userCurrentReducer from './userCurrent';
 import userCreateReducer from './userCreate';
 import displayOptionsReducer from './displayOptions';
 import formErrorsReducer from './formErrors';
+import propertyCurrentReducer from './propertyCurrent';
 
 const rootReducer = combineReducers({
   modals: modalsReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   userCreate: userCreateReducer,
   displayOptions: displayOptionsReducer,
   formErrors: formErrorsReducer,
+  propertyCurrent: propertyCurrentReducer,
 });
 
 export default rootReducer;

@@ -85,7 +85,7 @@ const cards = [
     country: 'France',
     latitude: 48.64601761024152,
     longitude: -2.016548175799291,
-    weekPrice: 400,
+    weekprice: 400,
     images: [
       'https://www.igc-construction.fr/sites/default/files/2020-11/maison-design-avec-terrasse-en-bois.jpg',
     ],

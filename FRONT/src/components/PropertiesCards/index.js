@@ -1,13 +1,13 @@
 /* eslint-disable linebreak-style */
+// === IMPORTS
 import PropTypes from 'prop-types';
 
 import { Stack, Box } from '@mui/material/';
 import { makeStyles } from '@mui/styles';
 
-// === Imports
 import PropertyCard from './PropertyCard';
 
-// === Styles
+// === MUI
 const useStyles = makeStyles((theme) => ({
   propertiesCards: {
     width: '100%',
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// === Code
+// === COMPONENT
 const PropertiesCards = ({ cards }) => {
   const classes = useStyles();
 
@@ -35,10 +35,11 @@ const PropertiesCards = ({ cards }) => {
             name={card.name}
             image={card.images[0]}
             description={card.description}
-            weekPrice={card.weekPrice}
+            weekprice={card.weekprice}
             type={card.type}
             slug={card.slug}
             id={card.id}
+            host={card.host}
           />
         </Box>
       ))}
@@ -64,11 +65,12 @@ PropertiesCards.propTypes = {
     zipCode: PropTypes.number,
     city: PropTypes.string,
     country: PropTypes.string,
-    weekPrice: PropTypes.number,
+    weekprice: PropTypes.number,
     latitude: PropTypes.number,
     longitude: PropTypes.number,
     images: PropTypes.array,
     user_id: PropTypes.number,
+    host: PropTypes.string,
   })).isRequired,
 };
 
