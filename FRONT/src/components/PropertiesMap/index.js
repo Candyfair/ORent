@@ -20,10 +20,11 @@ import getMapCenter from '../../utils/utils';
 const useStyles = makeStyles((theme) => ({
   propertiesMap: {
     width: '100%',
+    position: 'fixed',
   },
   map: {
     width: '100%',
-    height: '100vh',
+    height: '85.6vh',
   },
   popup: {
     display: 'flex',

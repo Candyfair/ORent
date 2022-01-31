@@ -22,10 +22,10 @@ const useStyles = makeStyles((theme) => ({
   },
   image: {
     width: '260px',
-    height: '100%',
+    height: '200px',
     [theme.breakpoints.down('md')]: {
       width: '100%',
-      height: '350px',
+      height: '200px',
     },
   },
   content: {

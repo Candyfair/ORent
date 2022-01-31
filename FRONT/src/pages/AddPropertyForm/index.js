@@ -9,6 +9,7 @@ import VacanciesForm from '../../components/VacanciesForm';
 const useStyles = makeStyles((theme) => ({
   addProperty: {
     padding: theme.spacing(3),
+    width: '100%',
   },
 }));
 
@@ -20,8 +21,8 @@ const AddPropertyForm = () => {
     <Stack
       flexDirection="column"
       spacing={5}
-      justifyContent="flex-start"
-      alignItems="left"
+      justifyContent="center"
+      alignItems="center"
       className={classes.addProperty}
     >
       <Typography
