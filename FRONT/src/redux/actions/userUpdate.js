@@ -8,3 +8,12 @@ export const saveUserInfos = (data) => ({
   type: SAVE_USER_INFOS,
   data,
 });
+
+export const CHANGE_UPDATE_USER_FIELD = 'CHANGE_UPDATE_USER_FIELD';
+export const changeUpdateUserField = (value, fieldName) => (
+  {
+    type: CHANGE_UPDATE_USER_FIELD,
+    value,
+    fieldName,
+  }
+);

@@ -2,11 +2,11 @@ import {
   Stack, Typography, TextField, Button,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+
 import LoopIcon from '@mui/icons-material/Loop';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { fetchUserInfos } from '../../redux/actions/userUpdate';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeUpdateUserField } from '../../redux/actions/userUpdate';
 
 /* eslint-disable linebreak-style */
 const useStyles = makeStyles((theme) => ({
@@ -32,15 +32,15 @@ const AccountForm = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
 
+  const { username, firstname, lastname, email, password, newPassword, newPasswordVerification } = useSelector((state) => state.userUpdate);
+
   const handleSubmitUpdateAccountFormm = (e) => {
     e.preventDefault()
   }
 
-  useEffect(
-    () => {
-      dispatch(fetchUserInfos())
-    }, []);
-  
+
+
+ 
   return (
     <Stack
       className={classes.accountUpdateForm}
@@ -60,35 +60,39 @@ const AccountForm = () => {
           <TextField
             required
             id="username"
-            label="Username :"
-            value="CK_2022"
-            fullWidth
+            label="Username"
+            value={username}
+            onChange={(e) => dispatch(changeUpdateUserField(e.target.value, 'username'))}
           />
           <TextField
             required
             id="firstname"
-            label="First name :"
-            value="Key"
+            label="First name"
+            value={firstname}
+            onChange={(e) => dispatch(changeUpdateUserField(e.target.value, 'firstname'))}
           />
           <TextField
             required
             id="lastname"
-            label="Last name :"
-            value="Cereal"
+            label="Last name"
+            value={lastname}
+            onChange={(e) => dispatch(changeUpdateUserField(e.target.value, 'lastname'))}
           />
           <TextField
             required
             id="email"
-            label="Email :"
+            label="Email"
             type="email"
-            value="cereal@key.com"
+            value={email}
+            onChange={(e) => dispatch(changeUpdateUserField(e.target.value, 'email'))}
           />
           <TextField
             required
             id="password"
-            label="Password :"
+            label="Password"
             type="password"
-            value="hahahaha"
+            value={password}
+            onChange={(e) => dispatch(changeUpdateUserField(e.target.value, 'password'))}
           />
           <Stack
             flexDirection="row"
@@ -110,6 +114,7 @@ const AccountForm = () => {
               className={classes.updateButton}
               disableElevation
               fullWidth
+              type='submit'
               startIcon={<LoopIcon />}
             >
               Update my account
@@ -121,5 +126,7 @@ const AccountForm = () => {
     </Stack>
   );
 };
+
+
 
 export default AccountForm;

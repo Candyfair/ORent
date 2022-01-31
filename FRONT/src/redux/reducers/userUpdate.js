@@ -1,8 +1,17 @@
-import { CHANGE_NEW_USER_FIELD, RESET_NEW_USER_FIELDS } from '../actions/userCreate';
-import { SAVE_USER_INFOS } from '../actions/userUpdate';
+import { CHANGE_UPDATE_USER_FIELD, SAVE_USER_INFOS } from '../actions/userUpdate';
 
 export const initialState = {
-  userInfos: '',
+  id: '',
+  username: '',
+  firstname: '',
+  lastname: '',
+  email: '',
+  createdat: '',
+  updatedat: '',
+  bookings: [],
+  password: '',
+  newPassword: '',
+  newPasswordVerification: '',
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -10,8 +19,13 @@ const reducer = (state = initialState, action = {}) => {
     case SAVE_USER_INFOS:
       return {
         ...state,
-        userInfos: action.data,
+        ...action.data,
       };
+    case CHANGE_UPDATE_USER_FIELD:
+    return {
+        ...state,
+        [action.fieldName]: action.value,
+    };
     default:
       return state;
   }

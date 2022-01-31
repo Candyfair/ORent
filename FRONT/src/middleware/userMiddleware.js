@@ -13,14 +13,14 @@ const userMiddleware = (store) => (next) => (action) => {
         )
           .then(
             (response) => {
-              console.log('Fetch property details réussi : ', response);
+              console.log('Fetch user infos réussi : ', response);
               store.dispatch(saveUserInfos(response.data));
               store.dispatch(setLoading(false));
             },
           )
           .catch(
             (error) => {
-              console.log('Error Fetch property details: ', error);
+              console.log('Error Fetch user infos: ', error);
               store.dispatch(setLoading(false));
             },
           );

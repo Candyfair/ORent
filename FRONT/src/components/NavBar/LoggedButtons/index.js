@@ -110,7 +110,7 @@ const LoggedButtons = () => {
         </MenuItem>
 
         <MenuItem onClick={() => {
-          navigate('/:username/properties/');
+          navigate(`/${username.toLowerCase()}/properties/`);
           handleClose();
         }}
         >
@@ -137,7 +137,7 @@ const LoggedButtons = () => {
         className={classes.avatar}
 
         onClick={() => {
-          navigate('/:username/account/');
+          navigate(`/${username.toLowerCase()}/account/`);
           handleClose();
         }}
       >
