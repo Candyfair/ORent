@@ -1,5 +1,5 @@
 import { setLoading } from '../redux/actions/displayOptions';
-import { FETCH_PROPERTIES, savePropertiesList } from '../redux/actions/propertiesFetch';
+import { FETCH_PROPERTIES, FETCH_PROPERTY, savePropertiesList, savePropertyDetails } from '../redux/actions/propertiesFetch';
 import api from './api';
 
 const propertyMiddleware = (store) => (next) => (action) => {
@@ -20,6 +20,29 @@ const propertyMiddleware = (store) => (next) => (action) => {
         .catch(
           (error) => {
             console.log('Error Fetch properties: ', error);
+            store.dispatch(setLoading(false));
+          },
+        );
+      next(action);
+      break;
+    }
+
+    case FETCH_PROPERTY: {
+      console.log(`Je suis bien dans le properties middleware sur la route GET /properties/${action.id}`);
+      store.dispatch(setLoading(true));
+      api.get(
+        `/properties/${action.id}`,
+      )
+        .then(
+          (response) => {
+            console.log('Fetch property details réussi : ', response);
+            store.dispatch(savePropertyDetails(response.data));
+            store.dispatch(setLoading(false));
+          },
+        )
+        .catch(
+          (error) => {
+            console.log('Error Fetch property details: ', error);
             store.dispatch(setLoading(false));
           },
         );
