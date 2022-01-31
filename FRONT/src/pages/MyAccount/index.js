@@ -1,10 +1,7 @@
 import AccountForm from '../../components/AccountForm';
 
 const MyAccount = () => (
-  <div id="container">
-    MY ACCOUNT
-    <AccountForm />
-  </div>
+  <AccountForm />
 );
 
 export default MyAccount;

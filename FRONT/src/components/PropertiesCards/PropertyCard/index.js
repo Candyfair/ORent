@@ -1,16 +1,13 @@
 /* eslint-disable linebreak-style */
+// === IMPORTS
+import { useNavigate } from 'react-router';
 import PropTypes from 'prop-types';
-
-// === Material UI compoments imports
 import { makeStyles } from '@mui/styles';
-
 import {
-  Card, CardMedia, CardContent, Button, Typography,
+  Card, CardMedia, CardContent, Button, Typography, Stack,
 } from '@mui/material/';
 
-import { useNavigate } from 'react-router';
-
-// === Styles
+// === MUI
 const useStyles = makeStyles((theme) => ({
   propertyCard: {
     display: 'flex',
@@ -22,10 +19,10 @@ const useStyles = makeStyles((theme) => ({
   },
   image: {
     width: '260px',
-    height: '100%',
+    height: '200px',
     [theme.breakpoints.down('md')]: {
       width: '100%',
-      height: '350px',
+      height: '200px',
     },
   },
   content: {
@@ -57,18 +54,23 @@ const useStyles = makeStyles((theme) => ({
   button: {
     fontSize: '0.7rem',
   },
+  host: {
+    color: theme.palette.primary.main,
+    fontWeight: '700',
+  },
 
 }));
 
-// === Code
+// === COMPONENT
 const PropertyCard = ({
   image,
   type,
   name,
   description,
-  weekPrice,
+  weekprice,
   slug,
   id,
+  host,
 }) => {
   const classes = useStyles();
 
@@ -89,13 +91,26 @@ const PropertyCard = ({
       <CardContent
         className={classes.content}
       >
-        <Typography
-          className={classes.type}
-          variant="subtitle1"
-          component="h5"
+        <Stack
+          flexDirection="row"
+          gap={1}
         >
-          {type}
-        </Typography>
+          <Typography
+            className={classes.type}
+            variant="subtitle1"
+            component="h5"
+          >
+            {type} hosted by
+          </Typography>
+          <Typography
+            className={classes.host}
+            variant="subtitle1"
+            component="h5"
+          >
+            {host}
+          </Typography>
+
+        </Stack>
 
         <Typography
           className={classes.name}
@@ -110,6 +125,7 @@ const PropertyCard = ({
           variant="subtitle1"
           color="text.secondary"
           component="p"
+          gutterBottom
         >
           {description}
         </Typography>
@@ -120,7 +136,7 @@ const PropertyCard = ({
           color="text.secondary"
           component="aside"
         >
-          {weekPrice}€/week
+          {weekprice}€/week
         </Typography>
 
         <Button
@@ -142,9 +158,10 @@ PropertyCard.propTypes = {
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  weekPrice: PropTypes.number.isRequired,
+  weekprice: PropTypes.number.isRequired,
   slug: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
+  host: PropTypes.string.isRequired,
 };
 
 export default PropertyCard;

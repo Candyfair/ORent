@@ -2,6 +2,7 @@
 // IMPORTS
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 import { makeStyles } from '@mui/styles';
 import {
@@ -14,8 +15,17 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork';
 import LogoutIcon from '@mui/icons-material/Logout';
 
+import { makeStyles } from '@mui/styles';
+
 import { logout } from '../../../redux/actions/userCurrent';
 import { getInitialsOfUsername } from '../../../utils/utils';
+
+// MUI STYLES
+const useStyles = makeStyles((theme) => ({
+  avatar: {
+    cursor: 'pointer',
+  },
+}));
 
 // COMPONENT
 const useStyles = makeStyles((theme) => ({
@@ -37,6 +47,8 @@ const LoggedButtons = () => {
     setAnchorEl(null);
   };
 
+  const classes = useStyles();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { isLogged, username } = useSelector((state) => state.userCurrent);
@@ -78,8 +90,10 @@ const LoggedButtons = () => {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem
-          onClick={handleClose}
+        <MenuItem onClick={() => {
+          navigate('/homes');
+          handleClose();
+        }}
         >
           <ListItemIcon>
             <ExploreIcon fontSize="small" />
@@ -87,7 +101,11 @@ const LoggedButtons = () => {
           <ListItemText>Explore</ListItemText>
         </MenuItem>
 
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={() => {
+          navigate('/trips');
+          handleClose();
+        }}
+        >
           <ListItemIcon>
             <CardTravelIcon fontSize="small" />
           </ListItemIcon>
@@ -101,7 +119,11 @@ const LoggedButtons = () => {
           <ListItemText>Wishlist</ListItemText>
         </MenuItem>
 
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={() => {
+          navigate('/:username/properties/');
+          handleClose();
+        }}
+        >
           <ListItemIcon>
             <MapsHomeWorkIcon fontSize="small" />
           </ListItemIcon>
@@ -123,6 +145,11 @@ const LoggedButtons = () => {
 
       <Avatar
         className={classes.avatar}
+
+        onClick={() => {
+          navigate('/:username/account/');
+          handleClose();
+        }}
       >
         {/* Shows username's initial as avatar */}
         {
