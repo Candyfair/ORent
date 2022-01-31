@@ -6,6 +6,7 @@ import { makeStyles } from '@mui/styles';
 /* eslint-disable linebreak-style */
 const useStyles = makeStyles((theme) => ({
   header: {
+    textAlign: 'center',
     [theme.breakpoints.down('sm')]: {
       marginTop: '60px',
     },
