@@ -51,21 +51,18 @@ const AccountForm = () => {
             id="username"
             label="Username :"
             value="CK_2022"
-            focused
           />
           <TextField
             required
             id="firstname"
             label="First name :"
             value="Key"
-            focused
           />
           <TextField
             required
             id="lastname"
             label="Last name :"
             value="Cereal"
-            focused
           />
           <TextField
             required
@@ -73,7 +70,6 @@ const AccountForm = () => {
             label="Email :"
             type="email"
             value="cereal@key.com"
-            focused
           />
           <TextField
             required
@@ -81,7 +77,6 @@ const AccountForm = () => {
             label="Password :"
             type="password"
             value="hahahaha"
-            focused
           />
         </Stack>
         <Stack
