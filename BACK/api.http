@@ -8,10 +8,10 @@ POST {{host}}/register
 Content-Type: application/json
 
 {
-    "username": "LauraX",
-    "firstname": "Laura",
-    "lastname": "Khul",
-    "email": "laura@gmail.com",
+    "username": "LauraX2",
+    "firstname": "Laura2",
+    "lastname": "Khul2",
+    "email": "laura2@gmail.com",
     "password": "123456"
 }
 
@@ -20,8 +20,8 @@ POST {{host}}/login
 Content-Type: application/json
 
 {
-    "email": "laura@gmail.com",
-    "password": "123456"
+    "email": "laura3@gmail.com",
+    "password": "123457"
 }
 
 ### refreshToken
@@ -42,20 +42,20 @@ POST {{host}}/properties
 Content-Type: application/json
 
 {
-    "name": "Milles Champddaadaaaasfe test",
+    "name": "Milles Chamfdspddaadaa25aasfe test",
     "description": "Une moche maison",
-    "capacity": 4,
-    "bedrooms_count": 2,
-    "beds_count": 4,
-    "bathrooms_count": 1,
+    "capacity": "4",
+    "bedrooms_count": "2",
+    "beds_count": "4",
+    "bathrooms_count": "1",
     "type": "maison",
-    "street_number": 70,
+    "street_number": "70",
     "street_name": "Avenue des champs élysées",
-    "zip_code": 75008,
+    "zip_code": "75008",
     "city": "Paris",
     "country": "France",
-    "week_price": 100,
-    "user_id": 1
+    "week_price": "100",
+    "user_id": "1"
 }
 
 ### Mise à jour jeu
@@ -115,3 +115,31 @@ Content-Type: application/json
 
 ### Suppression
 DELETE {{host}}/properties-images/1
+
+//-------------------------------------------------------------------------------
+// ROUTES USERS
+
+### Tous les users
+GET {{host}}/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY0MzYzNjk1NCwiZXhwIjoxNjQzNjM3MjU0fQ.CKVlyqBQbbgi2RkVlz3Z868deWc5YizTOm1ufY4nRN4
+
+### Un user
+GET {{host}}/users/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY0MzYzODI2OCwiZXhwIjoxNjQzNjM4NTY4fQ.yXAoe6pZIJn0rElBz7QrSD-XoLmBchU2tFuU06j1oEg
+
+### Mise à jour user
+PATCH {{host}}/users/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY0MzYzODk5OSwiZXhwIjoxNjQzNjM5Mjk5fQ.-qUWkeoe0N_5gbSQOBWII3fooIU8YYQrAArkjeQosQU
+Content-Type: application/json
+
+{
+    "username": "LauraX3",
+    "firstname": "Laura3",
+    "lastname": "Khul3",
+    "email": "laura4@gmail.com",
+    "password": "123456"
+}
+
+### Suppression
+DELETE {{host}}/users/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImlhdCI6MTY0MzYzNzE4OCwiZXhwIjoxNjQzNjM3NDg4fQ.ho8ESlQiQFppL-0rHN2zKUlsVrzbB1D2Hfpiu9gH3zM

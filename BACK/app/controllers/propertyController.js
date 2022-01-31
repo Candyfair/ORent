@@ -25,6 +25,10 @@ module.exports = {
     },
     save: async (request, response) => {
         try {
+            const {images} = request.body
+            const imagesArray = images.split(', ').join
+            console.log('req.body : ', request.body)
+
             const instance = new Property(request.body);
             const property = await instance.save();
             if (property) {

@@ -60,6 +60,7 @@ SELECT DISTINCT
     "property".country,
     "property".latitude,
     "property".longitude,
+    "property".slug,
     "property".week_price AS weekPrice,
     "user".username AS host,
     "property".user_id AS host_id,

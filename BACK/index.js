@@ -10,6 +10,7 @@ const propertiesRouter = require('./app/Routes/properties.routes');
 const propertiesImagesRouter = require('./app/Routes/propertiesImages.routes');
 const welcomeRouter = require('./app/Routes/welcome.routes');
 const uploadRoutes = require('./app/Routes/upload.routes');
+const usersRoutes = require('./app/Routes/user.routes');
 
 // const router = require('./app/router');
 
@@ -31,6 +32,7 @@ app.use(uploadRoutes)
 app.use(authRouter);
 app.use(propertiesRouter)
 app.use(propertiesImagesRouter)
+app.use(usersRoutes)
 
 app.listen(port, () => {
     console.log(`Server started on http://localhost:${port}`);
