@@ -33,6 +33,9 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
+  logo: {
+    cursor: 'pointer',
+  },
   buttonsDesktop: {
     justifyContent: 'flex-end',
   },
@@ -70,7 +73,12 @@ const Navbar = () => {
               flexDirection="row"
               className={classes.desktop}
             >
-              <img src={logo} alt="Logo O'Rent" onClick={() => navigate('/')} />
+              <img
+                src={logo}
+                alt="Logo O'Rent"
+                className={classes.logo}
+                onClick={() => navigate('/')}
+              />
               <Stack className={classes.searchbarDesktop}>
                 <SearchBar />
               </Stack>
