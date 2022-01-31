@@ -7,9 +7,8 @@ module.exports = {
         try{
 
             const {email, password} = request.body;
-            const login = true;
             
-            const user = await new User({email, password, login}).findOne();
+            const user = await new User({email, password}).login();
             
 
             if(user.auth === true) {

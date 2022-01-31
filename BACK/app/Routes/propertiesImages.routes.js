@@ -3,8 +3,8 @@ const router = Router();
 
 const checkJWT = require('../middlewares/checkJWT')
 
-const propertyController = require('../controllers/propertyController');
-const geocoding = require('../services/geocoding');
+const propertyImageController = require('../controllers/propertyImageController');
+
 
 /**
  * GET /properties
@@ -13,7 +13,7 @@ const geocoding = require('../services/geocoding');
  * @returns {array<Boardgame>} 200 - An array of boardgames
  * @returns {string} 500 - An error message
  */
- router.get('/properties', propertyController.findAll);
+ router.get('/properties-images', propertyImageController.findAll);
 
 /**
  * GET /properties/{id}
@@ -24,7 +24,7 @@ const geocoding = require('../services/geocoding');
  * @returns {string} 404 - A not found error message
  * @returns {string} 500 - An error message
  */
- router.get('/properties/:id(\\d+)', propertyController.findOne);
+ router.get('/properties-images/:id(\\d+)', propertyImageController.findOne);
 
 /**
 * @typedef PropertyPost
@@ -44,7 +44,7 @@ const geocoding = require('../services/geocoding');
  * @returns {Properties} 201 - The newly created Properties (view)
  * @returns {string} 500 - An error message
  */
- router.post('/properties', geocoding, propertyController.save);
+ router.post('/properties-images', propertyImageController.save);
 
 /**
  * PATCH /properties
@@ -54,7 +54,7 @@ const geocoding = require('../services/geocoding');
  * @returns {string} 204 - A confirmation message
  * @returns {string} 500 - An error message
  */
- router.patch('/properties', propertyController.save);
+ router.patch('/properties-images', propertyImageController.save);
 
 /**
  * DELETE /properties/{id}
@@ -64,7 +64,7 @@ const geocoding = require('../services/geocoding');
  * @returns {string} 204 - A confirmation message
  * @returns {string} 500 - An error message
  */
-router.delete('/properties/:id(\\d+)', propertyController.delete);
+router.delete('/properties-images/:id(\\d+)', propertyImageController.delete);
 
 
 

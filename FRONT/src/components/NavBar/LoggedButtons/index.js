@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
+import { makeStyles } from '@mui/styles';
 import {
   Stack, Avatar, Menu, MenuItem, IconButton, ListItemIcon, ListItemText, Divider,
 } from '@mui/material';
@@ -27,7 +28,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // COMPONENT
+const useStyles = makeStyles((theme) => ({
+  avatar: {
+    backgroundColor: theme.palette.primary.main,
+  },
+}));
+
+
 const LoggedButtons = () => {
+  const classes = useStyles();
   // Material UI Menu
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -136,6 +145,7 @@ const LoggedButtons = () => {
 
       <Avatar
         className={classes.avatar}
+
         onClick={() => {
           navigate('/:username/account/');
           handleClose();

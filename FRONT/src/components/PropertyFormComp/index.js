@@ -4,12 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { makeStyles } from '@mui/styles';
 import {
-  Stack, Typography, TextField, Button, InputAdornment, Select, MenuItem, FormControl, InputLabel,
+  Stack, Typography, TextField, Button, InputAdornment, Select, MenuItem, FormControl, InputLabel, RadioGroup, Box, FormControlLabel, FormLabel, Radio
 } from '@mui/material/';
 
 import { useState } from 'react';
-import UploadFormComp from './UploadFormComp';
-import { changeNewPropertyField } from '../../redux/actions/propertyCreate';
+import { addProperty, changeNewPropertyField } from '../../redux/actions/propertyCreate';
+
+import UploadImageForm from './UploadImageForm';
+
 
 // MUI STYLES
 const useStyles = makeStyles((theme) => ({
@@ -29,11 +31,21 @@ const useStyles = makeStyles((theme) => ({
     width: '48%',
   },
   btsave: {
+    color: theme.palette.common.white,
+    fontWeight: 700,
     width: '50%',
   },
   country: {
     textAlign: 'left',
   },
+  type: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly'
+  },
+  upload: {
+    marginBottom: theme.spacing(2),
+  }
   // price: {
   //   '&> .MuiOutlinedInput-input': {
   //     '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
@@ -41,13 +53,6 @@ const useStyles = makeStyles((theme) => ({
   //     },
   //   },
   // },
-  // price: {
-  //   '&> input[type=number]::-webkit-inner-spin-button': {
-  //     '-webkit-appearance': 'none',
-  //     'margin': 0,
-  //   },
-  // },
-
 }));
 
 // COMPONENT
@@ -58,200 +63,223 @@ const PropertyFormComp = () => {
   const dispatch = useDispatch();
 
   const {
-    propertyname, number, street, zipcode, city,
+    name, number, street, zipcode, city,
     capacity, bedrooms, beds, bathrooms, country,
-    description, price,
+    description, price, uploadFile, type, images
   } = useSelector((state) => state.propertyCreate);
 
   const handlePropertyFormSubmit = (event) => {
     event.preventDefault();
+    // if (images.length > 0) dispatch(addProperty())
+    // else console.log('il faut ajouter une image pour créer une propriété')
+    dispatch(addProperty())
   };
 
+
+
   return (
-    <form
-      autoComplete="off"
-      onSubmit={handlePropertyFormSubmit}
-    >
+    <Stack 
+      className={classes.propertyContainer}
+      spacing={2}
+    >  
+      <UploadImageForm />
 
-      <Stack
-        className={classes.propertyContainer}
-        spacing={3}
+      <form
+        autoComplete="off"
+        onSubmit={handlePropertyFormSubmit}
       >
-        {/* Property name & photo upload */}
         <Stack
-          spacing={1}
+          spacing={3}
         >
-          <TextField
-            required
-            id="propertyname"
-            value={propertyname}
-            label="Name of your property"
-            variant="outlined"
-            onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'propertyname'))}
-          />
-
-          {/* Upload photos */}
-          <UploadFormComp />
-
-        </Stack>
-
-        {/* ADDRESS */}
-        <Stack
-          spacing={1}
-        >
-          <Typography variant="h5">Address</Typography>
-
-          <TextField
-            id="number"
-            label="Number"
-            value={number}
-            onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'number'))}
-
-          />
-          <TextField
-            required
-            id="street"
-            label="Street"
-            value={street}
-            onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'street'))}
-          />
-          <TextField
-            required
-            id="zipcode"
-            label="Zip code"
-            value={zipcode}
-            onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'zipcode'))}
-          />
-          <TextField
-            required
-            id="city"
-            label="City"
-            value={city}
-            onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'city'))}
-          />
-          {/* Country select field */}
-          <FormControl>
-            <InputLabel id="country-label">Country *</InputLabel>
-            <Select
-              required
-              id="country"
-              label="Country"
-              labelId="country-label"
-              value={country}
-              className={classes.country}
-              onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'country'))}
-            >
-              <MenuItem value="France">France</MenuItem>
-              <MenuItem value="Italy">Italy</MenuItem>
-              <MenuItem value="Greece">Greece</MenuItem>
-              <MenuItem value="Spain">Spain</MenuItem>
-              <MenuItem value="United Kingdom">United Kingdom</MenuItem>
-
-            </Select>
-          </FormControl>
-        </Stack>
-
-        {/* FEATURES */}
-        <Stack
-          spacing={1}
-        >
-          <Typography variant="h5">Features</Typography>
+          {/* Property name & photo upload */}
           <Stack
-            flexDirection="row"
-            className={classes.features}
-            gap={2}
-          >
+            spacing={2}
+          >   
             <TextField
               required
-              type="number"
-              id="capacity"
-              value={capacity}
-              onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'capacity'))}
-              label="Capacity"
+              id="propertyname"
+              value={name}
+              label="Name of your property"
               variant="outlined"
-              className={classes.featuresItem}
+              onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'name'))}
+            />
+
+            <FormControl
+              required
+            >
+              <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                name="radio-buttons-group"
+                value={type}
+                onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'type'))}
+                className={classes.type}
+              >
+                <FormControlLabel value="house" control={<Radio />} label="House" />
+                <FormControlLabel value="appartment" control={<Radio />} label="Appartment" />
+                <FormControlLabel value="other" control={<Radio />} label="Other" />
+              </RadioGroup>
+            </FormControl>
+
+          </Stack>
+
+          {/* ADDRESS */}
+          <Stack
+            spacing={2}
+          >
+            <Typography variant="h5">Address</Typography>
+
+            <TextField
+              id="number"
+              label="Number"
+              value={number}
+              onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'number'))}
             />
             <TextField
               required
-              type="number"
-              id="bedrooms"
-              value={bedrooms}
-              onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'bedrooms'))}
-              label="Bedrooms"
-              className={classes.featuresItem}
+              id="street"
+              label="Street"
+              value={street}
+              onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'street'))}
             />
             <TextField
               required
-              type="number"
-              id="beds"
-              value={beds}
-              onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'beds'))}
-              label="Beds"
-              className={classes.featuresItem}
+              id="zipcode"
+              label="Zip code"
+              value={zipcode}
+              onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'zipcode'))}
             />
             <TextField
               required
-              type="number"
-              id="bathrooms"
-              value={bathrooms}
-              onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'bathrooms'))}
-              label="Bathrooms"
-              className={classes.featuresItem}
+              id="city"
+              label="City"
+              value={city}
+              onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'city'))}
             />
+            {/* Country select field */}
+            <FormControl>
+              <InputLabel id="country-label">Country *</InputLabel>
+              <Select
+                required
+                id="country"
+                label="Country"
+                labelId="country-label"
+                value={country}
+                className={classes.country}
+                onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'country'))}
+              >
+                <MenuItem value="France">France</MenuItem>
+                <MenuItem value="Italy">Italy</MenuItem>
+                <MenuItem value="Greece">Greece</MenuItem>
+                <MenuItem value="Spain">Spain</MenuItem>
+                <MenuItem value="United Kingdom">United Kingdom</MenuItem>
+
+              </Select>
+            </FormControl>
+          </Stack>
+
+          {/* FEATURES */}
+          <Stack
+            spacing={2}
+          >
+            <Typography variant="h5">Features</Typography>
+            <Stack
+              flexDirection="row"
+              className={classes.features}
+              gap={2}
+            >
+              <TextField
+                required
+                type="number"
+                id="capacity"
+                value={capacity}
+                onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'capacity'))}
+                label="Capacity"
+                variant="outlined"
+                className={classes.featuresItem}
+              />
+              <TextField
+                required
+                type="number"
+                id="bedrooms"
+                value={bedrooms}
+                onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'bedrooms'))}
+                label="Bedrooms"
+                className={classes.featuresItem}
+              />
+              <TextField
+                required
+                type="number"
+                id="beds"
+                value={beds}
+                onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'beds'))}
+                label="Beds"
+                className={classes.featuresItem}
+              />
+              <TextField
+                required
+                type="number"
+                id="bathrooms"
+                value={bathrooms}
+                onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'bathrooms'))}
+                label="Bathrooms"
+                className={classes.featuresItem}
+              />
+            </Stack>
+          </Stack>
+
+          {/* DESCRIPTION */}
+          <Stack
+            spacing={2}
+          >
+            <Typography variant="h5">Description</Typography>
+            <TextField
+              required
+              id="description"
+              label="Enter a description of your property"
+              multiline
+              minRows={4}
+              value={description}
+              onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'description'))}
+            />
+          </Stack>
+
+          {/* PRICE */}
+          <Stack
+            spacing={2}
+          >
+            <Typography variant="h5">Price</Typography>
+            <TextField
+              required
+              id="price"
+              value={price}
+              onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'price'))}
+              label="Price per week"
+              type="tel"
+              // className={classes.price}
+              InputProps={{
+                startAdornment: <InputAdornment position="start">€</InputAdornment>,
+              }}
+            />
+          </Stack>
+
+          {/* Save & Publish button */}
+          <Stack
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Button
+              variant="contained"
+              type="submit"
+              disableElevation
+              className={classes.btsave}
+            >
+              Save & Publish
+            </Button>
           </Stack>
         </Stack>
 
-        {/* DESCRIPTION */}
-        <Stack
-          spacing={1}
-        >
-          <Typography variant="h5">Description</Typography>
-          <TextField
-            required
-            id="description"
-            label="Enter a description of your property"
-            multiline
-            minRows={4}
-            value={description}
-            onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'description'))}
-          />
-        </Stack>
-
-        {/* PRICE */}
-        <Stack
-          spacing={1}
-        >
-          <Typography variant="h5">Price</Typography>
-          <TextField
-            required
-            id="price"
-            value={price}
-            onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'price'))}
-            label="Price per night"
-            type="tel"
-            // className={classes.price}
-            InputProps={{
-              startAdornment: <InputAdornment position="start">€</InputAdornment>,
-            }}
-          />
-        </Stack>
-
-        {/* Save & Publish button */}
-        <Stack
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Button
-            variant="contained"
-            type="submit"
-            className={classes.btsave}
-          >
-            Save & Publish
-          </Button>
-        </Stack>
-      </Stack>
-
-    </form>
+      </form>
+    </Stack>
   );
 };
 

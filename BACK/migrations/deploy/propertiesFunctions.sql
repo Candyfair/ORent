@@ -48,4 +48,24 @@ CREATE FUNCTION update_property(json) RETURNS property AS $$
 	RETURNING *;
 $$ LANGUAGE SQL STRICT;
 
+
+CREATE FUNCTION add_property_image(json) RETURNS property_image AS $$
+	INSERT INTO property_image (url, name, property_id)
+	VALUES (
+		$1->>'url', 
+		$1->>'name', 
+        ($1->>'property_id')::int
+	)
+	RETURNING *;
+$$ LANGUAGE SQL STRICT;
+
+CREATE FUNCTION update_property_image(json) RETURNS property_image AS $$
+	UPDATE property_image SET
+		url=$1->>'url',
+		name=$1->>'name',
+        property_id=($1->>'property_id')::int
+	WHERE id=($1->>'id')::int
+	RETURNING *;
+$$ LANGUAGE SQL STRICT;
+
 COMMIT;
