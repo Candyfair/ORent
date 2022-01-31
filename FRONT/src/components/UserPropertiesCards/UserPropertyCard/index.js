@@ -53,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
   },
   fakeButton: {
     width: '100%',
+    marginTop: '75px',
   },
 
 }));
@@ -72,12 +73,14 @@ const UserPropertyCard = ({
     <Card
       className={classes.userPropertyCard}
     >
+      { image && (
       <CardMedia
         className={classes.cardMedia}
         component="img"
         image={image}
         alt={name}
       />
+      )}
       <CardContent
         className={classes.content}
       >
@@ -104,6 +107,14 @@ const UserPropertyCard = ({
             >
               <Button
                 className={classes.button}
+                size="small"
+                color="primary"
+                onClick={() => navigate(`/homes/${slug}/${id}`)}
+              >
+                View
+              </Button>
+              <Button
+                className={classes.button}
                 variant="outlined"
                 size="small"
                 color="primary"
@@ -111,20 +122,12 @@ const UserPropertyCard = ({
               >
                 Manage
               </Button>
-              <Button
-                className={classes.button}
-                size="small"
-                color="primary"
-                onClick={() => navigate(`/homes/${slug}/${id}`)}
-              >
-                View
-              </Button>
             </Stack>
           )
           : (
             <Button
               className={classes.fakeButton}
-              variant="outlined"
+              variant="contained"
               size="small"
               color="primary"
               onClick={() => navigate('/:username/add-property')}
