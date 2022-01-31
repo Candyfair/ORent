@@ -77,7 +77,8 @@ const propertyMiddleware = (store) => (next) => (action) => {
             .catch(
                 (error) => console.log('upload fail ', error)
             )
-
+    }
+    
     case FETCH_PROPERTIES: {
       console.log('Je suis bien dans le properties middleware sur la route GET /properties');
       store.dispatch(setLoading(true));

@@ -15,8 +15,6 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork';
 import LogoutIcon from '@mui/icons-material/Logout';
 
-import { makeStyles } from '@mui/styles';
-
 import { logout } from '../../../redux/actions/userCurrent';
 import { getInitialsOfUsername } from '../../../utils/utils';
 
@@ -24,16 +22,9 @@ import { getInitialsOfUsername } from '../../../utils/utils';
 const useStyles = makeStyles((theme) => ({
   avatar: {
     cursor: 'pointer',
-  },
-}));
-
-// COMPONENT
-const useStyles = makeStyles((theme) => ({
-  avatar: {
     backgroundColor: theme.palette.primary.main,
   },
 }));
-
 
 const LoggedButtons = () => {
   const classes = useStyles();
@@ -47,7 +38,6 @@ const LoggedButtons = () => {
     setAnchorEl(null);
   };
 
-  const classes = useStyles();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

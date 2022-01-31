@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: ' http://localhost:4500',
+  baseURL: 'https://orent-api.herokuapp.com/',
   headers: {
     'Content-Type': 'application/json',
   },
