@@ -1,5 +1,5 @@
 import { setLoading } from '../redux/actions/displayOptions';
-import { ADD_PROPERTY, changeNewPropertyField, changeNewPropertyImages, UPLOAD_IMAGE } from '../redux/actions/propertyCreate';
+import { ADD_PROPERTY_IMAGE, changeNewPropertyField, changeNewPropertyImages, UPLOAD_IMAGE } from '../redux/actions/propertyCreate';
 import api from './api';
 
 const propertyMiddleware = (store) => (next) => (action) => {

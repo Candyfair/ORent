@@ -2,56 +2,67 @@ import {
   Stack, Typography, TextField, Button,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import LoopIcon from '@mui/icons-material/Loop';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { fetchUserInfos } from '../../redux/actions/userUpdate';
 
 /* eslint-disable linebreak-style */
 const useStyles = makeStyles((theme) => ({
-  header: {
-    textAlign: 'center',
-    [theme.breakpoints.down('sm')]: {
-      marginTop: '60px',
-    },
+  accountUpdateForm: {
+    width: '500px',
   },
-  accountForm: {
-    width: '30%',
-    margin: '16px auto',
-    [theme.breakpoints.down('sm')]: {
-      width: '82%',
-    },
-    [theme.breakpoints.up('md')]: {
-      width: '30%',
-    },
+  title: {
+    padding: `${theme.spacing(3)} 0`
   },
-  buttons: {
-    justifyContent: 'space-between',
-    width: '30%',
-    margin: '36px auto',
-    [theme.breakpoints.down('sm')]: {
-      width: '82%',
-    },
+  button: {
+
   },
+  deleteButton: {
+
+  },
+  updateButton: {
+    color: theme.palette.common.white,
+  }
+
 }));
 
 const AccountForm = () => {
+  const dispatch = useDispatch();
   const classes = useStyles();
+
+  const handleSubmitUpdateAccountFormm = (e) => {
+    e.preventDefault()
+  }
+
+  useEffect(
+    () => {
+      dispatch(fetchUserInfos())
+    }, []);
+  
   return (
-    <Stack>
+    <Stack
+      className={classes.accountUpdateForm}
+    >
       <Typography
-        className={classes.header}
+        className={classes.title}
         variant="h4"
-        gutterBottom
+        textAlign='center'
       >
         My account
       </Typography>
-      <form>
+      <form onSubmit={handleSubmitUpdateAccountFormm}>
         <Stack
           className={classes.accountForm}
-          spacing={4}
+          spacing={2}
         >
           <TextField
             required
             id="username"
             label="Username :"
             value="CK_2022"
+            fullWidth
           />
           <TextField
             required
@@ -79,14 +90,33 @@ const AccountForm = () => {
             type="password"
             value="hahahaha"
           />
+          <Stack
+            flexDirection="row"
+            justifyContent='space-between'
+            className={classes.buttons}
+            gap={2}
+          >
+            <Button 
+              variant="text"
+              className={classes.deleteButton}
+              disableElevation
+              fullWidth
+              startIcon={<DeleteForeverIcon />}
+            >
+              Delete my account
+            </Button>
+            <Button 
+              variant="contained"
+              className={classes.updateButton}
+              disableElevation
+              fullWidth
+              startIcon={<LoopIcon />}
+            >
+              Update my account
+            </Button>
+          </Stack>
         </Stack>
-        <Stack
-          direction="row"
-          className={classes.buttons}
-        >
-          <Button variant="text">Delete my account</Button>
-          <Button variant="contained">Update my account</Button>
-        </Stack>
+
       </form>
     </Stack>
   );
