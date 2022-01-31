@@ -2,6 +2,7 @@
 // IMPORTS
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 import {
   Stack, Avatar, Menu, MenuItem, IconButton, ListItemIcon, ListItemText, Divider,
@@ -27,6 +28,8 @@ const LoggedButtons = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -69,8 +72,10 @@ const LoggedButtons = () => {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem
-          onClick={handleClose}
+        <MenuItem onClick={() => {
+          navigate('/homes');
+          handleClose();
+        }}
         >
           <ListItemIcon>
             <ExploreIcon fontSize="small" />
@@ -78,7 +83,11 @@ const LoggedButtons = () => {
           <ListItemText>Explore</ListItemText>
         </MenuItem>
 
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={() => {
+          navigate('/trips');
+          handleClose();
+        }}
+        >
           <ListItemIcon>
             <CardTravelIcon fontSize="small" />
           </ListItemIcon>
@@ -92,7 +101,11 @@ const LoggedButtons = () => {
           <ListItemText>Wishlist</ListItemText>
         </MenuItem>
 
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={() => {
+          navigate('/:username/properties/');
+          handleClose();
+        }}
+        >
           <ListItemIcon>
             <MapsHomeWorkIcon fontSize="small" />
           </ListItemIcon>
