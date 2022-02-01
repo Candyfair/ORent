@@ -23,7 +23,7 @@ module.exports = {
 
             if(user.auth === false) {
                 console.log('user false : ', user)
-                return response.json(user)
+                return response.status(401).json(user)
             }
 
 

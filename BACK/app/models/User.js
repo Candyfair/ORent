@@ -1,7 +1,6 @@
 const db = require('../../configs/database');
 const bcrypt = require('bcrypt');
 const {userSchema} = require('../schemas/userSchema');
-const { response } = require('express');
 
 /**
 * @typedef {Object} Users
@@ -52,7 +51,7 @@ class User {
                 const infos = {
                     auth: false, type: 'password', message: 'Le mot de passe est incorrect'
                 }
-                return response.status(401).json(infos)
+                return infos
             }
 
             if(rows[0].id) {

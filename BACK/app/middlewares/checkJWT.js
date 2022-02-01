@@ -11,14 +11,14 @@ module.exports = (request, response, next) => {
         console.log(`Verif Access Token : `,verifAccessToken)
         if (!verifAccessToken) {
             console.log(`j'ai pas d'access token`)
-            return response.sendStatus(401);
+            return response.status(401).json('access token not present');
         };
         
         const payload = jwt.validateToken(verifAccessToken);
 
         if (!payload) {
             console.log('pas de payload')
-            return response.sendStatus(401);
+            return response.status(401).('access token not valid');
         };
 
         request.userId = payload.userId;

@@ -7,7 +7,7 @@ module.exports = (request, response, next) => {
 
         let verifRefreshToken = autHeader && autHeader.split(' ')[1];
 
-        if (!verifRefreshToken) return response.sendStatus(401);
+        if (!verifRefreshToken) return response.status(401).json('refreshtoken not valid');
 
         const payload = jwt.validateRefreshToken(verifRefreshToken);   
         
