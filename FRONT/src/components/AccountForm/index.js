@@ -123,7 +123,7 @@ const AccountForm = () => {
             />
             <TextField
               required
-              id="new_password"
+              id="new_password_verification"
               label="New Password verification"
               type="password"
               value={newPasswordVerification}
