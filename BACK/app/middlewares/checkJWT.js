@@ -18,7 +18,7 @@ module.exports = (request, response, next) => {
 
         if (!payload) {
             console.log('pas de payload')
-            return response.status(401).('access token not valid');
+            return response.status(401).json('access token not valid');
         };
 
         request.userId = payload.userId;
