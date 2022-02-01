@@ -46,6 +46,7 @@ class User {
 
             const isValid = await bcrypt.compare(this.password, rows[0].password);
 
+            console.log(`is Valid ? `, isValid)
             if(!isValid) {
                 console.log('Le password ne match pas');
                 const infos = {
@@ -56,9 +57,11 @@ class User {
 
             if(rows[0].id) {
                 const user = await db.query(`SELECT * FROM "users" WHERE id=$1`, [rows[0].id])
+                
                 const infos = {
                     auth: true, user: user.rows[0], message: 'Connexion réussie'
                 }
+                console.log(`Infos reçues après avoir valider le password`, infos)
                 return infos
             }
         } catch(error) {

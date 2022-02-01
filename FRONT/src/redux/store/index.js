@@ -6,12 +6,14 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from '../reducers/index';
 import authMiddleware from '../../middleware/authMiddleware';
 import propertyMiddleware from '../../middleware/propertyMiddleware';
+import propertyImageMiddleware from '../../middleware/propertyImageMiddleware';
+import userMiddleware from '../../middleware/userMiddleware';
 
 const initalState = {
 
 };
 
-const middlewares = [authMiddleware, propertyMiddleware];
+const middlewares = [authMiddleware, propertyMiddleware, propertyImageMiddleware, userMiddleware];
 
 const store = createStore(
   rootReducer, initalState, composeWithDevTools(applyMiddleware(...middlewares)),

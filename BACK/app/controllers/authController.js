@@ -51,12 +51,11 @@ module.exports = {
 
     refreshToken: async (request, response) => {
         try {
-            const userId = request.userId;
-
-            const user = await new User({id: userId}).findOne();
+            const id = request.userId
+            const user = await User.findOne(id);
     
-            const accessToken = jwt.makeToken(userId);
-            const refreshToken = jwt.refreshToken(userId);
+            const accessToken = jwt.makeToken(id);
+            const refreshToken = jwt.refreshToken(id);
     
             response.send({accessToken, refreshToken, user});
 
