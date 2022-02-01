@@ -1,6 +1,6 @@
 import { setLoading } from '../redux/actions/displayOptions';
 import { setModal } from '../redux/actions/modals';
-import { DELETE_ACCOUNT, logout, UPDATE_ACCOUNT } from '../redux/actions/userCurrent';
+import { DELETE_ACCOUNT, logout, UPDATE_ACCOUNT, UPDATE_ACCOUNT_WITH_PASSWORD } from '../redux/actions/userCurrent';
 import { FETCH_USER_INFOS, saveUpdateUserInfos, saveUserInfos } from '../redux/actions/userUpdate';
 
 import api from './api';
@@ -33,18 +33,42 @@ const userMiddleware = (store) => (next) => (action) => {
     case UPDATE_ACCOUNT: {
       console.log(`Je suis bien dans le user middleware sur la route PATCH /users/me`);
 
-      const { username, firstname, lastname, email, password, newPassword, changePassword } = store.getState().userUpdate;
+      const { username, firstname, lastname, email, password } = store.getState().userUpdate;
       
-      let newUserInfos;
+      const newUserInfos = {
+        username, firstname, lastname, email, password
+      }
 
-      if (changePassword) {
-        newUserInfos = {
-          username, firstname, lastname, email, password, newPassword
-        }
-      } else {
-        newUserInfos = {
-          username, firstname, lastname, email, password
-        }
+      store.dispatch(setLoading(true));
+
+      api.patch(
+        `/users/me`,
+        newUserInfos
+      )
+        .then(
+          (response) => {
+            console.log('Update user infos réussi : ', response);
+            store.dispatch(saveUpdateUserInfos(response.data));
+            store.dispatch(setLoading(false));
+          },
+        )
+        .catch(
+          (error) => {
+            console.log('Error Fetch user infos: ', error);
+            store.dispatch(setLoading(false));
+          },
+        );
+      next(action);
+      break;
+    }
+
+    case UPDATE_ACCOUNT_WITH_PASSWORD: {
+      console.log(`Je suis bien dans le user middleware sur la route PATCH /users/me avec l'update du password`);
+
+      const { username, firstname, lastname, email, password, newPassword } = store.getState().userUpdate;
+      
+      const newUserInfos = {
+        username, firstname, lastname, email, password, newPassword
       }
 
       store.dispatch(setLoading(true));

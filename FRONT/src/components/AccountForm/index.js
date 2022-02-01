@@ -8,7 +8,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useDispatch, useSelector } from 'react-redux';
 import { changePasswordSwitch, changeUpdateUserField } from '../../redux/actions/userUpdate';
 import { setModal } from '../../redux/actions/modals';
-import { updateAccount } from '../../redux/actions/userCurrent';
+import { updateAccount, updateAccountWithPassword } from '../../redux/actions/userCurrent';
 import { useState } from 'react';
 
 /* eslint-disable linebreak-style */
@@ -43,7 +43,12 @@ const AccountForm = () => {
 
   const handleSubmitUpdateAccountFormm = (e) => {
     e.preventDefault();
-    dispatch(updateAccount());
+    if(changePassword) {
+      if(newPassword === newPasswordVerification)
+      dispatch(updateAccountWithPassword());
+    } else {
+      dispatch(updateAccount());
+    }
   }
 
   return (

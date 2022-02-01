@@ -67,3 +67,10 @@ export const updateAccount = () => (
     type: UPDATE_ACCOUNT,
   }
 );
+
+export const UPDATE_ACCOUNT_WITH_PASSWORD = 'UPDATE_ACCOUNT_WITH_PASSWORD';
+export const updateAccountWithPassword = () => (
+  {
+    type: UPDATE_ACCOUNT_WITH_PASSWORD,
+  }
+);
