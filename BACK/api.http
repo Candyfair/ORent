@@ -20,8 +20,8 @@ POST {{host}}/login
 Content-Type: application/json
 
 {
-    "email": "laura3@gmail.com",
-    "password": "123457"
+    "email": "johndoe@mail.com",
+    "password": "123456"
 }
 
 ### refreshToken
@@ -39,10 +39,11 @@ GET {{host}}/properties/2
 
 ### Nouvelle propriété
 POST {{host}}/properties
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY0MzczNDAxNywiZXhwIjoxNjQzNzM0MzE3fQ.8MZCqIMpXGfdj3IGwYyiGL-T8p6Y_hv52rlPjatNE0M
 Content-Type: application/json
 
 {
-    "name": "Milles Chamfdspddaadaa25aasfe test",
+    "name": "Milles champs des champs",
     "description": "Une moche maison",
     "capacity": "4",
     "bedrooms_count": "2",
@@ -54,12 +55,12 @@ Content-Type: application/json
     "zip_code": "75008",
     "city": "Paris",
     "country": "France",
-    "week_price": "100",
-    "user_id": "1"
+    "week_price": "100"
 }
 
-### Mise à jour jeu
+### Mise à jour propriété
 PATCH {{host}}/properties
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTY0MzczMzE5NiwiZXhwIjoxNjQzNzMzNDk2fQ.ufWycTxacuPAam26o2U99cBwZ2kklfpdvX341UfN3c4
 Content-Type: application/json
 
 {
@@ -103,7 +104,7 @@ Content-Type: application/json
     "property_id": 2
 }
 
-### Mise à jour jeu
+### Mise à jour property image
 PATCH {{host}}/properties-images
 Content-Type: application/json
 

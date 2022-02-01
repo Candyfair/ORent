@@ -44,7 +44,7 @@ const geocoding = require('../services/geocoding');
  * @returns {Properties} 201 - The newly created Properties (view)
  * @returns {string} 500 - An error message
  */
- router.post('/properties', geocoding, propertyController.save);
+ router.post('/properties', checkJWT, geocoding, propertyController.save);
 
 /**
  * PATCH /properties
@@ -54,7 +54,7 @@ const geocoding = require('../services/geocoding');
  * @returns {string} 204 - A confirmation message
  * @returns {string} 500 - An error message
  */
- router.patch('/properties', propertyController.save);
+ router.patch('/properties', checkJWT, propertyController.save);
 
 /**
  * DELETE /properties/{id}
@@ -64,7 +64,7 @@ const geocoding = require('../services/geocoding');
  * @returns {string} 204 - A confirmation message
  * @returns {string} 500 - An error message
  */
-router.delete('/properties/:id(\\d+)', propertyController.delete);
+router.delete('/properties/:id(\\d+)', checkJWT, propertyController.delete);
 
 
 

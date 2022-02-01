@@ -3,9 +3,10 @@
 BEGIN;
 
 CREATE FUNCTION add_property(json) RETURNS property AS $$
-	INSERT INTO property (name, description, capacity, bedrooms_count, beds_count, bathrooms_count, type, street_number, street_name, zip_code, city, country, week_price, latitude, longitude, user_id)
+	INSERT INTO property (name, slug, description, capacity, bedrooms_count, beds_count, bathrooms_count, type, street_number, street_name, zip_code, city, country, week_price, latitude, longitude, user_id)
 	VALUES (
 		$1->>'name', 
+		$1->>'slug',
 		$1->>'description', 
         ($1->>'capacity')::int,
         ($1->>'bedrooms_count')::int,
@@ -30,6 +31,7 @@ $$ LANGUAGE SQL STRICT;
 CREATE FUNCTION update_property(json) RETURNS property AS $$
 	UPDATE property SET
 		name=$1->>'name',
+		slug=$1->>'slug',
 		description=$1->>'description',
         capacity=($1->>'capacity')::int,
         bedrooms_count=($1->>'bedrooms_count')::int,

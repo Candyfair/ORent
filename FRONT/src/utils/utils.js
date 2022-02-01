@@ -14,3 +14,4 @@ export default function getMapCenter(cards) {
   }
   return [latitudeAverage, longitudeAverage + correctionCoefficient];
 }
+

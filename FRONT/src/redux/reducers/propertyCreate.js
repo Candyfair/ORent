@@ -4,6 +4,7 @@ export const initialState = {
   uploadFile: '',
   images: [],
   name: '',
+  slug: '',
   type: '',
   number: '',
   street: '',

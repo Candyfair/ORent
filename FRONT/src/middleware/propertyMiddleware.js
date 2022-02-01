@@ -11,13 +11,14 @@ const propertyMiddleware = (store) => (next) => (action) => {
 
     case ADD_PROPERTY : {
 
-      const { images, name, description, capacity, number, street, type, zipcode, city, country, bedrooms, beds, bathrooms, price} = store.getState().propertyCreate;
+      const { images, name, slug, description, capacity, number, street, type, zipcode, city, country, bedrooms, beds, bathrooms, price} = store.getState().propertyCreate;
       const { id } = store.getState().userCurrent
 
       store.dispatch(setLoading(true));
 
       const newProperty = {
         name: name,
+        slug: slug,
         description: description,
         capacity: capacity,
         bedrooms_count: bedrooms,

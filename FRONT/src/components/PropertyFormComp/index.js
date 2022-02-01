@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { addProperty, changeNewPropertyField } from '../../redux/actions/propertyCreate';
 
 import UploadImageForm from './UploadImageForm';
+import { slugify } from '../../utils/utils';
 
 
 // MUI STYLES
@@ -75,8 +76,6 @@ const PropertyFormComp = () => {
     dispatch(addProperty())
   };
 
-
-
   return (
     <Stack 
       className={classes.propertyContainer}
@@ -101,7 +100,7 @@ const PropertyFormComp = () => {
               value={name}
               label="Name of your property"
               variant="outlined"
-              onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'name'))}
+              onChange={() => dispatch(changeNewPropertyField(e.target.value, 'name'))}
             />
 
             <FormControl

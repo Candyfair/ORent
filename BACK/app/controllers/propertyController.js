@@ -1,4 +1,5 @@
 const Property = require('../models/Property');
+const { slugify } = require('../utils/utils');
 
 module.exports = {
 
@@ -25,11 +26,10 @@ module.exports = {
     },
     save: async (request, response) => {
         try {
-            const {images} = request.body
-            const imagesArray = images.split(', ').join
-            console.log('req.body : ', request.body)
-
+            request.body.user_id = request.userId
+            request.body.slug = slugify(request.body.name)
             const instance = new Property(request.body);
+            console.log(`instance d'ajout de propriété : `, instance)
             const property = await instance.save();
             if (property) {
                 //on a fait un insert
