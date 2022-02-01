@@ -33,13 +33,22 @@ const userMiddleware = (store) => (next) => (action) => {
     case UPDATE_ACCOUNT: {
       console.log(`Je suis bien dans le user middleware sur la route PATCH /users/me`);
 
-      const { username, firstname, lastname, email, password } = store.getState().userUpdate;
+      const { username, firstname, lastname, email, password, newPassword, changePassword } = store.getState().userUpdate;
+      
+      let newUserInfos;
 
-      const newUserInfos = {
-        username, firstname, lastname, email, password
+      if (changePassword) {
+        newUserInfos = {
+          username, firstname, lastname, email, password, newPassword
+        }
+      } else {
+        newUserInfos = {
+          username, firstname, lastname, email, password
+        }
       }
 
       store.dispatch(setLoading(true));
+
       api.patch(
         `/users/me`,
         newUserInfos

@@ -6,7 +6,7 @@ import { makeStyles } from '@mui/styles';
 import LoopIcon from '@mui/icons-material/Loop';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeUpdateUserField } from '../../redux/actions/userUpdate';
+import { changePasswordSwitch, changeUpdateUserField } from '../../redux/actions/userUpdate';
 import { setModal } from '../../redux/actions/modals';
 import { updateAccount } from '../../redux/actions/userCurrent';
 import { useState } from 'react';
@@ -27,6 +27,10 @@ const useStyles = makeStyles((theme) => ({
   },
   updateButton: {
     color: theme.palette.common.white,
+  },
+  changePasswordButton: {
+    color: theme.palette.text.secondary,
+    textTransform: 'none',
   }
 
 }));
@@ -35,9 +39,7 @@ const AccountForm = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
 
-  const [openChangePassword, setOpenChangePassword] = useState(false)
-
-  const { username, firstname, lastname, email, password, newPassword, newPasswordVerification } = useSelector((state) => state.userUpdate);
+  const { username, firstname, lastname, email, password, newPassword, newPasswordVerification, changePassword } = useSelector((state) => state.userUpdate);
 
   const handleSubmitUpdateAccountFormm = (e) => {
     e.preventDefault();
@@ -98,12 +100,13 @@ const AccountForm = () => {
             onChange={(e) => dispatch(changeUpdateUserField(e.target.value, 'password'))}
           />
           <Button
-            onClick={() => setOpenChangePassword(!openChangePassword)}
+            onClick={() => dispatch(changePasswordSwitch())}
+            className={classes.changePasswordButton}
             size='small'
           >
-            Change password ?
+            I want to modify my password
           </Button>
-          {openChangePassword && (
+          {changePassword && (
             <>
             <TextField
               required

@@ -23,3 +23,8 @@ export const saveUpdateUserInfos = (data) => ({
   type: SAVE_UPDATE_USER_INFOS,
   data,
 });
+
+export const CHANGE_PASSWORD_SWITCH = 'CHANGE_PASSWORD_SWITCH';
+export const changePasswordSwitch = () => ({
+  type: CHANGE_PASSWORD_SWITCH,
+});

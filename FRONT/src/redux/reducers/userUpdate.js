@@ -1,4 +1,4 @@
-import { CHANGE_UPDATE_USER_FIELD, SAVE_UPDATE_USER_INFOS, SAVE_USER_INFOS } from '../actions/userUpdate';
+import { CHANGE_PASSWORD_SWITCH, CHANGE_UPDATE_USER_FIELD, SAVE_UPDATE_USER_INFOS, SAVE_USER_INFOS } from '../actions/userUpdate';
 
 export const initialState = {
   id: '',
@@ -12,6 +12,7 @@ export const initialState = {
   password: '',
   newPassword: '',
   newPasswordVerification: '',
+  changePassword: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -34,6 +35,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         [action.fieldName]: action.value,
     };
+    case CHANGE_PASSWORD_SWITCH:
+      return {
+          ...state,
+          changePassword: !state.changePassword
+      };
     default:
       return state;
   }
