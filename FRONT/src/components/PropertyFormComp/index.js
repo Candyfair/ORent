@@ -100,7 +100,7 @@ const PropertyFormComp = () => {
               value={name}
               label="Name of your property"
               variant="outlined"
-              onChange={() => dispatch(changeNewPropertyField(e.target.value, 'name'))}
+              onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'name'))}
             />
 
             <FormControl
