@@ -7,6 +7,9 @@ import LoopIcon from '@mui/icons-material/Loop';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeUpdateUserField } from '../../redux/actions/userUpdate';
+import { setModal } from '../../redux/actions/modals';
+import { updateAccount } from '../../redux/actions/userCurrent';
+import { useState } from 'react';
 
 /* eslint-disable linebreak-style */
 const useStyles = makeStyles((theme) => ({
@@ -32,15 +35,15 @@ const AccountForm = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
 
+  const [openChangePassword, setOpenChangePassword] = useState(false)
+
   const { username, firstname, lastname, email, password, newPassword, newPasswordVerification } = useSelector((state) => state.userUpdate);
 
   const handleSubmitUpdateAccountFormm = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+    dispatch(updateAccount());
   }
 
-
-
- 
   return (
     <Stack
       className={classes.accountUpdateForm}
@@ -94,6 +97,33 @@ const AccountForm = () => {
             value={password}
             onChange={(e) => dispatch(changeUpdateUserField(e.target.value, 'password'))}
           />
+          <Button
+            onClick={() => setOpenChangePassword(!openChangePassword)}
+            size='small'
+          >
+            Change password ?
+          </Button>
+          {openChangePassword && (
+            <>
+            <TextField
+              required
+              id="new_password"
+              label="New Password"
+              type="password"
+              value={newPassword}
+              onChange={(e) => dispatch(changeUpdateUserField(e.target.value, 'newPassword'))}
+            />
+            <TextField
+              required
+              id="new_password"
+              label="New Password verification"
+              type="password"
+              value={newPasswordVerification}
+              onChange={(e) => dispatch(changeUpdateUserField(e.target.value, 'newPasswordVerification'))}
+            />
+            </>
+          )}
+
           <Stack
             flexDirection="row"
             justifyContent='space-between'
@@ -106,6 +136,7 @@ const AccountForm = () => {
               disableElevation
               fullWidth
               startIcon={<DeleteForeverIcon />}
+              onClick={() => dispatch(setModal(true, 'deleteAccountWarning'))}
             >
               Delete my account
             </Button>

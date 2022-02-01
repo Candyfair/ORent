@@ -53,3 +53,17 @@ export const refreshToken = () => (
     type: REFRESH_TOKEN,
   }
 );
+
+export const DELETE_ACCOUNT = 'DELETE_ACCOUNT';
+export const deleteAccount = () => (
+  {
+    type: DELETE_ACCOUNT,
+  }
+);
+
+export const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT';
+export const updateAccount = () => (
+  {
+    type: UPDATE_ACCOUNT,
+  }
+);

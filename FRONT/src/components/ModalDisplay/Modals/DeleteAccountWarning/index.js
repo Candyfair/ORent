@@ -1,8 +1,11 @@
 /* eslint-disable linebreak-style */
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+
 import { makeStyles } from '@mui/styles';
 import { Button, Stack, Typography } from '@mui/material';
 import { setModal } from '../../../../redux/actions/modals';
+import { deleteAccount } from '../../../../redux/actions/userCurrent';
 
 const useStyles = makeStyles((theme) => ({
   BookingLoginNeeded: {
@@ -32,15 +35,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const BookingLoginNeeded = () => {
+const DeleteAccountWarning = () => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate()
   const classes = useStyles();
 
   const { isLogged } = useSelector((state) => state.userCurrent);
   const { element } = useSelector((state) => state.modals);
 
-  if (element !== 'bookingLoginNeeded') return null;
+  const handleClickDeleteAccount = () => {
+    dispatch(deleteAccount());
+    navigate('/')
+  }
+
+  if (element !== 'deleteAccountWarning') return null;
   if (!isLogged) return null;
 
   return (
@@ -54,37 +62,38 @@ const BookingLoginNeeded = () => {
         variant="h6"
         className={classes.title}
       >
-        Book a reservation
+        Do you really want to delete your account?
       </Typography>
-      <Typography
-        align="center"
-        variant="body2"
-        className={classes.excerpt}
+      <Stack
+        flexDirection='row'
+        gap={2}
       >
-        To book a reservation, you must be connected !
-      </Typography>
-      <Button
-        className={classes.button}
-        variant="contained"
-        disableElevation
-        size="large"
-        type="submit"
-        onClick={() => dispatch(setModal(true, 'login'))}
-      >
-        Login
-      </Button>
-      <Button
-        className={classes.button}
-        variant="text"
-        disableElevation
-        size="large"
-        type="submit"
-        onClick={() => dispatch(setModal(true, 'signin'))}
-      >
-        Register
-      </Button>
+        <Button
+            className={classes.button}
+            variant="contained"
+            disableElevation
+            size="large"
+            type="submit"
+            onClick={() => dispatch(setModal(false, ''))}
+            fullWidth
+        >
+            No
+        </Button>
+        <Button
+            className={classes.button}
+            variant="text"
+            disableElevation
+            size="large"
+            type="submit"
+            onClick={handleClickDeleteAccount}
+            fullWidth
+        >
+            Yes
+        </Button>
+      </Stack>
+
     </Stack>
   );
 };
 
-export default BookingLoginNeeded;
+export default DeleteAccountWarning;

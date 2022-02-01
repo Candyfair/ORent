@@ -1,4 +1,4 @@
-import { CHANGE_UPDATE_USER_FIELD, SAVE_USER_INFOS } from '../actions/userUpdate';
+import { CHANGE_UPDATE_USER_FIELD, SAVE_UPDATE_USER_INFOS, SAVE_USER_INFOS } from '../actions/userUpdate';
 
 export const initialState = {
   id: '',
@@ -20,6 +20,14 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         ...action.data,
+      };
+    case SAVE_UPDATE_USER_INFOS:
+      return {
+        ...state,
+        ...action.data,
+        password: '',
+        newPassword: '',
+        newPasswordVerification: '',
       };
     case CHANGE_UPDATE_USER_FIELD:
     return {

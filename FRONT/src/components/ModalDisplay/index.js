@@ -11,6 +11,7 @@ import ModalHeader from './ModalHeader';
 import LoginForm from './Modals/LoginForm';
 import BookingLoginNeeded from './Modals/BookingLoginNeeded';
 import RegisterForm from './Modals/RegisterForm';
+import DeleteAccountWarning from './Modals/DeleteAccountWarning';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -55,6 +56,7 @@ const LoginButton = () => {
         <Stack
           className={classes.responsiveModal}
         >
+          <DeleteAccountWarning />
           <LoginForm />
           <RegisterForm />
           <BookingLoginNeeded />

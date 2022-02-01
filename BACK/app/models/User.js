@@ -57,9 +57,11 @@ class User {
 
             if(rows[0].id) {
                 const user = await db.query(`SELECT * FROM "users" WHERE id=$1`, [rows[0].id])
+                
                 const infos = {
                     auth: true, user: user.rows[0], message: 'Connexion réussie'
                 }
+                console.log(`Infos reçues après avoir valider le password`, infos)
                 return infos
             }
         } catch(error) {

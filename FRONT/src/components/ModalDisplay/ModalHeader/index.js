@@ -13,7 +13,6 @@ import { setModal } from '../../../redux/actions/modals';
 
 const useStyles = makeStyles((theme) => ({
   modalHeader: {
-    margin: theme.spacing(1),
     justifyContent: 'flex-end',
     [theme.breakpoints.down('md')]: {
       margin: `${theme.spacing(2)} ${theme.spacing(2)}`,
