@@ -26,11 +26,18 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     textAlign: 'center',
     width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'stretch',
   },
   imageDesktopClass: {
     [theme.breakpoints.down('md')]: {
       display: 'none',
     },
+  },
+  imageSize: {
+    height: '86vh',
+    width: '100%',
   },
   imageMobileClass: {
     [theme.breakpoints.up('md')]: {
@@ -42,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    top: '50%',
+    top: '45%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
     color: theme.palette.common.white,
@@ -73,14 +80,14 @@ const HomeComp = () => {
       <Stack
         className={classes.imageDesktopClass}
       >
-        <img src={imageDesktop} alt="Find inspiration for your next vacation" />
+        <img src={imageDesktop} alt="Find inspiration for your next vacation" className={classes.imageSize} />
       </Stack>
 
       {/* Image Mobile */}
       <Stack
         className={classes.imageMobileClass}
       >
-        <img src={imageMobile} alt="Find inspiration for your next vacation" />
+        <img src={imageMobile} alt="Find inspiration for your next vacation" className={classes.imageSize} />
       </Stack>
 
       {/* Text and button container */}
