@@ -46,6 +46,7 @@ class User {
 
             const isValid = await bcrypt.compare(this.password, rows[0].password);
 
+            console.log(`is Valid ? `, isValid)
             if(!isValid) {
                 console.log('Le password ne match pas');
                 const infos = {
