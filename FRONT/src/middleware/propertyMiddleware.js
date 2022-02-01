@@ -43,8 +43,9 @@ const propertyMiddleware = (store) => (next) => (action) => {
             console.log(`Retour positif, la propriété a été créée :`, response)
             console.log('les images avant de faire addPropertyImage : ', images)
             
-            store.dispatch(addPropertyImage(images[0], name, response.data.id))
-            
+            images.map(
+              (image) => store.dispatch(addPropertyImage(image, name, response.data.id))
+            )
             
           }
         ).catch((error) => {

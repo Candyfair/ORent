@@ -24,8 +24,6 @@ const MyAccount = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
 
-  const { userInfos } = useSelector((state) => state.userUpdate);
-
   useEffect(
     () => {
       dispatch(fetchUserInfos())
@@ -39,7 +37,7 @@ const MyAccount = () => {
       justifyContent="center"
       alignItems="center"
     >
-      <AccountForm user={userInfos} />
+      <AccountForm />
     </Stack>
   );
 };
