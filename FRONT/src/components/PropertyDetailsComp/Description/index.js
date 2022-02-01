@@ -1,5 +1,7 @@
 /* eslint-disable linebreak-style */
 // IMPORTS
+import PropTypes from 'prop-types';
+
 import { makeStyles } from '@mui/styles';
 import { Stack, Typography, Divider } from '@mui/material/';
 
@@ -12,7 +14,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // COMPONENT
-const Description = () => {
+const Description = ({
+  details,
+}) => {
   const classes = useStyles();
 
   return (
@@ -21,19 +25,34 @@ const Description = () => {
       className={classes.description}
     >
       <Typography variant="h5">
-        [Type] - [Country] - Host : [Username]
+        {details.type} - {details.city}, {details.country}  - Host : {details.host}
       </Typography>
       <Typography variant="subtitle1">
-        [Nb Guests] guests - [Nb bedrooms] bedrooms - [Nb beds] beds - [Nb bathrooms] bathrooms
+        {details.capacity} guests - {details.bedroomscount} bedrooms - {details.bedscount} beds - {details.bathroomscount} bathrooms
       </Typography>
 
       <Divider />
 
       <Typography variant="body1">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
+        {details.description}
       </Typography>
     </Stack>
   );
+};
+
+Description.propTypes = {
+  // validation des éléments du tableau + forme des éléments du tableau
+  details: PropTypes.arrayOf(PropTypes.shape({
+    type: PropTypes.string,
+    city: PropTypes.string,
+    country: PropTypes.string,
+    host: PropTypes.string,
+    capacity: PropTypes.number,
+    bedroomscount: PropTypes.number,
+    bedscount: PropTypes.number,
+    bathroomscount: PropTypes.number,
+    description: PropTypes.string,
+  })).isRequired,
 };
 
 export default Description;
