@@ -4,10 +4,12 @@ import { Stack, Typography } from '@mui/material';
 const BookingDetailsComp = () => (
   <Stack
     flexDirection="column"
+    width="50%"
     gap={4}
   >
     <Stack
       flexDirection="row"
+      width="100%"
     >
       <Stack
         width="50%"
