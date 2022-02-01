@@ -1,43 +1,32 @@
 /* eslint-disable linebreak-style */
 // === Imports
-import { makeStyles } from '@mui/styles';
 import { Stack } from '@mui/material/';
 
 import Pictures from './Pictures';
 import Description from './Description';
 import VacanciesList from './VacanciesList';
 
-// MUI STYLES
-const useStyles = makeStyles((theme) => ({
-  propertyDescription: {
-    // maxWidth: 1116,
-  },
-}));
-
 // COMPONENT
-const PropertyDetailsComp = () => {
-  const classes = useStyles();
+const PropertyDetailsComp = ({ details }) => (
+  <Stack
+    flexDirection="column"
+    spacing={5}
+  >
 
-  return (
+    {/* Photos de la propriété */}
+    <Pictures />
+
     <Stack
-      flexDirection="column"
-      spacing={5}
+      flexDirection="row"
+      justifyContent="space-between"
     >
-
-      {/* Photos de la propriété */}
-      <Pictures />
-
-      <Stack
-        flexDirection="row"
-        justifyContent="space-between"
-        className={classes.propertyDescription}
-      >
-        <Description />
-        <VacanciesList />
-      </Stack>
-
+      <Description
+        details={details}
+      />
+      <VacanciesList details={details} />
     </Stack>
-  );
-};
+
+  </Stack>
+);
 
 export default PropertyDetailsComp;

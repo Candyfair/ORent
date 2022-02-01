@@ -22,7 +22,6 @@ const PropertyDetails = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { id } = useParams();
-  console.log(id);
 
   const { loading } = useSelector((state) => state.displayOptions);
 
@@ -48,7 +47,7 @@ const PropertyDetails = () => {
         {propertyDetails.name}
       </Typography>
 
-      <PropertyDetailsComp propertyDetails={PropertyDetails} />
+      <PropertyDetailsComp details={propertyDetails} />
     </Stack>
   );
 };

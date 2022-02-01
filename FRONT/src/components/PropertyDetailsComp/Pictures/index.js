@@ -6,7 +6,7 @@ import { Stack, Box } from '@mui/material/';
 const useStyles = makeStyles((theme) => ({
 }));
 
-const Pictures = () => {
+const Pictures = ({ details }) => {
   const classes = useStyles;
 
   return (
