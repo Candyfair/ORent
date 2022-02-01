@@ -5,10 +5,15 @@ import { Stack, Typography, Button } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
 // === MUI
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   footerFields: {
-    fontSize: '0.8rem',
-    margin: '16px 0',
+    flewWrap: 'wrap',
+    marginTop: theme.spacing(2),
+  },
+  mobileFooter: {
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    },
   },
 }));
 
@@ -21,47 +26,56 @@ const Footer = () => {
       <Stack
         flexDirection="row"
         justifyContent="center"
-        gap={20}
+        alignItems="center"
+        gap={4}
       >
         <Typography
           className={classes.footerFields}
-          variant="h6"
+          variant="body2"
           align="center"
         >
           &copy; 2022 - O'RENT
         </Typography>
-        <Typography
-          className={classes.footerFields}
-          variant="h6"
-          align="center"
-          onClick={() => navigate('/terms-of-use')}
+
+        <Stack
+          flexDirection="row"
+          gap={4}
+          className={classes.mobileFooter}
         >
-          Terms
-        </Typography>
-        <Typography
-          className={classes.footerFields}
-          variant="h6"
-          align="center"
-          onClick={() => navigate('/privacy-policy')}
-        >
-          Privacy Policy
-        </Typography>
-        <Typography
-          className={classes.footerFields}
-          variant="h6"
-          align="center"
-          onClick={() => navigate('/about')}
-        >
-          About
-        </Typography>
-        <Typography
-          className={classes.footerFields}
-          variant="h6"
-          align="center"
-          onClick={() => navigate('/faq')}
-        >
-          FAQ
-        </Typography>
+          <Typography
+            className={classes.footerFields}
+            variant="body2"
+            align="center"
+            onClick={() => navigate('/terms-of-use')}
+          >
+            Terms
+          </Typography>
+          <Typography
+            className={classes.footerFields}
+            variant="body2"
+            align="center"
+            onClick={() => navigate('/privacy-policy')}
+          >
+            Privacy Policy
+          </Typography>
+          <Typography
+            className={classes.footerFields}
+            variant="body2"
+            align="center"
+            onClick={() => navigate('/about')}
+          >
+            About
+          </Typography>
+          <Typography
+            className={classes.footerFields}
+            variant="body2"
+            align="center"
+            onClick={() => navigate('/faq')}
+          >
+            FAQ
+          </Typography>
+        </Stack>
+
       </Stack>
     </footer>
 

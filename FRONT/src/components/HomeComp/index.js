@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
-  imgDesktop: {
+  imageSize: {
     height: '86vh',
     width: '100%',
   },
@@ -80,14 +80,14 @@ const HomeComp = () => {
       <Stack
         className={classes.imageDesktopClass}
       >
-        <img src={imageDesktop} alt="Find inspiration for your next vacation" className={classes.imgDesktop} />
+        <img src={imageDesktop} alt="Find inspiration for your next vacation" className={classes.imageSize} />
       </Stack>
 
       {/* Image Mobile */}
       <Stack
         className={classes.imageMobileClass}
       >
-        <img src={imageMobile} alt="Find inspiration for your next vacation" />
+        <img src={imageMobile} alt="Find inspiration for your next vacation" className={classes.imageSize} />
       </Stack>
 
       {/* Text and button container */}
