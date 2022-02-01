@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { makeStyles } from '@mui/styles';
 import {
-  Stack, Typography, TextField, Button, InputAdornment, Select, MenuItem, FormControl, InputLabel, RadioGroup, Box, FormControlLabel, FormLabel, Radio
+  FormHelperText, Stack, Typography, TextField, Button, InputAdornment, Select, MenuItem, FormControl, InputLabel, RadioGroup, Box, FormControlLabel, FormLabel, Radio
 } from '@mui/material/';
 
 import { useState } from 'react';
@@ -12,6 +12,7 @@ import { addProperty, changeNewPropertyField } from '../../redux/actions/propert
 
 import UploadImageForm from './UploadImageForm';
 import { slugify } from '../../utils/utils';
+import { useNavigate } from 'react-router';
 
 
 // MUI STYLES
@@ -59,9 +60,11 @@ const useStyles = makeStyles((theme) => ({
 // COMPONENT
 const PropertyFormComp = () => {
   const classes = useStyles();
-
+  const navigate = useNavigate();
   // Dispatch functions
   const dispatch = useDispatch();
+
+  const [imageStatus, setImageStatus] = useState(false);
 
   const {
     name, number, street, zipcode, city,
@@ -73,7 +76,12 @@ const PropertyFormComp = () => {
     event.preventDefault();
     // if (images.length > 0) dispatch(addProperty())
     // else console.log('il faut ajouter une image pour créer une propriété')
-    dispatch(addProperty())
+    if(images.length > 0) {
+      dispatch(addProperty());
+      setImageStatus(false);
+      navigate('/properties');
+    }
+    else setImageStatus(true)
   };
 
   return (
@@ -82,7 +90,9 @@ const PropertyFormComp = () => {
       spacing={2}
     >  
       <UploadImageForm />
-
+      { imageStatus && (
+        <FormHelperText error={true}>You need to upload at lest 1 image to add a property</FormHelperText>
+      )}
       <form
         autoComplete="off"
         onSubmit={handlePropertyFormSubmit}
