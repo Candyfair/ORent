@@ -15,7 +15,15 @@ const useStyles = makeStyles((theme) => ({
 
 // COMPONENT
 const Description = ({
-  details,
+  type,
+  city,
+  country,
+  host,
+  capacity,
+  bedroomscount,
+  bedscount,
+  bathroomscount,
+  description,
 }) => {
   const classes = useStyles();
 
@@ -25,34 +33,32 @@ const Description = ({
       className={classes.description}
     >
       <Typography variant="h5">
-        {details.type} - {details.city}, {details.country}  - Host : {details.host}
+        {type} - {city}, {country}  - Host : {host}
       </Typography>
       <Typography variant="subtitle1">
-        {details.capacity} guests - {details.bedroomscount} bedrooms - {details.bedscount} beds - {details.bathroomscount} bathrooms
+        {capacity} guests - {bedroomscount} bedrooms - {bedscount} beds - {bathroomscount} bathrooms
       </Typography>
 
       <Divider />
 
       <Typography variant="body1">
-        {details.description}
+        {description}
       </Typography>
     </Stack>
   );
 };
 
+// PROPTYPES
 Description.propTypes = {
-  // validation des éléments du tableau + forme des éléments du tableau
-  details: PropTypes.arrayOf(PropTypes.shape({
-    type: PropTypes.string,
-    city: PropTypes.string,
-    country: PropTypes.string,
-    host: PropTypes.string,
-    capacity: PropTypes.number,
-    bedroomscount: PropTypes.number,
-    bedscount: PropTypes.number,
-    bathroomscount: PropTypes.number,
-    description: PropTypes.string,
-  })).isRequired,
+  type: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
+  country: PropTypes.string.isRequired,
+  host: PropTypes.string.isRequired,
+  capacity: PropTypes.number.isRequired,
+  bedroomscount: PropTypes.number.isRequired,
+  bedscount: PropTypes.number.isRequired,
+  bathroomscount: PropTypes.number.isRequired,
+  description: PropTypes.string.isRequired,
 };
 
 export default Description;
