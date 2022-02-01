@@ -1,14 +1,19 @@
 /* eslint-disable linebreak-style */
 import { makeStyles } from '@mui/styles';
-import { Stack, Box } from '@mui/material/';
+import {
+  Stack, Box, ImageList, ImageListItem,
+} from '@mui/material/';
+
+import PropTypes from 'prop-types';
 
 // MUI STYLES
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
 }));
 
 const Pictures = ({ images }) => {
   const classes = useStyles;
-  console.log('images: ', images);
+
+  const itemData = images;
 
   return (
     <Stack
@@ -16,58 +21,29 @@ const Pictures = ({ images }) => {
       gap={1}
     >
       <Stack>
-        <Box
-          sx={{
-            borderRadius: 1,
-            bgcolor: 'grey.200',
-            minWidth: 560,
-            minHeight: 505,
-          }}
-        />
-      </Stack>
 
-      <Stack
-        flexDirection="row"
-        alignContent="stretch"
-        gap={1}
-        flexWrap="wrap"
-        className={classes.otherPhotos}
-      >
-        <Box
-          sx={{
-            borderRadius: 1,
-            bgcolor: 'grey.200',
-            minWidth: 270,
-            minHeight: 250,
-          }}
-        />
-        <Box
-          sx={{
-            borderRadius: 1,
-            bgcolor: 'grey.200',
-            minWidth: 270,
-            minHeight: 250,
-          }}
-        />
-        <Box
-          sx={{
-            borderRadius: 1,
-            bgcolor: 'grey.200',
-            minWidth: 270,
-            minHeight: 250,
-          }}
-        />
-        <Box
-          sx={{
-            borderRadius: 1,
-            bgcolor: 'grey.200',
-            minWidth: 270,
-            minHeight: 250,
-          }}
-        />
+        <ImageList>
+          {
+            itemData.map((item) => (
+              <ImageListItem key={item}>
+                <img
+                  src={`${item}?w=164&h=164&fit=crop&auto=format`}
+                  srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                  loading="lazy"
+                  alt="Property"
+                />
+              </ImageListItem>
+            ))
+          }
+        </ImageList>
+
       </Stack>
     </Stack>
   );
+};
+
+Pictures.propTypes = {
+  images: PropTypes.array.isRequired,
 };
 
 export default Pictures;

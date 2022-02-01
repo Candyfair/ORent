@@ -2,7 +2,7 @@ import { SAVE_PROPERTIES_LIST, SAVE_PROPERTY_DETAILS } from '../actions/properti
 
 export const initialState = {
   propertiesList: [],
-  propertyDetails: [],
+  propertyDetails: '',
 };
 
 const reducer = (state = initialState, action = {}) => {
