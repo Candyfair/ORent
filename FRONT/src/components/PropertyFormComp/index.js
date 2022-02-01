@@ -79,7 +79,7 @@ const PropertyFormComp = () => {
     if(images.length > 0) {
       dispatch(addProperty());
       setImageStatus(false);
-      navigate('/properties');
+      navigate('/homes');
     }
     else setImageStatus(true)
   };
