@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import { useEffect } from 'react';
 
+import PropTypes from 'prop-types';
+
 import Pictures from '../../components/PropertyDetailsComp/Pictures';
 import Description from '../../components/PropertyDetailsComp/Description';
 import VacanciesList from '../../components/PropertyDetailsComp/VacanciesList';
@@ -56,7 +58,7 @@ const PropertyDetails = () => {
       >
 
         {/* Photos de la propriété */}
-        <Pictures />
+        <Pictures images={propertyDetails.images} />
 
         <Stack
           flexDirection="row"
@@ -73,12 +75,29 @@ const PropertyDetails = () => {
             bathroomscount={propertyDetails.bathroomscount}
             description={propertyDetails.description}
           />
-          <VacanciesList vacancies={propertyDetails} />
+          <VacanciesList />
         </Stack>
 
       </Stack>
     </Stack>
   );
+};
+
+// === propTypes
+PropertyDetails.propTypes = {
+  // validation des éléments du tableau + forme des éléments du tableau
+  propertyDetails: PropTypes.arrayOf(PropTypes.shape({
+    type: PropTypes.string,
+    city: PropTypes.string,
+    country: PropTypes.string,
+    host: PropTypes.string,
+    capacity: PropTypes.number,
+    bedroomscount: PropTypes.number,
+    bedscount: PropTypes.number,
+    bathroomscount: PropTypes.number,
+    description: PropTypes.string,
+    images: PropTypes.array,
+  })).isRequired,
 };
 
 export default PropertyDetails;
