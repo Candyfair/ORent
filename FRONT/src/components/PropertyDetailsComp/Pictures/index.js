@@ -1,18 +1,22 @@
 /* eslint-disable linebreak-style */
-import { makeStyles } from '@mui/styles';
+// IMPORTS
 import {
-  Stack, Box, ImageList, ImageListItem,
+  Stack, ImageList, ImageListItem,
 } from '@mui/material/';
 
 import PropTypes from 'prop-types';
 
-// MUI STYLES
-const useStyles = makeStyles(() => ({
-}));
+// MUI IMAGE GALLERY FUNCTION
+function srcset(image, size, rows = 1, cols = 1) {
+  return {
+    src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
+    srcSet: `${image}?w=${size * cols}&h=${
+      size * rows
+    }&fit=crop&auto=format&dpr=2 2x`,
+  };
+}
 
 const Pictures = ({ images }) => {
-  const classes = useStyles;
-
   const itemData = images;
 
   return (
@@ -22,15 +26,18 @@ const Pictures = ({ images }) => {
     >
       <Stack>
 
-        <ImageList>
+        <ImageList
+          variant="quilted"
+          col={4}
+          rowHeight={250}
+        >
           {
             itemData.map((item) => (
-              <ImageListItem key={item}>
+              <ImageListItem key={item} cols={1} rows={1}>
                 <img
-                  src={`${item}?w=164&h=164&fit=crop&auto=format`}
-                  srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                  {...srcset(item, 121, item, item)}
+                  alt={item}
                   loading="lazy"
-                  alt="Property"
                 />
               </ImageListItem>
             ))
