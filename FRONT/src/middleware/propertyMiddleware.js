@@ -48,6 +48,7 @@ const propertyMiddleware = (store) => (next) => (action) => {
               (image) => store.dispatch(addPropertyImage(image, name, response.data.id))
             )
             
+            
           }
         ).catch((error) => {
           console.log('error sur la route POST /properties : ', error)
