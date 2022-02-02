@@ -4,19 +4,19 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@mui/styles';
 import {
   Box,
+  Grid,
   Stack,
 } from '@mui/material';
 import UserPropertyCard from './UserPropertyCard';
+import AddPropertyButton from './AddPropertyButton';
 
 // === MUI
 const useStyles = makeStyles((theme) => ({
   userPropertiesCards: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    padding: `${theme.spacing(2)} 0`,
-    width: '100%',
-    height: '100%',
+    padding: `0 0 ${theme.spacing(2)} ${theme.spacing(2)}`,
+    [theme.breakpoints.down('md')]: {
+      padding: `0 0 ${theme.spacing(2)} 0`,
+    }
   },
 }));
 
@@ -24,12 +24,18 @@ const useStyles = makeStyles((theme) => ({
 const UserPropertiesCards = ({ cards }) => {
   const classes = useStyles();
   return (
-    <Stack
+    <Grid  
+      container
+      spacing={2}
       className={classes.userPropertiesCards}
-      gap={8}
     >
       {cards.map((card) => (
-        <Box key={card.id}>
+        <Grid 
+          item
+          key={card.id} 
+          xs={12}
+          md={4}
+        >
           <UserPropertyCard
             name={card.name}
             image={card.images[0]}
@@ -37,18 +43,13 @@ const UserPropertiesCards = ({ cards }) => {
             slug={card.slug}
             id={card.id}
           />
-        </Box>
+        </Grid>
       ))}
-      <Box>
-        <UserPropertyCard
-          name=""
-          image=""
-          type=""
-          slug=""
-          id={0}
-        />
-      </Box>
-    </Stack>
+      <Grid item xs={12} md={4}>
+        <AddPropertyButton />
+      </Grid>
+    </Grid>
+    
   );
 };
 

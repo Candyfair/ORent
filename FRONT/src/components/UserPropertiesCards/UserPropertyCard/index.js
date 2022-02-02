@@ -4,57 +4,35 @@ import { useNavigate } from 'react-router';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@mui/styles';
 import {
-  Card,
   CardMedia,
-  CardContent,
   Button,
   Typography,
   Stack,
 } from '@mui/material/';
 
+import { capitalizeFirstLetter } from '../../../utils/utils';
+
 // === Styles
 const useStyles = makeStyles((theme) => ({
   userPropertyCard: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '30vw',
-    height: '450px',
-    [theme.breakpoints.down('sm')]: {
-      width: '100vw',
-      height: '300px',
-    },
-  },
-  cardMedia: {
-    width: '100%',
-    height: '50%',
+    boxShadow: theme.custom.shadow.primary
   },
   content: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    padding: theme.spacing(2)
+  },
+  image: {
+    height: '200px',
   },
   type: {
-    fontSize: '1rem',
+
   },
   name: {
-    fontSize: '1.2rem',
-    fontWeight: '700',
-    margin: '6px 0 24px',
+
+    fontWeight: 700
   },
   buttonsContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    width: '100%',
-  },
-  button: {
-    fontSize: '0.7rem',
-  },
-  fakeButton: {
-    width: '100%',
-    marginTop: '150px',
-  },
+
+  }
 
 }));
 
@@ -70,45 +48,46 @@ const UserPropertyCard = ({
   const navigate = useNavigate();
 
   return (
-    <Card
+    <Stack
       className={classes.userPropertyCard}
     >
       { image && (
       <CardMedia
-        className={classes.cardMedia}
+        className={classes.image}
         component="img"
         image={image}
         alt={name}
       />
       )}
-      <CardContent
+      <Stack
         className={classes.content}
+        gap={2}
       >
         <Typography
           className={classes.type}
-          variant="h3"
+          variant="subtitle1"
           component="h5"
         >
-          {type}
+          {capitalizeFirstLetter(type)}
         </Typography>
 
         <Typography
           className={classes.name}
           component="h3"
-          variant="h5"
+          variant="h6"
         >
-          {name}
+          {capitalizeFirstLetter(name)}
         </Typography>
-        {id
-          ? (
             <Stack
               className={classes.buttonsContainer}
-              gap={8}
+              gap={3}
+              direction='row'
             >
               <Button
                 className={classes.button}
                 size="small"
                 color="primary"
+                fullWidth
                 onClick={() => navigate(`/homes/${slug}/${id}`)}
               >
                 View
@@ -123,20 +102,8 @@ const UserPropertyCard = ({
                 Manage
               </Button>
             </Stack>
-          )
-          : (
-            <Button
-              className={classes.fakeButton}
-              variant="contained"
-              fullWidth
-              color="primary"
-              onClick={() => navigate('/:username/add-property')}
-            >
-              + Add a property
-            </Button>
-          )}
-      </CardContent>
-    </Card>
+      </Stack>
+    </Stack>
   );
 };
 

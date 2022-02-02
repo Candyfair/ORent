@@ -11,17 +11,9 @@ import { fetchMyProperties } from '../../redux/actions/propertiesFetch';
 // MUI STYLES
 const useStyles = makeStyles((theme) => ({
   userProperties: {
-    maxWidth: '1920px',
+
   },
-  header: {
-    marginTop: '12px',
-    [theme.breakpoints.down('sm')]: {
-      marginTop: '64px',
-    },
-    [theme.breakpoints.down('md')]: {
-      marginTop: '64px',
-    },
-  },
+
 }));
 
 // COMPONENT
@@ -43,6 +35,7 @@ const UserProperties = () => {
         className={classes.header}
         variant="h4"
         align="center"
+        margin='16px 0'
       >
         List of my properties
       </Typography>

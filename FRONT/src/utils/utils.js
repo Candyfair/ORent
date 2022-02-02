@@ -3,6 +3,9 @@ export function getInitialsOfUsername(username) {
   return firstLetterCapitalized;
 }
 
+export const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+
+
 export default function getMapCenter(cards) {
   let latitudeAverage = 0;
   let longitudeAverage = 0;
