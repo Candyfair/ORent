@@ -17,8 +17,8 @@ const useStyles = makeStyles((theme) => ({
   userPropertyCard: {
     display: 'flex',
     flexDirection: 'column',
-    width: '280px',
-    height: '280px',
+    width: '30vw',
+    height: '450px',
     [theme.breakpoints.down('sm')]: {
       width: '100vw',
       height: '300px',
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
   },
   fakeButton: {
     width: '100%',
-    marginTop: '75px',
+    marginTop: '150px',
   },
 
 }));
@@ -116,7 +116,7 @@ const UserPropertyCard = ({
               <Button
                 className={classes.button}
                 variant="outlined"
-                size="small"
+                fullWidth
                 color="primary"
                 onClick={() => navigate(`/${name}/properties/${id}/management`)}
               >
@@ -128,7 +128,7 @@ const UserPropertyCard = ({
             <Button
               className={classes.fakeButton}
               variant="contained"
-              size="small"
+              fullWidth
               color="primary"
               onClick={() => navigate('/:username/add-property')}
             >
