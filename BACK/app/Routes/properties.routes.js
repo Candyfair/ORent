@@ -26,6 +26,9 @@ const geocoding = require('../services/geocoding');
  */
  router.get('/properties/:id(\\d+)', propertyController.findOne);
 
+ router.get('/properties/me', checkJWT, propertyController.findMines);
+
+
 /**
 * @typedef PropertyPost
 * @property {string} name

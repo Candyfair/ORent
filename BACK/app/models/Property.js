@@ -51,6 +51,18 @@ class Property {
         }
     }
 
+    static async findMines(id) {
+        try {
+            const {rows} = await db.query('SELECT * FROM properties WHERE host_id=$1', [id]);
+            return rows.map(row => new Property(row));
+        } catch (error) {
+            if (error.detail) {
+                throw new Error(error.detail);
+            }
+            throw error;
+        }
+    }
+
     /**
      * Retrieves one property from database
      * @static
