@@ -1,18 +1,23 @@
 import { setLoading } from '../redux/actions/displayOptions';
 
-import { addPropertyImage, ADD_PROPERTY, changeNewPropertyField, changeNewPropertyImages, UPLOAD_IMAGE } from '../redux/actions/propertyCreate';
+import {
+  addPropertyImage, ADD_PROPERTY, changeNewPropertyField, changeNewPropertyImages, UPLOAD_IMAGE,
+} from '../redux/actions/propertyCreate';
 
-import { FETCH_PROPERTIES, FETCH_PROPERTY, savePropertiesList, savePropertyDetails } from '../redux/actions/propertiesFetch';
+import {
+  FETCH_MY_PROPERTIES,
+  FETCH_PROPERTIES, FETCH_PROPERTY, saveMyProperties, savePropertiesList, savePropertyDetails,
+} from '../redux/actions/propertiesFetch';
 
 import api from './api';
 
 const propertyMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
-
-    case ADD_PROPERTY : {
-
-      const { images, name, slug, description, capacity, number, street, type, zipcode, city, country, bedrooms, beds, bathrooms, price} = store.getState().propertyCreate;
-      const { id } = store.getState().userCurrent
+    case ADD_PROPERTY: {
+      const {
+        images, name, slug, description, capacity, number, street, type, zipcode, city, country, bedrooms, beds, bathrooms, price,
+      } = store.getState().propertyCreate;
+      const { id } = store.getState().userCurrent;
 
       store.dispatch(setLoading(true));
 
@@ -32,56 +37,56 @@ const propertyMiddleware = (store) => (next) => (action) => {
         country: country,
         week_price: price,
         user_id: id,
-      }
+      };
 
-      console.log('propertyInfos : ', newProperty)
+      console.log('propertyInfos : ', newProperty);
 
       api.post('/properties', {
         ...newProperty,
       })
         .then(
           (response) => {
-            console.log(`Retour positif, la propriété a été créée :`, response)
-            console.log('les images avant de faire addPropertyImage : ', images)
-            
+            console.log('Retour positif, la propriété a été créée :', response);
+            console.log('les images avant de faire addPropertyImage : ', images);
+
             images.map(
-              (image) => store.dispatch(addPropertyImage(image, name, response.data.id))
-            )
-            
-            
-          }
+              (image) => store.dispatch(addPropertyImage(image, name, response.data.id)),
+            );
+          },
         ).catch((error) => {
-          console.log('error sur la route POST /properties : ', error)
+          console.log('error sur la route POST /properties : ', error);
           store.dispatch(setLoading(false));
         });
-        next(action);
-        break;
+      next(action);
+      break;
     }
 
     case UPLOAD_IMAGE: {
-        const formData = new FormData()
-        const {uploadFile} = store.getState().propertyCreate
-        console.log(`Je suis sur l'action UPLOAD_IMAGE avec le fichier : `, uploadFile)
+      const formData = new FormData();
+      const { uploadFile } = store.getState().propertyCreate;
+      console.log('Je suis sur l\'action UPLOAD_IMAGE avec le fichier : ', uploadFile);
 
-        formData.append('property_image', uploadFile);
+      formData.append('property_image', uploadFile);
 
-        api.post('/upload', formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data'
-            }
-        })
-            .then(
-                (response) => {
-                    console.log(`upload réussi`, response)
-                    store.dispatch(changeNewPropertyField('', 'propertyImage'))
-                    store.dispatch(changeNewPropertyImages(response.data.secure_url))
-            }
-            )
-            .catch(
-                (error) => console.log('upload fail ', error)
-            )
+      api.post('/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+        .then(
+          (response) => {
+            console.log('upload réussi', response);
+            store.dispatch(changeNewPropertyField('', 'propertyImage'));
+            store.dispatch(changeNewPropertyImages(response.data.secure_url));
+          },
+        )
+        .catch(
+          (error) => console.log('upload fail ', error),
+        );
+      next(action);
+      break;
     }
-    
+
     case FETCH_PROPERTIES: {
       console.log('Je suis bien dans le properties middleware sur la route GET /properties');
       store.dispatch(setLoading(true));
@@ -127,7 +132,28 @@ const propertyMiddleware = (store) => (next) => (action) => {
       next(action);
       break;
     }
-
+    case FETCH_MY_PROPERTIES: {
+      console.log('Je suis bien dans le properties middleware sur la route GET /properties/me');
+      store.dispatch(setLoading(true));
+      api.get(
+        '/properties/me',
+      )
+        .then(
+          (response) => {
+            console.log('Fetch myproperties réussi : ', response);
+            store.dispatch(saveMyProperties(response.data));
+            store.dispatch(setLoading(false));
+          },
+        )
+        .catch(
+          (error) => {
+            console.log('Error Fetch myproperties: ', error);
+            store.dispatch(setLoading(false));
+          },
+        );
+      next(action);
+      break;
+    }
     default:
       next(action);
   }

@@ -1,8 +1,9 @@
-import { SAVE_PROPERTIES_LIST, SAVE_PROPERTY_DETAILS } from '../actions/propertiesFetch';
+import { SAVE_MY_PROPERTIES, SAVE_PROPERTIES_LIST, SAVE_PROPERTY_DETAILS } from '../actions/propertiesFetch';
 
 export const initialState = {
   propertiesList: [],
   propertyDetails: '',
+  myProperties: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -16,6 +17,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         propertyDetails: action.data,
+      };
+    case SAVE_MY_PROPERTIES:
+      return {
+        ...state,
+        myProperties: action.data,
       };
     default:
       return state;
