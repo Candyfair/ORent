@@ -6,7 +6,9 @@ import {
   Stack,
   Button,
 } from '@mui/material/';
-import AddBoxIcon from '@mui/icons-material/AddBox';
+import AddIcon from '@mui/icons-material/Add';
+import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork';
+
 // === Styles
 const useStyles = makeStyles((theme) => ({
   addPropertyButton: {
@@ -40,7 +42,7 @@ const AddPropertyButton = () => {
               color="primary"
               onClick={() => navigate('/:username/add-property')}
               disableElevation
-              startIcon={<AddBoxIcon />}
+              startIcon={<Stack direction='row' justifyContent='center' alignItems='center'><AddIcon /> <MapsHomeWorkIcon /></Stack>}
             >
               Add a property
             </Button>
