@@ -20,8 +20,11 @@ const useStyles = makeStyles((theme) => ({
   titlePadding: {
     padding: `${theme.spacing(3)} ${theme.spacing(3)} 0 ${theme.spacing(3)}`,
   },
-  textPadding: {
+  content: {
     padding: `0 ${theme.spacing(3)}`,
+    [theme.breakpoints.down('md')]: {
+      flexDirection: 'column',
+    },
   },
 }));
 
@@ -69,7 +72,8 @@ const PropertyDetails = () => {
         <Stack
           flexDirection="row"
           justifyContent="space-between"
-          className={classes.textPadding}
+          spacing={4}
+          className={classes.content}
         >
           <Description
             type={propertyDetails.type}
@@ -81,6 +85,7 @@ const PropertyDetails = () => {
             bedscount={propertyDetails.bedscount}
             bathroomscount={propertyDetails.bathroomscount}
             description={propertyDetails.description}
+            weekprice={propertyDetails.weekprice}
           />
           <VacanciesList />
         </Stack>

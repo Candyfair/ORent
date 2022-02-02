@@ -5,9 +5,12 @@ import { Stack, Card, CardContent } from '@mui/material/';
 import Vacancy from './Vacancy';
 
 // MUI STYLES
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   vacanciesList: {
-    width: '30%',
+    [theme.breakpoints.up('md')]: {
+      width: '30%',
+    },
+    width: '100%',
   },
 }));
 
