@@ -70,7 +70,7 @@ UserPropertiesCards.propTypes = {
     zipCode: PropTypes.number,
     city: PropTypes.string,
     country: PropTypes.string,
-    weekPrice: PropTypes.number,
+    weekprice: PropTypes.number,
     latitude: PropTypes.number,
     longitude: PropTypes.number,
     images: PropTypes.array,

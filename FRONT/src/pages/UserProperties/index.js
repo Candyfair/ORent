@@ -6,7 +6,6 @@ import { makeStyles } from '@mui/styles';
 import { Stack, Typography } from '@mui/material/';
 
 import UserPropertiesCards from '../../components/UserPropertiesCards';
-import cards from '../../data/fakeCards';
 import { fetchMyProperties } from '../../redux/actions/propertiesFetch';
 
 // MUI STYLES
@@ -31,7 +30,6 @@ const UserProperties = () => {
   const dispatch = useDispatch();
   const { myProperties } = useSelector((state) => state.propertyCurrent);
   const { loading } = useSelector((state) => state.displayOptions);
-  // const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchMyProperties());
