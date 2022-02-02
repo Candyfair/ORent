@@ -1,9 +1,9 @@
 // === IMPORTS
 import {
-  Box, Divider, Stack, Typography,
+  Box, Button, Stack, Typography,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { useNavigate } from 'react-router';
+// import { useNavigate } from 'react-router';
 import BookingDetailsComp from '../../components/BookingDetailsComp';
 
 // === MUI
@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     width: '100vw',
+    boxShadow: theme.custom.shadow.primary,
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
     },
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   imageSide: {
-    width: '48vw',
+    width: '50%',
     height: '400px',
     marginRight: '16px',
     [theme.breakpoints.down('sm')]: {
@@ -41,12 +42,12 @@ const useStyles = makeStyles((theme) => ({
 // === COMPONENT
 const BookingDetails = () => {
   const classes = useStyles();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   return (
     <Stack
       margin="32px"
-      classeName={classes.bookingDetails}
+      className={classes.bookingDetails}
     >
       <Typography
         variant="h5"
@@ -74,14 +75,13 @@ const BookingDetails = () => {
         </Stack>
         <BookingDetailsComp />
       </Stack>
-      <Typography
-        classeName={classes.showlisting}
-        variant="subtitle1"
-        mt={2}
-        onClick={() => navigate('/homes')}
+      <Button
+        variant="text"
+        className={classes.showlisting}
+        // onClick={() => navigate(`/homes/${slug}/${id}`)}
       >
         Show listing
-      </Typography>
+      </Button>
     </Stack>
 
   );

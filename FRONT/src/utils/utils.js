@@ -6,7 +6,7 @@ export function getInitialsOfUsername(username) {
 export default function getMapCenter(cards) {
   let latitudeAverage = 0;
   let longitudeAverage = 0;
-  const correctionCoefficient = 10;
+  const correctionCoefficient = 20;
   // eslint-disable-next-line no-restricted-syntax
   for (const card of cards) {
     latitudeAverage += card.latitude / cards.length;
@@ -14,4 +14,3 @@ export default function getMapCenter(cards) {
   }
   return [latitudeAverage, longitudeAverage + correctionCoefficient];
 }
-

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@mui/styles';
 import {
-  Card, CardMedia, CardContent, Button, Typography, Stack,
+  Card, CardMedia, Button, Typography, Stack,
 } from '@mui/material/';
 
 // === MUI
@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
+    padding: theme.spacing(2),
   },
   type: {
     fontSize: '1rem',
@@ -38,13 +39,19 @@ const useStyles = makeStyles((theme) => ({
   name: {
     fontSize: '1.5rem',
     fontWeight: '700',
-    margin: '8px 0',
   },
   description: {
     flexGrow: 1,
     fontSize: '0.9rem',
     lineHeight: '1.3',
     fontStyle: 'italic',
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    maxWidth: '25vw',
+    [theme.breakpoints.down('md')]: {
+      maxWidth: '80vw',
+    },
   },
   price: {
     fontWeight: 'bold',
@@ -88,7 +95,7 @@ const PropertyCard = ({
         image={image}
         alt={name}
       />
-      <CardContent
+      <Stack
         className={classes.content}
       >
         <Stack
@@ -125,7 +132,6 @@ const PropertyCard = ({
           variant="subtitle1"
           color="text.secondary"
           component="p"
-          gutterBottom
         >
           {description}
         </Typography>
@@ -147,7 +153,7 @@ const PropertyCard = ({
         >
           More details
         </Button>
-      </CardContent>
+      </Stack>
     </Card>
   );
 };
