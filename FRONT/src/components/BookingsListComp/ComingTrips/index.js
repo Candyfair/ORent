@@ -120,7 +120,7 @@ const ComingTrips = () => {
               color="primary"
               // onClick={() => navigate(`/homes/${slug}/${id}`)}
             >
-              Get directions
+              See the details
             </Button>
           </CardContent>
         </Card>
