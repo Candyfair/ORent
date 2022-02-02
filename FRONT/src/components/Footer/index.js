@@ -6,6 +6,11 @@ import { makeStyles } from '@mui/styles';
 
 // === MUI
 const useStyles = makeStyles((theme) => ({
+  footer: {
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    }
+  },
   footerFields: {
     flewWrap: 'wrap',
     marginTop: theme.spacing(2),
@@ -24,6 +29,7 @@ const Footer = () => {
   return (
     <footer>
       <Stack
+        className={classes.footer}
         flexDirection="row"
         justifyContent="center"
         alignItems="center"

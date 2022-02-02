@@ -15,12 +15,18 @@ import { useState } from 'react';
 const useStyles = makeStyles((theme) => ({
   accountUpdateForm: {
     width: '500px',
+    [theme.breakpoints.down('md')]: {
+      width: '100vw',
+      padding: theme.spacing(1)
+    }
   },
   title: {
     padding: `${theme.spacing(3)} 0`
   },
-  button: {
-
+  buttons: {
+    [theme.breakpoints.down('md')]: {
+      flexDirection: 'column-reverse',
+    },
   },
   deleteButton: {
 
@@ -31,7 +37,8 @@ const useStyles = makeStyles((theme) => ({
   changePasswordButton: {
     color: theme.palette.text.secondary,
     textTransform: 'none',
-  }
+  },
+
 
 }));
 

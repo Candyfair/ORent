@@ -7,14 +7,17 @@ import Footer from 'src/components/Footer';
 // MUI STYLES
 const useStyles = makeStyles((theme) => ({
   header: {
-    height: '7vh',
+
   },
   pages: {
     flexGrow: 1,
     width: '100vw',
+    [theme.breakpoints.down('md')]:{
+      marginTop: theme.spacing(4),
+    },
   },
   footer: {
-    height: '7vh',
+
   },
 }));
 
