@@ -2,11 +2,10 @@
 // IMPORTS
 import { makeStyles } from '@mui/styles';
 import {
-  Stack, ImageList, ImageListItem,
+  Stack, ImageList, ImageListItem, Box,
 } from '@mui/material/';
 
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+import SwipeableViews from 'react-swipeable-views';
 
 import PropTypes from 'prop-types';
 
@@ -32,8 +31,10 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
-  photosCarousel: {
-    maxWidth: '100%',
+  desktopPadding: {
+    [theme.breakpoints.up('md')]: {
+      padding: `0 ${theme.spacing(3)}`,
+    },
   },
 }));
 
@@ -46,39 +47,31 @@ const Pictures = ({ images }) => {
   const newArray = [...images];
   const otherImages = newArray.slice(1, newArray.length);
 
-  // Carousel for mobile
-  const responsive = {
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
-  };
-
   return (
     <Stack
       flexDirection="row"
       gap={0.5}
+      className={classes.desktopPadding}
     >
       <Stack className={classes.photosMobile}>
-        <Carousel
-          showDots
-          renderDotsOutside
-          infinite
-          containerClass="container"
-          slidesToSlide={1}
-          responsive={responsive}
-        >
+        <SwipeableViews>
           {images.map((item) => (
-            <div>
-              <img
-                src={`${item}?fit=crop&auto=format`}
+            <div key={item}>
+              <Box
+                component="img"
+                sx={{
+                  minHeight: 255,
+                  display: 'block',
+                  maxWidth: '100%',
+                  overflow: 'hidden',
+                }}
+                src={item}
                 alt="Property"
-                loading="lazy"
-                className={classes.photosCarousel}
               />
             </div>
+
           ))}
-        </Carousel>;
+        </SwipeableViews>
       </Stack>
 
       {/* Première image desktop */}
