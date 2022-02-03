@@ -3,13 +3,25 @@
 import PropTypes from 'prop-types';
 
 import { makeStyles } from '@mui/styles';
-import { Stack, Typography, Divider } from '@mui/material/';
+import {
+  Stack, Typography, Divider, Tooltip,
+} from '@mui/material/';
+import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
+import NightShelterIcon from '@mui/icons-material/NightShelter';
+import SingleBedIcon from '@mui/icons-material/SingleBed';
+import BathtubOutlinedIcon from '@mui/icons-material/BathtubOutlined';
 
 // MUI STYLES
 const useStyles = makeStyles((theme) => ({
   description: {
-    width: '70%',
-    paddingRight: theme.spacing(5),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: '70%',
+      paddingRight: theme.spacing(5),
+    },
+  },
+  options: {
+    fontSize: '1rem',
   },
 }));
 
@@ -24,6 +36,7 @@ const Description = ({
   bedscount,
   bathroomscount,
   description,
+  weekprice,
 }) => {
   const classes = useStyles();
 
@@ -33,11 +46,42 @@ const Description = ({
       className={classes.description}
     >
       <Typography variant="h5">
-        {type} - {city}, {country}  - Host : {host}
+        {type} in {city}, {country}
       </Typography>
-      <Typography variant="subtitle1">
-        {capacity} guests - {bedroomscount} bedrooms - {bedscount} beds - {bathroomscount} bathrooms
+      <Typography variant="body">
+        Hosted by {host} - {weekprice}€ per week
       </Typography>
+
+      {/* Options icons */}
+      <Stack
+        flexDirection="row"
+        alignItems="center"
+        justifyContent="flex-start"
+        gap={2}
+        className={classes.options}
+      >
+        <Stack flexDirection="row" alignItems="center">
+          <Tooltip title="Capacity">
+            <PeopleRoundedIcon />
+          </Tooltip> {capacity}
+        </Stack>
+        <Stack flexDirection="row" alignItems="center">
+          <Tooltip title="Number of bedrooms">
+            <NightShelterIcon />
+          </Tooltip> {bedroomscount}
+        </Stack>
+        <Stack flexDirection="row" alignItems="center">
+          <Tooltip title="Number of beds">
+            <SingleBedIcon />
+          </Tooltip> {bedscount}
+        </Stack>
+        <Stack flexDirection="row" alignItems="center">
+          <Tooltip title="Bathrooms">
+            <BathtubOutlinedIcon />
+          </Tooltip> {bathroomscount}
+        </Stack>
+
+      </Stack>
 
       <Divider />
 
@@ -59,6 +103,7 @@ Description.propTypes = {
   bedscount: PropTypes.number.isRequired,
   bathroomscount: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
+  weekprice: PropTypes.number.isRequired,
 };
 
 export default Description;

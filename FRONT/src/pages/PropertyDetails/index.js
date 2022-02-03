@@ -15,8 +15,16 @@ import { fetchProperty } from '../../redux/actions/propertiesFetch';
 // MUI STYLES
 const useStyles = makeStyles((theme) => ({
   propertyDetailClass: {
-    padding: theme.spacing(3),
     maxWidth: 1165,
+  },
+  titlePadding: {
+    padding: `${theme.spacing(3)} ${theme.spacing(3)} 0 ${theme.spacing(3)}`,
+  },
+  content: {
+    padding: `0 ${theme.spacing(3)}`,
+    [theme.breakpoints.down('md')]: {
+      flexDirection: 'column',
+    },
   },
 }));
 
@@ -29,10 +37,7 @@ const PropertyDetails = () => {
   const { loading } = useSelector((state) => state.displayOptions);
   const { propertyDetails } = useSelector((state) => state.propertyCurrent);
 
-  console.log(propertyDetails);
-
   useEffect(() => {
-    console.log('Je rentre bien dans le useEffect');
     dispatch(fetchProperty(id));
   }, []);
 
@@ -51,6 +56,7 @@ const PropertyDetails = () => {
       <Typography
         variant="h4"
         align="left"
+        className={classes.titlePadding}
       >
         {propertyDetails.name}
       </Typography>
@@ -66,6 +72,8 @@ const PropertyDetails = () => {
         <Stack
           flexDirection="row"
           justifyContent="space-between"
+          spacing={4}
+          className={classes.content}
         >
           <Description
             type={propertyDetails.type}
@@ -77,6 +85,7 @@ const PropertyDetails = () => {
             bedscount={propertyDetails.bedscount}
             bathroomscount={propertyDetails.bathroomscount}
             description={propertyDetails.description}
+            weekprice={propertyDetails.weekprice}
           />
           <VacanciesList />
         </Stack>
