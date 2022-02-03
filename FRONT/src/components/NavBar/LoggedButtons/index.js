@@ -123,7 +123,10 @@ const LoggedButtons = () => {
         <Divider variant="middle" />
 
         <MenuItem
-          onClick={() => dispatch(logout())}
+          onClick={() => {
+            dispatch(logout());
+            navigate('/');
+          }}
         >
           <ListItemIcon>
             <LogoutIcon fontSize="small" />
@@ -135,7 +138,6 @@ const LoggedButtons = () => {
 
       <Avatar
         className={classes.avatar}
-
         onClick={() => {
           navigate(`/${username.toLowerCase()}/account/`);
           handleClose();
