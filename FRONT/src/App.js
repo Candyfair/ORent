@@ -29,6 +29,8 @@ import Faq from './pages/Faq';
 import About from './pages/About';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Error404 from './pages/Error404';
+import SnackbarModule from './components/SnackbarModule';
+
 
 // == Composant
 const App = () => {
@@ -67,6 +69,7 @@ const App = () => {
             <Route path="*" element={<Error404 />} />
           </Routes>
           <ModalDisplay />
+          <SnackbarModule />
         </Layout>
       </div>
     </ThemeProvider>

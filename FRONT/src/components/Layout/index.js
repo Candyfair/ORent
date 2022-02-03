@@ -11,7 +11,6 @@ const useStyles = makeStyles((theme) => ({
   },
   pages: {
     flexGrow: 1,
-    width: '98vw',
     [theme.breakpoints.down('md')]:{
       marginTop: theme.spacing(4),
     },

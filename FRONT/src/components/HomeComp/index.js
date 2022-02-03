@@ -28,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'stretch',
   },
   imageDesktopClass: {
     [theme.breakpoints.down('md')]: {
@@ -36,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   imageSize: {
-    height: '86vh',
+    objectFit: 'cover',
+    height: '88vh',
     width: '100%',
   },
   imageMobileClass: {

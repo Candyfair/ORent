@@ -1,3 +1,4 @@
+import { setSnackbar } from '../redux/actions/displayOptions';
 import { setModal } from '../redux/actions/modals';
 import { REGISTER, resetNewUserFields } from '../redux/actions/userCreate';
 import {
@@ -32,10 +33,14 @@ const authMiddleware = (store) => (next) => (action) => {
             store.dispatch(setModal(false, 'none'));
             store.dispatch(resetNewUserFields()); // empty fields
             store.dispatch(connectUser(response.data.user));
+            store.dispatch(setSnackbar(true, 'Your account was successfully created ! Welcome !','success'))
           },
         )
         .catch(
-          (error) => console.log('Error register: ', error),
+          (error) => {
+            console.log('Error register: ', error);
+            store.dispatch(setSnackbar(true, `The email or the username may already exist, try to pick another one`,'error'))
+          }
         );
       next(action);
       break;
@@ -59,10 +64,14 @@ const authMiddleware = (store) => (next) => (action) => {
             store.dispatch(setModal(false, 'none'));
             store.dispatch(resetCurrentUserFields()); // empty fields
             store.dispatch(connectUser(response.data.user));
+            store.dispatch(setSnackbar(true, 'Connection success ! Welcome !','success'))
           },
         )
         .catch(
-          (error) => console.log('Error login: ', error),
+          (error) => {
+            console.log('Error login: ', error);
+            store.dispatch(setSnackbar(true, `The email or password is incorrect`,'error'))
+          }
         );
 
       next(action);
@@ -100,7 +109,7 @@ const authMiddleware = (store) => (next) => (action) => {
       localStorage.removeItem('userRefreshToken');
 
       store.dispatch(disconnectUser());
-
+      store.dispatch(setSnackbar(true, 'You are disconnected. We hope to see you soon, take care !','info'))
       next(action);
       break;
     }

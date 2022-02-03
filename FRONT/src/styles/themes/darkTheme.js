@@ -10,6 +10,9 @@ const darkTheme = createTheme({
     secondary: {
       main: '#e95252',
     },
+    success: {
+      main: '#4E9A51',
+    },
   },
   custom: {
     shadow: {

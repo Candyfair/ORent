@@ -12,9 +12,10 @@ export const initialState = {
   mode: 'light',
   redirect: false,
   showPasswordStatus: false,
+  
   snackbar: false,
   snackbarStatus: 'success',
-  SnackbarMessage: '',
+  snackbarMessage: '',
   vertical: 'top',
   horizontal: 'center',
 };
@@ -51,7 +52,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         snackbar: action.value,
         snackbarStatus: action.status,
-        SnackbarMessage: action.message,
+        snackbarMessage: action.message,
       };
     default:
       return state;

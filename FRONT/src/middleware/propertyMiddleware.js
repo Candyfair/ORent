@@ -52,9 +52,11 @@ const propertyMiddleware = (store) => (next) => (action) => {
             images.map(
               (image) => store.dispatch(addPropertyImage(image, name, response.data.id)),
             );
+            store.dispatch(setSnackbar(true, 'Your property was successfully added ! Thank you !','success'))
           },
         ).catch((error) => {
           console.log('error sur la route POST /properties : ', error);
+          store.dispatch(setSnackbar(true, 'En error occured !','error'))
           store.dispatch(setLoading(false));
         });
       next(action);
