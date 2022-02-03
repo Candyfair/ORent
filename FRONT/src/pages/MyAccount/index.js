@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import AccountForm from '../../components/AccountForm';
 
 
-import HomeComp from '../../components/HomeComp';
 import { fetchUserInfos } from '../../redux/actions/userUpdate';
 
 // MUI STYLES

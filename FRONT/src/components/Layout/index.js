@@ -3,9 +3,14 @@ import { makeStyles } from '@mui/styles';
 
 import NavBar from 'src/components/NavBar';
 import Footer from 'src/components/Footer';
+import { Stack, Box } from '@mui/material';
+
 
 // MUI STYLES
 const useStyles = makeStyles((theme) => ({
+  layout:{
+    minHeight: '100vh',
+  },
   header: {
 
   },
@@ -24,17 +29,17 @@ const Layout = ({ children }) => {
   const classes = useStyles();
 
   return (
-    <div className="layout" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      <div className={classes.header}>
+    <Stack className={classes.layout}>
+      <Box className={classes.header}>
         <NavBar />
-      </div>
-      <div className={classes.pages}>
+      </Box>
+      <Box className={classes.pages}>
         {children}
-      </div>
-      <div className={classes.footer}>
+      </Box>
+      <Box className={classes.footer}>
         <Footer />
-      </div>
-    </div>
+      </Box>
+    </Stack>
   );
 };
 
