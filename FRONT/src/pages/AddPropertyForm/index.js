@@ -3,7 +3,6 @@ import { makeStyles } from '@mui/styles';
 import { Stack, Typography } from '@mui/material/';
 
 import PropertyFormComp from '../../components/PropertyFormComp';
-import VacanciesForm from '../../components/VacanciesForm';
 
 // MUI STYLES
 const useStyles = makeStyles((theme) => ({
@@ -33,7 +32,6 @@ const AddPropertyForm = () => {
       </Typography>
 
       <PropertyFormComp />
-      <VacanciesForm />
     </Stack>
   );
 };
