@@ -19,19 +19,16 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   centeredBlock: {
-    position: 'absolute',
-    top: '45%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
     color: theme.palette.common.white,
     maxWidth: '90%',
+    marginBottom: theme.spacing(10)
   },
   title: {
     textShadow: '1px 1px 2px #000',
+    textAlign: 'center',
     fontSize: '50px',
     fontWeight: '600',
     [theme.breakpoints.down('md')]: {
-      textAlign: 'center',
       fontSize: '40px',
     },
   },
@@ -56,7 +53,7 @@ const Home = () => {
       flexDirection="column"
       spacing={5}
       className={classes.home}
-      justifyContent="flex-start"
+      justifyContent="center"
       alignItems="center"
     >
       <Stack
