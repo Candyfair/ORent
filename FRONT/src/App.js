@@ -31,7 +31,6 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import Error404 from './pages/Error404';
 import SnackbarModule from './components/SnackbarModule';
 
-
 // == Composant
 const App = () => {
   const dispatch = useDispatch();
