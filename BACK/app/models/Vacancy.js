@@ -22,7 +22,7 @@ class Vacancy {
 
     static async findAllFromProperty(propertyId) {
         try {
-            const {rows} = await db.query('SELECT * FROM vacancy WHERE property_id=$1', [propertyId]);
+            const {rows} = await db.query('SELECT * FROM vacancies WHERE property_id=$1', [propertyId]);
             return rows.map(row => new Vacancy(row));
         } catch (error) {
             if (error.detail) {
@@ -56,7 +56,8 @@ class Vacancy {
             } else {
                 const {rows} = await db.query('INSERT INTO "vacancy" (start_date, end_date, property_id) VALUES ($1, $2, $3) RETURNING *', [startDate, endDate, propertyId]);
                 this.id = rows[0].id;
-                return this;
+                const result = await db.query('SELECT * FROM vacancies WHERE id=$1', [this.id])
+                return result.rows[0];
             }
         } catch (error) {
             if (error.detail) {

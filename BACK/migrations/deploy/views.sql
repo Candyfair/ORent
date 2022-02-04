@@ -114,5 +114,4 @@ FROM "booking"
     LEFT JOIN "properties_has_images" on "properties_has_images".id="vacancy".property_id
 ORDER BY "booking".created_at DESC;
 
-
 COMMIT;
