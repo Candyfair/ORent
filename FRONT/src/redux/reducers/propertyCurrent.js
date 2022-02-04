@@ -1,9 +1,11 @@
 import { SAVE_MY_PROPERTIES, SAVE_PROPERTIES_LIST, SAVE_PROPERTY_DETAILS } from '../actions/propertiesFetch';
+import { SET_NEW_VACANCY, SET_PROPERTY_VACANCIES } from '../actions/vacancy';
 
 export const initialState = {
   propertiesList: [],
   propertyDetails: '',
   myProperties: [],
+  propertyVacancies: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -22,6 +24,16 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         myProperties: action.data,
+      };
+    case SET_PROPERTY_VACANCIES:
+      return {
+        ...state,
+        propertyVacancies: action.data,
+      };
+    case SET_NEW_VACANCY:
+      return {
+        ...state,
+        propertyVacancies: [...state.propertyVacancies, action.data],
       };
     default:
       return state;

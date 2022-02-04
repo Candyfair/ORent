@@ -16,7 +16,7 @@ const VacanciesForm = () => {
   return (
     <Stack spacing={2}>
       <Typography variant="h5">Availabilities</Typography>
-      <Typography variant="subtitle1">Pick the first day of the week in the calendar:</Typography>
+      <Typography variant="subtitle1">Select the dates in the calendar:</Typography>
       <Calendar />
     </Stack>
   );
