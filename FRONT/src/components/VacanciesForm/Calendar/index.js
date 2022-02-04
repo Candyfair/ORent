@@ -1,4 +1,5 @@
 // IMPORTS
+import { makeStyles } from '@mui/styles';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 
@@ -7,7 +8,15 @@ import {
 } from '@mui/material/';
 import { setStartDate, setEndDate } from '../../../redux/actions/vacancy';
 
+// MUI STYLES
+const useStyles = makeStyles((theme) => ({
+
+}));
+
+// COMPONENT
 export default function Calendar() {
+  const classes = useStyles();
+
   const dispatch = useDispatch();
   const { startDate, endDate } = useSelector((state) => state.vacancy);
 
@@ -42,6 +51,9 @@ export default function Calendar() {
           shrink: true,
         }}
       />
+      <Typography>
+        Once your dates are selected, add them to your list:
+      </Typography>
       {
         startDate !== null && endDate !== null && (
           <Stack
@@ -49,9 +61,10 @@ export default function Calendar() {
             justifyContent="center"
             alignItems="center"
             gap={2}
+            className={classes.selectedDates}
           >
             <Typography>
-              From {moment(startDate).format('DD/MM/YYYY')} to {moment(endDate).format('DD/MM/YYYY')}
+              - From {moment(startDate).format('DD/MM/YYYY')} to {moment(endDate).format('DD/MM/YYYY')}
             </Typography>
             <Button variant="text">
               Add

@@ -1,8 +1,8 @@
 import { SET_END_DATE, SET_START_DATE } from '../actions/vacancy';
 
 export const initialState = {
-  startDate: null,
-  endDate: null,
+  startDate: '',
+  endDate: '',
 };
 
 const reducer = (state = initialState, action = {}) => {

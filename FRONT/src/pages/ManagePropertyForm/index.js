@@ -2,8 +2,13 @@
 import { makeStyles } from '@mui/styles';
 import { Stack, Typography } from '@mui/material/';
 
+import { useEffect } from 'react';
+import { useParams } from 'react-router';
+import { useDispatch } from 'react-redux';
 import ManagePropertyFormComp from '../../components/ManagePropertyFormComp';
 import VacanciesForm from '../../components/VacanciesForm';
+
+import { fetchProperty } from '../../redux/actions/propertiesFetch';
 
 // MUI STYLES
 const useStyles = makeStyles((theme) => ({
@@ -24,6 +29,13 @@ const useStyles = makeStyles((theme) => ({
 // COMPONENT
 const ManagePropertyForm = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const { id } = useParams();
+  useEffect(() => {
+    dispatch(fetchProperty(id));
+    dispatch(fetchPropertyVacancies(id));
+  });
 
   return (
     <Stack
