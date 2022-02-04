@@ -1,3 +1,4 @@
+import { useParams } from 'react-router';
 // IMPORTS
 import { makeStyles } from '@mui/styles';
 import { useSelector, useDispatch } from 'react-redux';
@@ -8,6 +9,8 @@ import {
 } from '@mui/material/';
 import { setStartDate, setEndDate } from '../../../redux/actions/vacancy';
 
+import { addVacancy } from '../../../redux/actions/vacancy';
+
 // MUI STYLES
 const useStyles = makeStyles((theme) => ({
 
@@ -16,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 // COMPONENT
 export default function Calendar() {
   const classes = useStyles();
-
+  const { id } = useParams()
   const dispatch = useDispatch();
   const { startDate, endDate } = useSelector((state) => state.vacancy);
 
@@ -66,7 +69,10 @@ export default function Calendar() {
             <Typography>
               - From {moment(startDate).format('DD/MM/YYYY')} to {moment(endDate).format('DD/MM/YYYY')}
             </Typography>
-            <Button variant="text">
+            <Button 
+              onClick={() => dispatch(addVacancy(id))}
+              variant="text"
+            >
               Add
             </Button>
 

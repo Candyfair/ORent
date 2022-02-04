@@ -9,6 +9,7 @@ import ManagePropertyFormComp from '../../components/ManagePropertyFormComp';
 import VacanciesForm from '../../components/VacanciesForm';
 
 import { fetchProperty } from '../../redux/actions/propertiesFetch';
+import { fetchPropertyVacancies } from '../../redux/actions/vacancy';
 
 // MUI STYLES
 const useStyles = makeStyles((theme) => ({
@@ -32,10 +33,11 @@ const ManagePropertyForm = () => {
   const dispatch = useDispatch();
 
   const { id } = useParams();
+  console.log(`la propriété concernée est la : `, id)
   useEffect(() => {
     dispatch(fetchProperty(id));
     dispatch(fetchPropertyVacancies(id));
-  });
+  }, []);
 
   return (
     <Stack
