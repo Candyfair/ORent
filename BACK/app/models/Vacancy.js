@@ -22,7 +22,7 @@ class Vacancy {
 
     static async findAllFromProperty(propertyId) {
         try {
-            const {rows} = await db.query('SELECT * FROM vacancies WHERE property_id=$1', [propertyId]);
+            const {rows} = await db.query('SELECT * FROM vacancies WHERE propertyid=$1', [propertyId]);
             return rows.map(row => new Vacancy(row));
         } catch (error) {
             if (error.detail) {
