@@ -74,4 +74,42 @@ FROM "property"
     LEFT JOIN "properties_offers_vacancies" ON "properties_offers_vacancies".id="property".id
 ORDER BY "property".created_at DESC;
 
+CREATE VIEW "bookings" AS
+SELECT DISTINCT
+    "booking".id,
+    "booking".user_id AS bookerId,
+    "user".username AS bookerName,
+    "booking".vacancy_id,
+    "booking".created_at,
+    "booking".updated_at,
+    "vacancy".start_date AS startDate,
+    "vacancy".end_date AS endDate,
+    "properties_has_images".images AS images,
+    "property".id AS propertyId,
+    "property".name AS propertyName,
+    "property".slug AS propertySlug,
+    "property".description AS propertyDescription,
+    "property".capacity AS propertyCapacity,
+    "property".bedrooms_count AS propertyBedroomsCount,
+    "property".beds_count AS propertyBedsCount,
+    "property".bathrooms_count AS propertyBathroomCount,
+    "property".type AS propertyType,
+    "property".street_number AS propertyStreetNumber,
+    "property".street_name AS propertyStreetName,
+    "property".zip_code AS propertyZipCode,
+    "property".city AS propertyCity,
+    "property".country AS propertyCountry,
+    "property".latitude AS propertyLatitude,
+    "property".longitude AS propertyLongitude,
+    "property".user_id AS host_id,
+    "properties".host AS propertyHost
+FROM "booking"
+    LEFT JOIN "user" ON "user".id = "booking".user_id
+    LEFT JOIN "vacancy" ON "vacancy".id = "booking".vacancy_id
+    LEFT JOIN "property" ON "property".id="vacancy".property_id
+    LEFT JOIN "properties" ON "properties".id="vacancy".property_id
+    LEFT JOIN "properties_has_images" on "properties_has_images".id="vacancy".property_id
+ORDER BY "booking".created_at DESC;
+
+
 COMMIT;

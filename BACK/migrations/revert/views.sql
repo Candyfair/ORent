@@ -1,5 +1,6 @@
 BEGIN;
 
+DROP VIEW "bookings";
 DROP VIEW "properties";
 DROP VIEW "users";
 DROP VIEW "properties_offers_vacancies";

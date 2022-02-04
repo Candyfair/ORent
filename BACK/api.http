@@ -39,7 +39,7 @@ GET {{host}}/properties/me
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY0Mzc5NDU2MywiZXhwIjoxNjQ0Mzk5MzYzfQ.-X3fWO4Spk12HtuZoTunfl-W2AbySZJCttFL3WrbP5s
 
 ### Un jeu
-GET {{host}}/properties/2
+GET {{host}}/properties/1
 
 ### Nouvelle propriété
 POST {{host}}/properties
@@ -86,7 +86,7 @@ Content-Type: application/json
 }
 
 ### Suppression
-DELETE {{host}}/boardgames/1
+DELETE {{host}}/property/1
 
 
 //-------------------------------------------------------------------------------
@@ -148,3 +148,85 @@ Content-Type: application/json
 ### Suppression
 DELETE {{host}}/users/me
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImlhdCI6MTY0MzYzNzE4OCwiZXhwIjoxNjQzNjM3NDg4fQ.ho8ESlQiQFppL-0rHN2zKUlsVrzbB1D2Hfpiu9gH3zM
+
+
+//-------------------------------------------------------------------------------
+// ROUTES BOOKINGS
+
+### Tous les bookings
+GET {{host}}/bookings
+
+### Tous mes bookings
+GET {{host}}/bookings/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY0Mzk3NzM5NywiZXhwIjoxNjQ0NTgyMTk3fQ.NdKKlt-N2TXQfZSJWNmyQNkc_CIgLya8DDzxLNUnhHo
+
+### Un booking
+GET {{host}}/bookings/4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY0Mzk3NzM5NywiZXhwIjoxNjQ0NTgyMTk3fQ.NdKKlt-N2TXQfZSJWNmyQNkc_CIgLya8DDzxLNUnhHo
+
+
+### Nouveau booking
+POST {{host}}/bookings
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY0Mzk3Nzk3NiwiZXhwIjoxNjQ0NTgyNzc2fQ.1v9rr_HtkH1UnUMGoL-Tuvmvpnf56IQhyeuOj7egn78
+Content-Type: application/json
+
+{
+    "userId": "1",
+    "vacancyId": "3"
+}
+
+### Mise à jour propriété
+PATCH {{host}}/bookings
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTY0MzczMzE5NiwiZXhwIjoxNjQzNzMzNDk2fQ.ufWycTxacuPAam26o2U99cBwZ2kklfpdvX341UfN3c4
+Content-Type: application/json
+
+{
+    "id": "1",
+    "user_id": "1",
+    "vacancy_id": "1",
+}
+
+### Suppression
+DELETE {{host}}/bookings/1
+
+//-------------------------------------------------------------------------------
+// ROUTES VACANCY
+
+### Tous les vacancies
+GET {{host}}/vacancies
+
+### Tous les vacancies d'une propriété
+GET {{host}}/vacancies/property/1
+
+
+### Un vacancy
+GET {{host}}/vacancies/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY0Mzk3Nzk3NiwiZXhwIjoxNjQ0NTgyNzc2fQ.1v9rr_HtkH1UnUMGoL-Tuvmvpnf56IQhyeuOj7egn78
+
+
+### Nouveau vacancy
+POST {{host}}/vacancies
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY0Mzk3Nzk3NiwiZXhwIjoxNjQ0NTgyNzc2fQ.1v9rr_HtkH1UnUMGoL-Tuvmvpnf56IQhyeuOj7egn78
+Content-Type: application/json
+
+{
+    "startDate": "13/02/2022",
+    "endDate": "20/02/2022",
+    "propertyId": "1"
+}
+
+### Mise à jour propriété
+PATCH {{host}}/vacancies
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY0Mzk3Nzk3NiwiZXhwIjoxNjQ0NTgyNzc2fQ.1v9rr_HtkH1UnUMGoL-Tuvmvpnf56IQhyeuOj7egn78
+Content-Type: application/json
+
+{
+    "id": "1",
+    "startDate": "05/02/2022",
+    "endDate": "12/02/2022",
+    "property_id": "1"
+}
+
+### Suppression
+DELETE {{host}}/vacancies/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY0Mzk3Nzk3NiwiZXhwIjoxNjQ0NTgyNzc2fQ.1v9rr_HtkH1UnUMGoL-Tuvmvpnf56IQhyeuOj7egn78
