@@ -1,8 +1,11 @@
 // === IMPORTS
 import {
-  Card, CardContent, CardMedia, Typography,
+  Card, CardContent, CardMedia, Typography, Button, Stack
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+
+import ArtTrackIcon from '@mui/icons-material/ArtTrack';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 
 // === MUI
 const useStyles = makeStyles((theme) => ({
@@ -14,13 +17,16 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   image: {
-    width: '30%',
+    width: '35%',
     height: '250px',
     [theme.breakpoints.down('md')]: {
       width: '100%',
     },
   },
   content: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: theme.spacing(2),
     width: '70%',
     gap: theme.spacing(1),
     [theme.breakpoints.down('md')]: {
@@ -32,8 +38,11 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
   },
   dates: {
-
+    flexGrow: 1,
   },
+  buttonDetails: {
+    color: theme.palette.common.white,
+  }
 
 }));
 
@@ -43,6 +52,7 @@ const PastTrip = () => {
 
   return (
     <Card
+
       className={classes.pastTrip}
     >
       <CardMedia
@@ -82,6 +92,25 @@ const PastTrip = () => {
         >
           From 01/08/2021 to 25/08/2021
         </Typography>
+        <Stack
+          flexDirection="row"
+          gap={2}
+        >
+          <Button
+            variant="text"
+            startIcon={<ArtTrackIcon sx={{ fontSize: '25px' }} />}
+          >
+            Listing
+          </Button>
+          <Button
+            className={classes.buttonDetails}
+            variant="contained"
+            startIcon={<LibraryBooksIcon />}
+            disableElevation
+          >
+            Details
+          </Button>
+        </Stack>
       </CardContent>
     </Card>
   );
