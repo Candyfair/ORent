@@ -63,6 +63,7 @@ SELECT DISTINCT
     "property".slug,
     "property".week_price AS weekPrice,
     "user".username AS host,
+    "user".email AS hostEmail,
     "property".user_id AS host_id,
     "properties_has_images".images AS images,
     "properties_offers_vacancies".vacancies AS vacancies,
@@ -79,6 +80,7 @@ SELECT DISTINCT
     "booking".id,
     "booking".user_id AS bookerId,
     "user".username AS bookerName,
+    "user".email AS bookerEmail,
     "booking".vacancy_id,
     "booking".created_at,
     "booking".updated_at,
@@ -102,7 +104,8 @@ SELECT DISTINCT
     "property".latitude AS propertyLatitude,
     "property".longitude AS propertyLongitude,
     "property".user_id AS host_id,
-    "properties".host AS propertyHost
+    "properties".host AS propertyHost,
+    "properties".hostEmail AS porpertyHostEmail
 FROM "booking"
     LEFT JOIN "user" ON "user".id = "booking".user_id
     LEFT JOIN "vacancy" ON "vacancy".id = "booking".vacancy_id

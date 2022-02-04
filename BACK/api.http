@@ -20,7 +20,7 @@ POST {{host}}/login
 Content-Type: application/json
 
 {
-    "email": "janedoe@mail.com",
+    "email": "johndoe@mail.com",
     "password": "123456"
 }
 
@@ -158,7 +158,7 @@ GET {{host}}/bookings
 
 ### Tous mes bookings
 GET {{host}}/bookings/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY0Mzk3NzM5NywiZXhwIjoxNjQ0NTgyMTk3fQ.NdKKlt-N2TXQfZSJWNmyQNkc_CIgLya8DDzxLNUnhHo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY0Mzk4MTMyMywiZXhwIjoxNjQ0NTg2MTIzfQ.t_e2mtFO6jsqUHQMIWjbRGoNacVxhWXC1dvjZF4CZ0Q
 
 ### Un booking
 GET {{host}}/bookings/4
@@ -172,7 +172,7 @@ Content-Type: application/json
 
 {
     "userId": "1",
-    "vacancyId": "3"
+    "vacancyId": "1"
 }
 
 ### Mise à jour propriété
@@ -206,13 +206,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhd
 
 ### Nouveau vacancy
 POST {{host}}/vacancies
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY0Mzk3Nzk3NiwiZXhwIjoxNjQ0NTgyNzc2fQ.1v9rr_HtkH1UnUMGoL-Tuvmvpnf56IQhyeuOj7egn78
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY0Mzk4MTE1MSwiZXhwIjoxNjQ0NTg1OTUxfQ.b-T8Ia83EJsP-ef1GwDNB1nNO7vzlptRKwwMe0dGT9Q
 Content-Type: application/json
 
 {
     "startDate": "13/02/2022",
     "endDate": "20/02/2022",
-    "propertyId": "1"
+    "propertyId": "2"
 }
 
 ### Mise à jour propriété
