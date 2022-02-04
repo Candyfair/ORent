@@ -196,7 +196,7 @@ DELETE {{host}}/bookings/1
 GET {{host}}/vacancies
 
 ### Tous les vacancies d'une propriété
-GET {{host}}/vacancies/property/4
+GET {{host}}/vacancies/property/1
 
 
 ### Un vacancy
