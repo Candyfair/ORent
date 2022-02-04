@@ -11,11 +11,11 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     [theme.breakpoints.down('md')]: {
       flexDirection: 'column',
-      width: '100%',
     },
   },
   image: {
     width: '30%',
+    height: '250px',
     [theme.breakpoints.down('md')]: {
       width: '100%',
     },
@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
     gap: theme.spacing(1),
     [theme.breakpoints.down('md')]: {
       width: '100%',
-
     },
   },
   hostName: {
