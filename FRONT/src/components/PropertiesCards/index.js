@@ -11,6 +11,8 @@ import PropertyCard from './PropertyCard';
 const useStyles = makeStyles((theme) => ({
   propertiesCards: {
     width: '100%',
+    maxHeight: '85vh',
+    overflow: 'auto',
   },
   box: {
     boxShadow: theme.custom.shadow.primary,
