@@ -16,15 +16,20 @@ import { fetchProperty } from '../../redux/actions/propertiesFetch';
 const useStyles = makeStyles((theme) => ({
   propertyDetailClass: {
     maxWidth: 1165,
-  },
-  titlePadding: {
-    padding: `${theme.spacing(3)} ${theme.spacing(3)} 0 ${theme.spacing(3)}`,
+    // width: '80%',
+    margin: `${theme.spacing(5)} auto`,
   },
   content: {
     padding: `0 ${theme.spacing(3)}`,
+    width: '100%',
     [theme.breakpoints.down('md')]: {
       flexDirection: 'column',
     },
+  },
+  propertyTitle: {
+    textAlign: 'left',
+    width: '100%',
+    marginLeft: theme.spacing(5),
   },
 }));
 
@@ -46,27 +51,31 @@ const PropertyDetails = () => {
   if (!propertyDetails) return null;
 
   return (
+    // Main container (stack)
     <Stack
       flexDirection="column"
       spacing={5}
-      justifyContent="left"
-      alignItems="left"
+      justifyContent="center"
+      alignItems="center"
       className={classes.propertyDetailClass}
     >
+      {/* Property name */}
       <Typography
         variant="h4"
-        align="left"
-        className={classes.titlePadding}
+        className={classes.propertyTitle}
       >
         {propertyDetails.name}
       </Typography>
 
+      {/* Photos and Description components (stack) */}
       <Stack
         flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
         spacing={5}
       >
 
-        {/* Photos de la propriété */}
+        {/* Photos of the property */}
         <Pictures images={propertyDetails.images} />
 
         <Stack
@@ -87,6 +96,8 @@ const PropertyDetails = () => {
             description={propertyDetails.description}
             weekprice={propertyDetails.weekprice}
           />
+
+          {/* Vacancies component */}
           <VacanciesList />
         </Stack>
 

@@ -8,8 +8,16 @@ import VacanciesForm from '../../components/VacanciesForm';
 // MUI STYLES
 const useStyles = makeStyles((theme) => ({
   manageProperty: {
-    padding: theme.spacing(3),
-    width: '100%',
+    padding: theme.spacing(2),
+    [theme.breakpoints.down('md')]: {
+      marginTop: theme.spacing(2),
+    },
+  },
+  managePropertyComponents: {
+    flexDirection: 'row',
+    [theme.breakpoints.down('md')]: {
+      flexDirection: 'column',
+    },
   },
 }));
 
@@ -23,7 +31,7 @@ const ManagePropertyForm = () => {
       justifyContent="center"
       alignItems="center"
       spacing={5}
-      className={classes.ManageProperty}
+      className={classes.manageProperty}
     >
       {/* Titre */}
       <Typography
@@ -35,7 +43,7 @@ const ManagePropertyForm = () => {
 
       {/* Bloc de composants */}
       <Stack
-        flexDirection="row"
+        className={classes.managePropertyComponents}
         gap={5}
       >
 
