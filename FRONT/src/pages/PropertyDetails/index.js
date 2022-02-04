@@ -11,6 +11,7 @@ import VacanciesList from '../../components/PropertyDetailsComp/VacanciesList';
 import Loader from '../../components/Loader';
 
 import { fetchProperty } from '../../redux/actions/propertiesFetch';
+import { fetchPropertyVacancies } from '../../redux/actions/vacancy';
 
 // MUI STYLES
 const useStyles = makeStyles((theme) => ({
@@ -44,6 +45,7 @@ const PropertyDetails = () => {
 
   useEffect(() => {
     dispatch(fetchProperty(id));
+    dispatch(fetchPropertyVacancies(id));
   }, []);
 
   if (loading) return <Loader />;
