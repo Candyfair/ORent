@@ -57,7 +57,7 @@ const Description = ({
         flexDirection="row"
         alignItems="center"
         justifyContent="flex-start"
-        gap={2}
+        gap={4}
         className={classes.options}
       >
         <Stack flexDirection="row" alignItems="center">
