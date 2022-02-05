@@ -1,7 +1,19 @@
+/* eslint-disable linebreak-style */
+import PropTypes from 'prop-types';
 import { Stack, Typography } from '@mui/material';
 
-/* eslint-disable linebreak-style */
-const BookingDetailsComp = () => (
+const BookingDetailsComp = ({
+  startDate,
+  endDate,
+  streetNumber,
+  streetName,
+  zipCode,
+  city,
+  country,
+  hostName,
+  hostEmail,
+  weekprice,
+}) => (
   <Stack
     flexDirection="column"
     width="50%"
@@ -23,7 +35,7 @@ const BookingDetailsComp = () => (
         <Typography
           fontSize="0.9rem"
         >
-          Tue, 5 Feb 2021
+          {startDate}
         </Typography>
         <Typography
           fontSize="0.9rem"
@@ -43,7 +55,7 @@ const BookingDetailsComp = () => (
         <Typography
           fontSize="0.9rem"
         >
-          Mon, 11 Feb 2021
+          {endDate}
         </Typography>
         <Typography
           fontSize="0.9rem"
@@ -69,8 +81,9 @@ const BookingDetailsComp = () => (
         paragraph
         fontSize="0.9rem"
       >
-        59 Chungjeong-ro D'Ovile 1110, Seaodaemun-gu,
-        Seoul 120-012, South Korea
+        {streetNumber} {streetName}
+
+        {zipCode} {city}, {country}
       </Typography>
       <Typography
         fontWeight="700"
@@ -81,7 +94,7 @@ const BookingDetailsComp = () => (
       <Typography
         fontSize="0.9rem"
       >
-        Tel: +89 000 0000 - Email: host@property.com
+        Name: {hostName} - Email: {hostEmail}
       </Typography>
     </Stack>
     <Stack>
@@ -98,12 +111,12 @@ const BookingDetailsComp = () => (
         <Typography
           fontSize="0.9rem"
         >
-          534€ x 1 week
+          {weekprice}€ x 1 week
         </Typography>
         <Typography
           fontSize="0.9rem"
         >
-          534€
+          {weekprice}€
         </Typography>
       </Stack>
       <Stack
@@ -136,11 +149,24 @@ const BookingDetailsComp = () => (
           fontWeight="700"
           fontSize="0.9rem"
         >
-          534€
+          {weekprice}€
         </Typography>
       </Stack>
     </Stack>
   </Stack>
 );
+
+BookingDetailsComp.propTypes = {
+  startDate: PropTypes.string.isRequired,
+  endDate: PropTypes.string.isRequired,
+  streetNumber: PropTypes.number.isRequired,
+  streetName: PropTypes.string.isRequired,
+  zipCode: PropTypes.number.isRequired,
+  city: PropTypes.string.isRequired,
+  country: PropTypes.string.isRequired,
+  hostName: PropTypes.string.isRequired,
+  hostEmail: PropTypes.string.isRequired,
+  weekprice: PropTypes.number.isRequired,
+};
 
 export default BookingDetailsComp;

@@ -1,10 +1,13 @@
 // === IMPORTS
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router';
 import {
   Box, Button, Stack, Typography,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-// import { useNavigate } from 'react-router';
 import BookingDetailsComp from '../../components/BookingDetailsComp';
+import { fetchBookingDetails } from '../../redux/actions/bookingDetailsFetch';
 
 // === MUI
 const useStyles = makeStyles((theme) => ({
@@ -42,7 +45,14 @@ const useStyles = makeStyles((theme) => ({
 // === COMPONENT
 const BookingDetails = () => {
   const classes = useStyles();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { bookingDetails } = useSelector((state) => state.bookingDetails);
+  const { id } = useParams();
+
+  useEffect(() => {
+    dispatch(fetchBookingDetails(id));
+  }, []);
 
   return (
     <Stack
@@ -54,7 +64,7 @@ const BookingDetails = () => {
         className={classes.header}
         gutterBottom
       >
-        Your stay at [username]'s place
+        Your stay at {bookingDetails.propertyhost}'s place
       </Typography>
       <Stack
         flexDirection="row"
@@ -73,12 +83,23 @@ const BookingDetails = () => {
             }}
           />
         </Stack>
-        <BookingDetailsComp />
+        <BookingDetailsComp
+          startDate={bookingDetails.startdate}
+          endDate={bookingDetails.enddate}
+          streetNumber={bookingDetails.propertystreetnumber}
+          streetName={bookingDetails.propertystreetname}
+          zipCode={bookingDetails.propertyzipcode}
+          city={bookingDetails.propertycity}
+          country={bookingDetails.propertycountry}
+          hostName={bookingDetails.propertyhost}
+          hostEmail={bookingDetails.propertyhostemail}
+          weekprice={bookingDetails.weekprice}
+        />
       </Stack>
       <Button
         variant="text"
         className={classes.showlisting}
-        // onClick={() => navigate(`/homes/${slug}/${id}`)}
+        onClick={() => navigate(`/homes/${bookingDetails.propertyslug}/${bookingDetails.propertyid}`)}
       >
         Show listing
       </Button>
