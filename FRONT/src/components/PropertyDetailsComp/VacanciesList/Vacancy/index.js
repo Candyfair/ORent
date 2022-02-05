@@ -1,10 +1,12 @@
 // IMPORTS
+import PropTypes from 'prop-types';
 import { makeStyles } from '@mui/styles';
 import {
-  Stack, Button, Card,
+  Stack, Button, Card, Typography,
 } from '@mui/material/';
 
 import { useDispatch, useSelector } from 'react-redux';
+import moment from 'moment';
 import { setModal } from '../../../../redux/actions/modals';
 
 // MUI STYLES
@@ -15,7 +17,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // COMPONENT
-const Vacancy = () => {
+const Vacancy = ({
+  startDate,
+  endDate,
+}) => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
@@ -32,7 +37,7 @@ const Vacancy = () => {
         alignItems="center"
       >
         <Stack className={classes.period}>
-          From 20/01 to 27/01
+          From {moment(startDate).format('DD/MM/YYYY')} to {moment(endDate).format('DD/MM/YYYY')}
         </Stack>
         <Stack>
           <Button
@@ -49,6 +54,11 @@ const Vacancy = () => {
     </Card>
 
   );
+};
+
+Vacancy.propTypes = {
+  startDate: PropTypes.string.isRequired,
+  endDate: PropTypes.string.isRequired,
 };
 
 export default Vacancy;

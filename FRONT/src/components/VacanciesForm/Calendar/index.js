@@ -7,9 +7,7 @@ import moment from 'moment';
 import {
   TextField, Stack, Typography, Button,
 } from '@mui/material/';
-import { setStartDate, setEndDate } from '../../../redux/actions/vacancy';
-
-import { addVacancy } from '../../../redux/actions/vacancy';
+import { setStartDate, setEndDate, addVacancy } from '../../../redux/actions/vacancy';
 
 // MUI STYLES
 const useStyles = makeStyles((theme) => ({
@@ -19,9 +17,15 @@ const useStyles = makeStyles((theme) => ({
 // COMPONENT
 export default function Calendar() {
   const classes = useStyles();
-  const { id } = useParams()
+  const { id } = useParams();
   const dispatch = useDispatch();
   const { startDate, endDate } = useSelector((state) => state.vacancy);
+  const { propertyVacancies } = useSelector((state) => state.propertyCurrent);
+  const jsxVacancies = propertyVacancies.map((vacancy) => (
+    <Typography>
+      - From {moment(vacancy.startdate).format('DD/MM/YYYY')} to {moment(vacancy.enddate).format('DD/MM/YYYY')}
+    </Typography>
+  ));
 
   // const firstDate = moment(startDate).format('DD/MM/YYYY');
 
@@ -58,7 +62,7 @@ export default function Calendar() {
         Once your dates are selected, add them to your list:
       </Typography>
       {
-        startDate !== null && endDate !== null && (
+        startDate !== '' && endDate !== '' && (
           <Stack
             direction="row"
             justifyContent="center"
@@ -69,7 +73,7 @@ export default function Calendar() {
             <Typography>
               - From {moment(startDate).format('DD/MM/YYYY')} to {moment(endDate).format('DD/MM/YYYY')}
             </Typography>
-            <Button 
+            <Button
               onClick={() => dispatch(addVacancy(id))}
               variant="text"
             >
@@ -79,6 +83,14 @@ export default function Calendar() {
           </Stack>
         )
       }
+      <Stack>
+        <Typography
+          variant="h6"
+        >
+          Current availabilities
+        </Typography>
+        {jsxVacancies}
+      </Stack>
 
     </Stack>
 
