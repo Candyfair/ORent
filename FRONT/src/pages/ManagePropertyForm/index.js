@@ -4,7 +4,7 @@ import { Stack, Typography } from '@mui/material/';
 
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ManagePropertyFormComp from '../../components/ManagePropertyFormComp';
 import VacanciesForm from '../../components/VacanciesForm';
 
@@ -31,9 +31,10 @@ const useStyles = makeStyles((theme) => ({
 const ManagePropertyForm = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-
   const { id } = useParams();
-  console.log(`la propriété concernée est la : `, id)
+  const { propertyDetails } = useSelector((state) => state.propertyCurrent);
+  console.log('Property détails : ', propertyDetails);
+
   useEffect(() => {
     dispatch(fetchProperty(id));
     dispatch(fetchPropertyVacancies(id));
@@ -61,7 +62,22 @@ const ManagePropertyForm = () => {
         gap={5}
       >
 
-        <ManagePropertyFormComp />
+        <ManagePropertyFormComp
+          name={propertyDetails.name}
+          type={propertyDetails.type}
+          number={propertyDetails.streetnumber}
+          street={propertyDetails.streetname}
+          zipcode={propertyDetails.zipcode}
+          city={propertyDetails.city}
+          country={propertyDetails.country}
+          capacity={propertyDetails.capacity}
+          bedrooms={propertyDetails.bedroomscount}
+          beds={propertyDetails.bedscount}
+          bathrooms={propertyDetails.bathroomscount}
+          description={propertyDetails.description}
+          price={propertyDetails.weekprice}
+          images={propertyDetails.images}
+        />
         <VacanciesForm />
       </Stack>
     </Stack>

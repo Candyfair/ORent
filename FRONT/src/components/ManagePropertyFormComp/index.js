@@ -1,6 +1,9 @@
 /* eslint-disable linebreak-style */
 // IMPORTS
+import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 
 import { makeStyles } from '@mui/styles';
 import {
@@ -8,8 +11,6 @@ import {
   Select, MenuItem, FormControl, InputLabel, RadioGroup, FormControlLabel, Radio,
 } from '@mui/material/';
 
-import { useState } from 'react';
-import { useNavigate } from 'react-router';
 import { addProperty, changeNewPropertyField } from '../../redux/actions/propertyCreate';
 
 import UploadImageForm from '../PropertyFormComp/UploadImageForm';
@@ -51,19 +52,33 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // COMPONENT
-const ManagePropertyFormComp = () => {
+const ManagePropertyFormComp = ({
+  name,
+  type,
+  number,
+  street,
+  zipcode,
+  city,
+  country,
+  capacity,
+  bedrooms,
+  beds,
+  bathrooms,
+  description,
+  price,
+  images,
+}) => {
   const classes = useStyles();
   const navigate = useNavigate();
-  // Dispatch functions
   const dispatch = useDispatch();
 
   const [imageStatus, setImageStatus] = useState(false);
 
-  const {
-    name, number, street, zipcode, city,
-    capacity, bedrooms, beds, bathrooms, country,
-    description, price, uploadFile, type, images,
-  } = useSelector((state) => state.propertyCreate);
+  // const {
+  //   name, number, street, zipcode, city,
+  //   capacity, bedrooms, beds, bathrooms, country,
+  //   description, price, type, images,
+  // } = useSelector((state) => state.propertyCreate);
 
   const handlePropertyFormSubmit = (event) => {
     event.preventDefault();
@@ -81,10 +96,10 @@ const ManagePropertyFormComp = () => {
     <Stack
       className={classes.propertyContainer}
       spacing={2}
-    > 
+    >
       <UploadImageForm />
       { imageStatus && (
-        <FormHelperText error={true}>You need to upload at lest 1 image to add a property</FormHelperText>
+        <FormHelperText error>You need to upload at lest 1 image to add a property</FormHelperText>
       )}
       <form
         autoComplete="off"
@@ -96,7 +111,7 @@ const ManagePropertyFormComp = () => {
           {/* Property name & photo upload */}
           <Stack
             spacing={2}
-          >   
+          >
             <TextField
               required
               id="propertyname"
@@ -116,9 +131,9 @@ const ManagePropertyFormComp = () => {
                 onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'type'))}
                 className={classes.type}
               >
-                <FormControlLabel value="house" control={<Radio />} label="House" />
-                <FormControlLabel value="appartment" control={<Radio />} label="Appartment" />
-                <FormControlLabel value="other" control={<Radio />} label="Other" />
+                <FormControlLabel value="House" control={<Radio />} label="House" />
+                <FormControlLabel value="Appartment" control={<Radio />} label="Appartment" />
+                <FormControlLabel value="Other" control={<Radio />} label="Other" />
               </RadioGroup>
             </FormControl>
 
@@ -163,7 +178,7 @@ const ManagePropertyFormComp = () => {
               <Select
                 required
                 id="country"
-                label="Country"
+                label="country"
                 labelId="country-label"
                 value={country}
                 className={classes.country}
@@ -257,7 +272,6 @@ const ManagePropertyFormComp = () => {
               onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'price'))}
               label="Price per week"
               type="tel"
-              // className={classes.price}
               InputProps={{
                 startAdornment: <InputAdornment position="start">€</InputAdornment>,
               }}
@@ -283,6 +297,23 @@ const ManagePropertyFormComp = () => {
       </form>
     </Stack>
   );
+};
+
+ManagePropertyFormComp.propTypes = {
+  name: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  number: PropTypes.number.isRequired,
+  street: PropTypes.string.isRequired,
+  zipcode: PropTypes.number.isRequired,
+  city: PropTypes.string.isRequired,
+  country: PropTypes.string.isRequired,
+  capacity: PropTypes.number.isRequired,
+  bedrooms: PropTypes.number.isRequired,
+  beds: PropTypes.number.isRequired,
+  bathrooms: PropTypes.number.isRequired,
+  description: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  images: PropTypes.array.isRequired,
 };
 
 export default ManagePropertyFormComp;

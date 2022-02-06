@@ -1,5 +1,5 @@
 import {
-  ADD_VACANCY, DELETE_VACANCY, FETCH_PROPERTY_VACANCIES, resetCalendar, setNewVacancy, setPropertyVacancies,
+  ADD_VACANCY, FETCH_PROPERTY_VACANCIES, resetCalendar, setNewVacancy, setPropertyVacancies,
 } from '../redux/actions/vacancy';
 import { setLoading, setSnackbar } from '../redux/actions/displayOptions';
 

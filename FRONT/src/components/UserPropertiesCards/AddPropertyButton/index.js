@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 // === IMPORTS
-import { useNavigate } from 'react-router';
+import { useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router';
 import { makeStyles } from '@mui/styles';
 import {
   Stack,
@@ -29,8 +30,13 @@ const useStyles = makeStyles((theme) => ({
 const AddPropertyButton = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const { username } = useParams();
+  const { isLogged } = useSelector((state) => state.userCurrent);
+
+  if (!isLogged) return null;
 
   return (
+
     <Stack
       className={classes.addPropertyButton}
       justifyContent="center"
@@ -40,13 +46,14 @@ const AddPropertyButton = () => {
         className={classes.button}
         variant="contained"
         color="primary"
-        onClick={() => navigate('/:username/add-property')}
+        onClick={() => navigate(`/${username}/add-property`)}
         disableElevation
         startIcon={<Stack direction="row" justifyContent="center" alignItems="center"><AddIcon /> <MapsHomeWorkIcon /></Stack>}
       >
         Add a property
       </Button>
     </Stack>
+
   );
 };
 
