@@ -15,13 +15,13 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '100%',
     minHeight: '300px',
-    boxShadow: theme.custom.shadow.primary
+    boxShadow: theme.custom.shadow.primary,
   },
   button: {
-      width: '70%',
-      color: theme.palette.common.white,
-      fontWeight: 700
-  }
+    width: '70%',
+    color: theme.palette.common.white,
+    fontWeight: 700,
+  },
 
 }));
 
@@ -33,19 +33,19 @@ const AddPropertyButton = () => {
   return (
     <Stack
       className={classes.addPropertyButton}
-      justifyContent='center'
-      alignItems='center'
+      justifyContent="center"
+      alignItems="center"
     >
-            <Button
-              className={classes.button}
-              variant="contained"
-              color="primary"
-              onClick={() => navigate('/:username/add-property')}
-              disableElevation
-              startIcon={<Stack direction='row' justifyContent='center' alignItems='center'><AddIcon /> <MapsHomeWorkIcon /></Stack>}
-            >
-              Add a property
-            </Button>
+      <Button
+        className={classes.button}
+        variant="contained"
+        color="primary"
+        onClick={() => navigate('/:username/add-property')}
+        disableElevation
+        startIcon={<Stack direction="row" justifyContent="center" alignItems="center"><AddIcon /> <MapsHomeWorkIcon /></Stack>}
+      >
+        Add a property
+      </Button>
     </Stack>
   );
 };

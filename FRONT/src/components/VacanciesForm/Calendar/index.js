@@ -3,15 +3,25 @@ import { useParams } from 'react-router';
 import { makeStyles } from '@mui/styles';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
+import {
+  TextField,
+  Stack,
+  Typography,
+  Button,
+  Icon,
+} from '@mui/material';
+
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 import {
-  TextField, Stack, Typography, Button,
-} from '@mui/material/';
-import { setStartDate, setEndDate, addVacancy } from '../../../redux/actions/vacancy';
+  setStartDate, setEndDate, addVacancy, deleteVacancy,
+} from '../../../redux/actions/vacancy';
 
 // MUI STYLES
 const useStyles = makeStyles((theme) => ({
-
+  period: {
+    paddingLeft: theme.spacing(2),
+  },
 }));
 
 // COMPONENT
@@ -22,12 +32,28 @@ export default function Calendar() {
   const { startDate, endDate } = useSelector((state) => state.vacancy);
   const { propertyVacancies } = useSelector((state) => state.propertyCurrent);
   const jsxVacancies = propertyVacancies.map((vacancy) => (
-    <Typography>
-      - From {moment(vacancy.startdate).format('DD/MM/YYYY')} to {moment(vacancy.enddate).format('DD/MM/YYYY')}
-    </Typography>
+    <Stack
+      flexDirection="row"
+      justifyContent="space-between"
+      alignItems="center"
+    >
+      <Stack className={classes.period}>
+        - From {moment(vacancy.startdate).format('DD/MM/YYYY')} to {moment(vacancy.enddate).format('DD/MM/YYYY')}
+      </Stack>
+      <Stack>
+        <Button
+          variant="text"
+          disableElevation
+          size="large"
+          type="submit"
+          onClick={() => dispatch(deleteVacancy(id))}
+          startIcon={<Stack direction="row" justifyContent="center" alignItems="center"><DeleteForeverIcon /></Stack>}
+        >
+          Delete
+        </Button>
+      </Stack>
+    </Stack>
   ));
-
-  // const firstDate = moment(startDate).format('DD/MM/YYYY');
 
   return (
     <Stack
@@ -79,11 +105,12 @@ export default function Calendar() {
             >
               Add
             </Button>
-
           </Stack>
         )
       }
-      <Stack>
+      <Stack
+        width="100%"
+      >
         <Typography
           variant="h6"
         >

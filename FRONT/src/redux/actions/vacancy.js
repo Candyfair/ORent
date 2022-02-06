@@ -38,3 +38,9 @@ export const RESET_CALENDAR = 'RESET_CALENDAR';
 export const resetCalendar = () => ({
   type: RESET_CALENDAR,
 });
+
+export const DELETE_VACANCY = 'DELETE_VACANCY';
+export const deleteVacancy = (propertyId) => ({
+  type: DELETE_VACANCY,
+  propertyId,
+});

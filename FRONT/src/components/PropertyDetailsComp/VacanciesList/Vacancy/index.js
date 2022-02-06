@@ -1,11 +1,11 @@
 // IMPORTS
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@mui/styles';
 import {
-  Stack, Button, Card, Typography,
+  Stack, Button, Card,
 } from '@mui/material/';
 
-import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import { setModal } from '../../../../redux/actions/modals';
 

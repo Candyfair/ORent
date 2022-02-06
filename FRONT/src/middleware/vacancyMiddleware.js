@@ -1,5 +1,5 @@
 import {
-  ADD_VACANCY, FETCH_PROPERTY_VACANCIES, resetCalendar, setNewVacancy, setPropertyVacancies,
+  ADD_VACANCY, DELETE_VACANCY, FETCH_PROPERTY_VACANCIES, resetCalendar, setNewVacancy, setPropertyVacancies,
 } from '../redux/actions/vacancy';
 import { setLoading, setSnackbar } from '../redux/actions/displayOptions';
 
@@ -43,6 +43,8 @@ const vacancyMiddleware = (store) => (next) => (action) => {
           console.log(`error sur la route GET /vacancies/property/${action.id} :`, error);
           store.dispatch(setLoading(false));
         });
+      next(action);
+      break;
     }
     default:
       next(action);
