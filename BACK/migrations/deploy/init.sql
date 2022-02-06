@@ -42,6 +42,7 @@ CREATE TABLE "vacancy"(
 	"start_date" DATE NOT NULL,
     "end_date" DATE NOT NULL,
     "property_id" INTEGER NOT NULL REFERENCES "property"(id),
+	"booked" BOOLEAN NOT NULL DEFAULT false,
 	"created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 	"updated_at" TIMESTAMPTZ
 );
