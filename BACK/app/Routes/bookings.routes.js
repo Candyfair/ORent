@@ -4,6 +4,7 @@ const router = Router();
 const checkJWT = require('../middlewares/checkJWT')
 
 const bookingController = require('../controllers/bookingController');
+const nodemailer = require('../services/nodemailer');
 
 
 
@@ -13,6 +14,7 @@ router.get('/bookings/:id(\\d+)', checkJWT, bookingController.findOne);
 
 router.get('/bookings/me', checkJWT, bookingController.findMines);
 
+router.post('/bookings/mailing', nodemailer);
 
 router.post('/bookings', checkJWT, bookingController.save);
 
