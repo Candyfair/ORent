@@ -1,13 +1,14 @@
 import { SAVE_MY_BOOKING } from '../actions/booking';
 
 export const initialState = {
+  id: '',
+  startdate: '',
+  enddate: '',
   bookeremail: '',
   bookerid: '',
   bookername: '',
   created_at: '',
-  enddate: '',
   host_id: '',
-  id: '',
   images: [],
   porpertyhostemail: '',
   propertybathroomcount: '',
@@ -27,7 +28,6 @@ export const initialState = {
   propertystreetnumber: '',
   propertytype: '',
   propertyzipcode: '',
-  startdate: '',
   updated_at: '',
   vacancy_id: '',
 };
