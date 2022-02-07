@@ -70,7 +70,7 @@ class Vacancy {
 
     async delete() {
         try {
-            await db.query('DELETE FROM booking WHERE id=$1', [this.id]);
+            await db.query('DELETE FROM vacancy WHERE id=$1', [this.id]);
         } catch (error) {
             if (error.detail) {
                 throw new Error(error.detail);
