@@ -4,7 +4,7 @@ import { Stack, Typography } from '@mui/material/';
 
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ManagePropertyFormComp from '../../components/ManagePropertyFormComp';
 import VacanciesForm from '../../components/VacanciesForm';
 
@@ -31,9 +31,8 @@ const useStyles = makeStyles((theme) => ({
 const ManagePropertyForm = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-
   const { id } = useParams();
-  console.log(`la propriété concernée est la : `, id)
+
   useEffect(() => {
     dispatch(fetchProperty(id));
     dispatch(fetchPropertyVacancies(id));

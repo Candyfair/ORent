@@ -4,16 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { makeStyles } from '@mui/styles';
 import {
-  FormHelperText, Stack, Typography, TextField, Button, InputAdornment,
+  Stack, Typography, TextField, Button, InputAdornment,
   Select, MenuItem, FormControl, InputLabel, RadioGroup, FormControlLabel, Radio,
+  ImageList, ImageListItem,
 } from '@mui/material/';
 
-import { useState } from 'react';
-import { useNavigate } from 'react-router';
-import { addProperty, changeNewPropertyField } from '../../redux/actions/propertyCreate';
-
-import UploadImageForm from '../PropertyFormComp/UploadImageForm';
-import { slugify } from '../../utils/utils';
+import { changeCurrentPropertyField } from '../../redux/actions/propertyCreate';
 
 // MUI STYLES
 const useStyles = makeStyles((theme) => ({
@@ -48,44 +44,53 @@ const useStyles = makeStyles((theme) => ({
   upload: {
     marginBottom: theme.spacing(2),
   },
+  PropertyImagesPreviewDisplay: {
+    maxWidth: 500,
+    border: `1px solid ${theme.palette.action.disabled}`,
+    padding: theme.spacing(1),
+    borderRadius: theme.shape.borderRadius,
+  },
+  textPreview: {
+    color: theme.palette.text.secondary,
+    backgroundColor: theme.palette.action.hover,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 }));
 
 // COMPONENT
 const ManagePropertyFormComp = () => {
   const classes = useStyles();
-  const navigate = useNavigate();
-  // Dispatch functions
   const dispatch = useDispatch();
 
-  const [imageStatus, setImageStatus] = useState(false);
-
-  const {
-    name, number, street, zipcode, city,
-    capacity, bedrooms, beds, bathrooms, country,
-    description, price, uploadFile, type, images,
-  } = useSelector((state) => state.propertyCreate);
+  const { propertyDetails } = useSelector((state) => state.propertyCurrent);
+  const { loading } = useSelector((state) => state.displayOptions);
 
   const handlePropertyFormSubmit = (event) => {
     event.preventDefault();
-    // if (images.length > 0) dispatch(addProperty())
-    // else console.log('il faut ajouter une image pour créer une propriété')
-    if (images.length > 0) {
-      dispatch(addProperty());
-      setImageStatus(false);
-      navigate('/homes');
-    }
-    else setImageStatus(true);
   };
+  const { images } = propertyDetails;
+  if (loading) return null;
+  if (!images) return null;
 
   return (
     <Stack
       className={classes.propertyContainer}
       spacing={2}
-    > 
-      <UploadImageForm />
-      { imageStatus && (
-        <FormHelperText error={true}>You need to upload at lest 1 image to add a property</FormHelperText>
-      )}
+    >
+      <ImageList className={classes.PropertyImagesPreviewDisplay} cols={3} rowHeight={164}>
+        {images.map((image) => (
+          <ImageListItem key={image}>
+            <img
+              src={image}
+              alt={image}
+              loading="lazy"
+            />
+          </ImageListItem>
+        ))}
+      </ImageList>
+
       <form
         autoComplete="off"
         onSubmit={handlePropertyFormSubmit}
@@ -96,14 +101,14 @@ const ManagePropertyFormComp = () => {
           {/* Property name & photo upload */}
           <Stack
             spacing={2}
-          >   
+          >
             <TextField
               required
               id="propertyname"
-              value={name}
+              value={propertyDetails.name}
               label="Name of your property"
               variant="outlined"
-              onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'name'))}
+              onChange={(e) => dispatch(changeCurrentPropertyField(e.target.value, 'name'))}
             />
 
             <FormControl
@@ -112,13 +117,13 @@ const ManagePropertyFormComp = () => {
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
                 name="radio-buttons-group"
-                value={type}
-                onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'type'))}
+                value={propertyDetails.type}
+                onChange={(e) => dispatch(changeCurrentPropertyField(e.target.value, 'type'))}
                 className={classes.type}
               >
-                <FormControlLabel value="house" control={<Radio />} label="House" />
-                <FormControlLabel value="appartment" control={<Radio />} label="Appartment" />
-                <FormControlLabel value="other" control={<Radio />} label="Other" />
+                <FormControlLabel value="House" control={<Radio />} label="House" />
+                <FormControlLabel value="Appartment" control={<Radio />} label="Appartment" />
+                <FormControlLabel value="Other" control={<Radio />} label="Other" />
               </RadioGroup>
             </FormControl>
 
@@ -133,29 +138,29 @@ const ManagePropertyFormComp = () => {
             <TextField
               id="number"
               label="Number"
-              value={number}
-              onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'number'))}
+              value={propertyDetails.streetnumber}
+              onChange={(e) => dispatch(changeCurrentPropertyField(e.target.value, 'streetnumber'))}
             />
             <TextField
               required
               id="street"
               label="Street"
-              value={street}
-              onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'street'))}
+              value={propertyDetails.streetname}
+              onChange={(e) => dispatch(changeCurrentPropertyField(e.target.value, 'streetname'))}
             />
             <TextField
               required
               id="zipcode"
               label="Zip code"
-              value={zipcode}
-              onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'zipcode'))}
+              value={propertyDetails.zipcode}
+              onChange={(e) => dispatch(changeCurrentPropertyField(e.target.value, 'zipcode'))}
             />
             <TextField
               required
               id="city"
               label="City"
-              value={city}
-              onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'city'))}
+              value={propertyDetails.city}
+              onChange={(e) => dispatch(changeCurrentPropertyField(e.target.value, 'city'))}
             />
             {/* Country select field */}
             <FormControl>
@@ -163,11 +168,11 @@ const ManagePropertyFormComp = () => {
               <Select
                 required
                 id="country"
-                label="Country"
+                label="country"
                 labelId="country-label"
-                value={country}
+                value={propertyDetails.country}
                 className={classes.country}
-                onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'country'))}
+                onChange={(e) => dispatch(changeCurrentPropertyField(e.target.value, 'country'))}
               >
                 <MenuItem value="France">France</MenuItem>
                 <MenuItem value="Italy">Italy</MenuItem>
@@ -193,8 +198,8 @@ const ManagePropertyFormComp = () => {
                 required
                 type="number"
                 id="capacity"
-                value={capacity}
-                onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'capacity'))}
+                value={propertyDetails.capacity}
+                onChange={(e) => dispatch(changeCurrentPropertyField(e.target.value, 'capacity'))}
                 label="Capacity"
                 variant="outlined"
                 className={classes.featuresItem}
@@ -203,8 +208,8 @@ const ManagePropertyFormComp = () => {
                 required
                 type="number"
                 id="bedrooms"
-                value={bedrooms}
-                onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'bedrooms'))}
+                value={propertyDetails.bedroomscount}
+                onChange={(e) => dispatch(changeCurrentPropertyField(e.target.value, 'bedroomscount'))}
                 label="Bedrooms"
                 className={classes.featuresItem}
               />
@@ -212,8 +217,8 @@ const ManagePropertyFormComp = () => {
                 required
                 type="number"
                 id="beds"
-                value={beds}
-                onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'beds'))}
+                value={propertyDetails.bedscount}
+                onChange={(e) => dispatch(changeCurrentPropertyField(e.target.value, 'bedscount'))}
                 label="Beds"
                 className={classes.featuresItem}
               />
@@ -221,8 +226,8 @@ const ManagePropertyFormComp = () => {
                 required
                 type="number"
                 id="bathrooms"
-                value={bathrooms}
-                onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'bathrooms'))}
+                value={propertyDetails.bathroomscount}
+                onChange={(e) => dispatch(changeCurrentPropertyField(e.target.value, 'bathroomscount'))}
                 label="Bathrooms"
                 className={classes.featuresItem}
               />
@@ -240,8 +245,8 @@ const ManagePropertyFormComp = () => {
               label="Enter a description of your property"
               multiline
               minRows={4}
-              value={description}
-              onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'description'))}
+              value={propertyDetails.description}
+              onChange={(e) => dispatch(changeCurrentPropertyField(e.target.value, 'description'))}
             />
           </Stack>
 
@@ -253,11 +258,10 @@ const ManagePropertyFormComp = () => {
             <TextField
               required
               id="price"
-              value={price}
-              onChange={(e) => dispatch(changeNewPropertyField(e.target.value, 'price'))}
+              value={propertyDetails.weekprice}
+              onChange={(e) => dispatch(changeCurrentPropertyField(e.target.value, 'weekprice'))}
               label="Price per week"
               type="tel"
-              // className={classes.price}
               InputProps={{
                 startAdornment: <InputAdornment position="start">€</InputAdornment>,
               }}

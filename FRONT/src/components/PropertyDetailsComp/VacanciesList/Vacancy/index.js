@@ -1,11 +1,14 @@
 // IMPORTS
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@mui/styles';
 import {
   Stack, Button, Card,
 } from '@mui/material/';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { setModal } from '../../../../redux/actions/modals';
+import moment from 'moment';
+import { makeBooking } from '../../../../redux/actions/booking';
 
 // MUI STYLES
 const useStyles = makeStyles((theme) => ({
@@ -15,13 +18,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // COMPONENT
-const Vacancy = () => {
+const Vacancy = ({
+  startDate,
+  endDate,
+  vacancyId,
+  booked,
+}) => {
   const classes = useStyles();
-
   const dispatch = useDispatch();
-  const { isLogged } = useSelector((state) => state.userCurrent);
+  const navigate = useNavigate();
+  const { username } = useSelector((state) => state.userCurrent);
 
-  if (!isLogged) return null;
+  if (booked) return null;
 
   return (
 
@@ -32,7 +40,7 @@ const Vacancy = () => {
         alignItems="center"
       >
         <Stack className={classes.period}>
-          From 20/01 to 27/01
+          From {moment(startDate).format('DD/MM/YYYY')} to {moment(endDate).format('DD/MM/YYYY')}
         </Stack>
         <Stack>
           <Button
@@ -40,7 +48,9 @@ const Vacancy = () => {
             disableElevation
             size="large"
             type="submit"
-            onClick={() => dispatch(setModal(false, 'login'))}
+            onClick={() => {
+              dispatch(makeBooking(vacancyId));
+            }}
           >
             Book
           </Button>
@@ -49,6 +59,13 @@ const Vacancy = () => {
     </Card>
 
   );
+};
+
+Vacancy.propTypes = {
+  startDate: PropTypes.string.isRequired,
+  endDate: PropTypes.string.isRequired,
+  vacancyId: PropTypes.number.isRequired,
+  booked: PropTypes.bool.isRequired,
 };
 
 export default Vacancy;

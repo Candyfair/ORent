@@ -5,7 +5,7 @@ import {
   Stack, Menu, MenuItem, IconButton, ListItemIcon, ListItemText, Divider,
 } from '@mui/material/';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
@@ -19,9 +19,10 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { logout } from '../../../redux/actions/userCurrent';
 
 // COMPONENT
-const TopMenu = ({ username }) => {
+const TopMenu = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { username } = useSelector((state) => state.userCurrent);
 
   // Material UI Menu
   const [anchorEl, setAnchorEl] = useState(null);
@@ -74,7 +75,7 @@ const TopMenu = ({ username }) => {
         </MenuItem>
 
         <MenuItem onClick={() => {
-          navigate('/trips');
+          navigate(`/${username}/trips`);
           handleClose();
         }}
         >

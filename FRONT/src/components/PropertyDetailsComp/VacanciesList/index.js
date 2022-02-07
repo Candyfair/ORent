@@ -1,14 +1,18 @@
 // === Imports
 import { makeStyles } from '@mui/styles';
-import { Stack, Card, CardContent } from '@mui/material/';
+import {
+  Stack, Card, CardContent, Typography, Button,
+} from '@mui/material/';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { setModal } from '../../../redux/actions/modals';
 import Vacancy from './Vacancy';
 
 // MUI STYLES
 const useStyles = makeStyles((theme) => ({
   vacanciesList: {
     [theme.breakpoints.up('md')]: {
-      width: '30%',
+      width: '40%',
     },
     width: '100%',
   },
@@ -17,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
 // COMPONENT
 const VacanciesList = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const { propertyVacancies } = useSelector((state) => state.propertyCurrent);
+  const { isLogged } = useSelector((state) => state.userCurrent);
 
   return (
     <Stack
@@ -28,11 +35,33 @@ const VacanciesList = () => {
       >
         <CardContent>
           <Stack spacing={2}>
-            <Vacancy />
-            <Vacancy />
-            <Vacancy />
-            <Vacancy />
+            {isLogged
+              && propertyVacancies.map((vacancy) => (
+                <Vacancy
+                  key={vacancy.id}
+                  startDate={vacancy.startdate}
+                  endDate={vacancy.enddate}
+                  vacancyId={vacancy.id}
+                  booked={vacancy.booked}
+                />
+              ))}
           </Stack>
+          {!isLogged
+            && (
+            <Stack spacing={2}>
+              <Typography>
+                Please login or register to check availabilities
+              </Typography>
+              <Button
+                variant="contained"
+                color="secondary"
+                disableElevation
+                onClick={() => dispatch(setModal(true, 'login'))}
+              >
+                Login
+              </Button>
+            </Stack>
+            )}
         </CardContent>
       </Card>
     </Stack>

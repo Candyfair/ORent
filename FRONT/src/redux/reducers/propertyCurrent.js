@@ -1,4 +1,5 @@
 import { SAVE_MY_PROPERTIES, SAVE_PROPERTIES_LIST, SAVE_PROPERTY_DETAILS } from '../actions/propertiesFetch';
+import { CHANGE_CURRENT_PROPERTY_FIELD } from '../actions/propertyCreate';
 import { SET_NEW_VACANCY, SET_PROPERTY_VACANCIES } from '../actions/vacancy';
 
 export const initialState = {
@@ -34,6 +35,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         propertyVacancies: [...state.propertyVacancies, action.data],
+      };
+    case CHANGE_CURRENT_PROPERTY_FIELD:
+      return {
+        ...state,
+        propertyDetails: { ...state.propertyDetails, [action.fieldname]: action.value },
       };
     default:
       return state;

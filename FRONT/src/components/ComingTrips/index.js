@@ -1,4 +1,6 @@
 // === IMPORTS
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import {
   Card, CardMedia, CardContent, Typography, Stack, Button,
 } from '@mui/material';
@@ -53,6 +55,8 @@ const useStyles = makeStyles((theme) => ({
 // === COMPONENT
 const ComingTrips = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
+  const { myBookings } = useSelector((state) => state.booking);
 
   return (
     <Card
@@ -110,6 +114,7 @@ const ComingTrips = () => {
             variant="contained"
             startIcon={<LibraryBooksIcon />}
             disableElevation
+            onClick={() => navigate('/janedoe/trips/3')}
           >
             Details
           </Button>

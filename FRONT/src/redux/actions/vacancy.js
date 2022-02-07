@@ -33,3 +33,15 @@ export const setNewVacancy = (data) => ({
   type: SET_NEW_VACANCY,
   data,
 });
+
+export const RESET_CALENDAR = 'RESET_CALENDAR';
+export const resetCalendar = () => ({
+  type: RESET_CALENDAR,
+});
+
+export const DELETE_VACANCY = 'DELETE_VACANCY';
+export const deleteVacancy = (vacancyId, propertyId) => ({
+  type: DELETE_VACANCY,
+  vacancyId,
+  propertyId,
+});

@@ -1,10 +1,16 @@
 // === IMPORTS
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router';
+
 import {
-  Box, Button, Stack, Typography,
+  Button, Stack, Typography,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-// import { useNavigate } from 'react-router';
+
+import { useEffect } from 'react';
 import BookingDetailsComp from '../../components/BookingDetailsComp';
+import Loader from '../../components/Loader';
+import { fetchMyBooking } from '../../redux/actions/booking';
 
 // === MUI
 const useStyles = makeStyles((theme) => ({
@@ -42,7 +48,23 @@ const useStyles = makeStyles((theme) => ({
 // === COMPONENT
 const BookingDetails = () => {
   const classes = useStyles();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  const { loading } = useSelector((state) => state.displayOptions);
+  const {
+    propertyhost, images, propertyname, propertyslug, propertyid,
+  } = useSelector((state) => state.booking);
+
+  const dispatch = useDispatch();
+  const { tripId } = useParams();
+
+  useEffect(
+    () => {
+      dispatch(fetchMyBooking(tripId));
+    }, [],
+  );
+
+  if (loading) return <Loader />;
 
   return (
     <Stack
@@ -54,7 +76,7 @@ const BookingDetails = () => {
         className={classes.header}
         gutterBottom
       >
-        Your stay at [username]'s place
+        Your stay at {propertyhost}'s place
       </Typography>
       <Stack
         flexDirection="row"
@@ -64,13 +86,9 @@ const BookingDetails = () => {
         <Stack
           className={classes.imageSide}
         >
-          <Box
-            sx={{
-              borderRadius: 1,
-              bgcolor: 'grey.200',
-              width: '100%',
-              height: '70vh',
-            }}
+          <img
+            src={`${images[0]}`}
+            alt={propertyname}
           />
         </Stack>
         <BookingDetailsComp />
@@ -78,7 +96,7 @@ const BookingDetails = () => {
       <Button
         variant="text"
         className={classes.showlisting}
-        // onClick={() => navigate(`/homes/${slug}/${id}`)}
+        onClick={() => navigate(`/homes/${propertyslug}/${propertyid}`)}
       >
         Show listing
       </Button>
