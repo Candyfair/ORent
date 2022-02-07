@@ -87,7 +87,7 @@ const BookingDetails = () => {
           className={classes.imageSide}
         >
           <img
-            src={`${images[0]}`}
+            src={images[0]}
             alt={propertyname}
           />
         </Stack>
