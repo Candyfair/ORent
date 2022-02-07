@@ -11,6 +11,7 @@ import {
 
 import api from './api';
 import { saveSearchResults, SEARCH_DESTINATION } from '../redux/actions/search';
+import { AcUnitTwoTone } from '@mui/icons-material';
 
 const propertyMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -162,13 +163,10 @@ const propertyMiddleware = (store) => (next) => (action) => {
       console.log('Je suis bien dans le properties middleware sur la route GET /search');
       store.dispatch(setLoading(true));
 
-      const { destination, capacity } = store.getState().search;
-
-      api.post(
-        '/search', {
-          destination: destination,
-          capacity: capacity,
-        })
+      api.post('/search', {
+        destination: action.destination,
+        capacity: action.capacity,
+      })
         .then(
           (response) => {
             console.log('Search route réussi : ', response);

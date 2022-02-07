@@ -76,12 +76,14 @@ const SearchBar = () => {
     if(country === 'Destination' || !capacity) {
       setSearchError(true)
     } else {
-      navigate(`/search?destination=${country}&people=${capacity}`)
+      navigate(`/search?destination=${country}&people=${capacity}`, { replace: false })
       dispatch(changeSearchField('Destination', 'country'))
       dispatch(changeSearchField('', 'capacity'))
       setSearchError(false)
+      location.reload();
     }
   }
+
   return (
     <Stack
       direction="row"

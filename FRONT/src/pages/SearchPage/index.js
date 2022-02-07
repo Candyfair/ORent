@@ -12,7 +12,7 @@ import { searchDestination } from '../../redux/actions/search';
 
 // MUI STYLES
 const useStyles = makeStyles((theme) => ({
-  searchPage: {
+  search: {
     padding: `${theme.spacing(2)} 0`,
     width: '100%',
   },
@@ -56,11 +56,8 @@ const SearchPage = () => {
 
   return (
     <Stack
-      flexDirection="column"
-      spacing={5}
-      className={classes.searchPage}
-      justifyContent="center"
-      alignItems="center"
+      className={classes.search}
+      flexDirection="row"
     >
       <Box className={classes.cards}>
         <PropertiesCards cards={searchResults} />
