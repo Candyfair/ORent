@@ -1,6 +1,10 @@
 // === IMPORTS
+import { useNavigate } from 'react-router';
+import PropTypes from 'prop-types';
+import moment from 'moment';
+
 import {
-  Card, CardContent, CardMedia, Typography, Button, Stack
+  Card, CardContent, CardMedia, Typography, Button, Stack,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
@@ -28,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     gap: theme.spacing(2),
     width: '70%',
-    gap: theme.spacing(1),
+    // gap: theme.spacing(1),
     [theme.breakpoints.down('md')]: {
       width: '100%',
     },
@@ -42,24 +46,25 @@ const useStyles = makeStyles((theme) => ({
   },
   buttonDetails: {
     color: theme.palette.common.white,
-  }
+  },
 
 }));
 
 // === COMPONENT
-const PastTrip = () => {
+const PastTrip = ({ myPastTrip }) => {
   const classes = useStyles();
+  const navigate = useNavigate();
 
   return (
-    <Card
 
+    <Card
       className={classes.pastTrip}
     >
       <CardMedia
         className={classes.image}
         component="img"
-        image="https://www.maisons-phenix.com/sites/phenix/files/styles/max_1300x1300/public/annonces/media/Geoxia/316078/02-maisons-phenix-renouveau-pp-r-a-858-sg-3105-n-tendance-arrierejpg.jpg?itok=v2sCw8sT"
-        alt="name"
+        image={myPastTrip.images[0]}
+        alt={myPastTrip.propertyname}
       />
       <CardContent
         className={classes.content}
@@ -69,28 +74,28 @@ const PastTrip = () => {
           variant="h5"
           component="h3"
         >
-          Name of the property
+          {myPastTrip.propertyname}
         </Typography>
         <Typography
           className={classes.city}
           variant="subtitle1"
           component="h5"
         >
-          City
+          {myPastTrip.propertycity}
         </Typography>
         <Typography
           className={classes.host}
           variant="subtitle1"
           component="h5"
         >
-          Hosted by <span className={classes.hostName}>xxxx</span>
+          Hosted by <span className={classes.hostName}>{myPastTrip.propertyhost}</span>
         </Typography>
         <Typography
           className={classes.dates}
           variant="subtitle1"
           component="h5"
         >
-          From 01/08/2021 to 25/08/2021
+          From {moment(myPastTrip.startdate).format('DD/MM/YYYY')} to {moment(myPastTrip.enddate).format('DD/MM/YYYY')}
         </Typography>
         <Stack
           flexDirection="row"
@@ -99,6 +104,7 @@ const PastTrip = () => {
           <Button
             variant="text"
             startIcon={<ArtTrackIcon sx={{ fontSize: '25px' }} />}
+            onClick={() => navigate(`/homes/${myPastTrip.propertyslug}/${myPastTrip.propertyid}`)}
           >
             Listing
           </Button>
@@ -107,13 +113,18 @@ const PastTrip = () => {
             variant="contained"
             startIcon={<LibraryBooksIcon />}
             disableElevation
+            onClick={() => navigate(`/${myPastTrip.bookername}/trips/${myPastTrip.id}`)}
           >
             Details
           </Button>
         </Stack>
       </CardContent>
     </Card>
+
   );
 };
 
+PastTrip.propTypes = {
+  myPastTrip: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 export default PastTrip;
