@@ -20,6 +20,7 @@ import {
   AddPropertyForm,
   ManagePropertyForm,
   UserProperties,
+  SearchPage,
 } from './pages';
 
 import Layout from './components/Layout';
@@ -53,6 +54,7 @@ const App = () => {
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/search" element={<SearchPage />} />
             <Route path="/homes" element={<PropertiesList />} />
             <Route path="/homes/:slug/:id" element={<PropertyDetails />} />
             <Route path="/:username/account/" element={<MyAccount />} />

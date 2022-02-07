@@ -272,3 +272,12 @@ Content-Type: application/json
 ### Suppression
 DELETE {{host}}/vacancies/1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY0Mzk3Nzk3NiwiZXhwIjoxNjQ0NTgyNzc2fQ.1v9rr_HtkH1UnUMGoL-Tuvmvpnf56IQhyeuOj7egn78
+
+### effectuer une recherche
+POST {{host}}/search
+Content-Type: application/json
+
+{
+    "destination": "France",
+    "capacity": "2"
+}

@@ -9,6 +9,7 @@ import propertyCurrentReducer from './propertyCurrent';
 import propertyCreateReducer from './propertyCreate';
 import vacancyReducer from './vacancy';
 import bookingReducer from './booking';
+import searchReducer from './search';
 
 const rootReducer = combineReducers({
   modals: modalsReducer,
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   propertyCreate: propertyCreateReducer,
   vacancy: vacancyReducer,
   booking: bookingReducer,
+  search: searchReducer,
 });
 
 export default rootReducer;

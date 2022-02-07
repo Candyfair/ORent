@@ -10,6 +10,7 @@ import {
 } from '../redux/actions/propertiesFetch';
 
 import api from './api';
+import { saveSearchResults, SEARCH_DESTINATION } from '../redux/actions/search';
 
 const propertyMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -150,6 +151,35 @@ const propertyMiddleware = (store) => (next) => (action) => {
         .catch(
           (error) => {
             console.log('Error Fetch myproperties: ', error);
+            store.dispatch(setLoading(false));
+          },
+        );
+      next(action);
+      break;
+    }
+
+    case SEARCH_DESTINATION: {
+      console.log('Je suis bien dans le properties middleware sur la route GET /search');
+      store.dispatch(setLoading(true));
+
+      const { destination, capacity} = store.getState().search;
+
+      api.get(
+        '/search', {
+          destination,
+          capacity
+        }
+      )
+        .then(
+          (response) => {
+            console.log('Search route réussi : ', response);
+            store.dispatch(saveSearchResults(response.data));
+            store.dispatch(setLoading(false));
+          },
+        )
+        .catch(
+          (error) => {
+            console.log('Error Search route: ', error);
             store.dispatch(setLoading(false));
           },
         );

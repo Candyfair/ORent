@@ -13,6 +13,7 @@ const uploadRoutes = require('./app/Routes/upload.routes');
 const usersRoutes = require('./app/Routes/user.routes');
 const bookingsRoutes = require('./app/Routes/bookings.routes');
 const vacanciesRoutes = require('./app/Routes/vacancies.routes');
+const searchRoutes = require('./app/Routes/search.routes')
 
 // const router = require('./app/router');
 
@@ -37,6 +38,7 @@ app.use(propertiesImagesRouter);
 app.use(usersRoutes);
 app.use(bookingsRoutes);
 app.use(vacanciesRoutes);
+app.use(searchRoutes);
 
 app.listen(port, () => {
     console.log(`Server started on http://localhost:${port}`);

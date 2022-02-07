@@ -7,6 +7,7 @@ import PropertyDetails from './PropertyDetails';
 import AddPropertyForm from './AddPropertyForm';
 import ManagePropertyForm from './ManagePropertyForm';
 import UserProperties from './UserProperties';
+import SearchPage from './SearchPage'
 
 export {
   Home,
@@ -18,4 +19,5 @@ export {
   AddPropertyForm,
   ManagePropertyForm,
   UserProperties,
+  SearchPage,
 };
