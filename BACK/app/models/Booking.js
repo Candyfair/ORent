@@ -58,6 +58,7 @@ class Booking {
             } else {
                 const {rows} = await db.query('INSERT INTO "booking" (user_id, vacancy_id) VALUES ($1, $2) RETURNING *', [userId, vacancyId]);
                 this.id = rows[0].id;
+                await db.query(`UPDATE "vacancy" SET booked=$1 WHERE id=$2`, [true, vacancyId])
                 const result = await db.query('SELECT * FROM bookings WHERE id=$1', [this.id])
                 return result.rows[0];
             }
