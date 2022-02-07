@@ -43,12 +43,16 @@ const SearchPage = () => {
   console.log('destination query : ', destination);
   console.log('capacity query : ', capacity);
 
+  const { loading } = useSelector((state) => state.displayOptions);
   const { searchResults } = useSelector((state) => state.search);
 
   useEffect(
     () => {
       dispatch(searchDestination(destination, capacity))
     }, []);
+
+  if (loading) return null
+  if (searchResults.length === 0) return null
 
   return (
     <Stack

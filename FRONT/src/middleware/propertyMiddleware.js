@@ -162,14 +162,13 @@ const propertyMiddleware = (store) => (next) => (action) => {
       console.log('Je suis bien dans le properties middleware sur la route GET /search');
       store.dispatch(setLoading(true));
 
-      const { destination, capacity} = store.getState().search;
+      const { destination, capacity } = store.getState().search;
 
       api.post(
         '/search', {
-          destination,
-          capacity
-        }
-      )
+          destination: destination,
+          capacity: capacity,
+        })
         .then(
           (response) => {
             console.log('Search route réussi : ', response);

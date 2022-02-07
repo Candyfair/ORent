@@ -10,7 +10,7 @@ class Search {
 
     static async findAll(destination, capacity) {
         try {
-            const {rows} = await db.query('SELECT * FROM properties WHERE country=$1 AND capacity >= $2', [destination, capacity]);
+            const {rows} = await db.query('SELECT * FROM properties WHERE country=$1 AND capacity >= $2::int', [destination, capacity]);
             return rows.map(row => new Search(row));
         } catch (error) {
             if (error.detail) {
