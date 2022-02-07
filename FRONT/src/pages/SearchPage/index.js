@@ -1,16 +1,32 @@
 // IMPORTS
 import { Stack } from '@mui/material/';
 import { makeStyles } from '@mui/styles';
+import { Box } from '@mui/system';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
+import PropertiesCards from '../../components/PropertiesCards';
+import PropertiesMap from '../../components/PropertiesMap';
 import { searchDestination } from '../../redux/actions/search';
 
 
 // MUI STYLES
 const useStyles = makeStyles((theme) => ({
-    searchPage: {
-    width: '100vw',
+  searchPage: {
+    padding: `${theme.spacing(2)} 0`,
+    width: '100%',
+  },
+  cards: {
+    width: '50%',
+    [theme.breakpoints.down('md')]: {
+      width: '100%',
+    },
+  },
+  map: {
+    width: '50%',
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    },
   },
 }));
 
@@ -22,7 +38,12 @@ const SearchPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const destination = searchParams.get('destination')
-  const capacity = searchParams.get('destination')
+  const capacity = searchParams.get('people')
+
+  console.log('destination query : ', destination);
+  console.log('capacity query : ', capacity);
+
+  const { searchResults } = useSelector((state) => state.search);
 
   useEffect(
     () => {
@@ -37,7 +58,12 @@ const SearchPage = () => {
       justifyContent="center"
       alignItems="center"
     >
-      Search
+      <Box className={classes.cards}>
+        <PropertiesCards cards={searchResults} />
+      </Box>
+      <Box className={classes.map}>
+        <PropertiesMap cards={searchResults} />
+      </Box>
     </Stack>
   );
 };

@@ -1,4 +1,4 @@
-import { CHANGE_SEARCH_FIELD } from '../actions/search';
+import { CHANGE_SEARCH_FIELD, SAVE_SEARCH_RESULTS } from '../actions/search';
 
 export const initialState = {
   country: 'Destination',
@@ -13,6 +13,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         [action.fieldName]: action.value,
       };
+    case SAVE_SEARCH_RESULTS:
+        return {
+            ...state,
+            searchResults: action.data
+        }
     default:
       return state;
   }

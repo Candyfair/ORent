@@ -164,7 +164,7 @@ const propertyMiddleware = (store) => (next) => (action) => {
 
       const { destination, capacity} = store.getState().search;
 
-      api.get(
+      api.post(
         '/search', {
           destination,
           capacity

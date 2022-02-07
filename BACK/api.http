@@ -279,5 +279,5 @@ Content-Type: application/json
 
 {
     "destination": "France",
-    "capacity": "2"
+    "capacity": "10"
 }
