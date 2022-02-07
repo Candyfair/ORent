@@ -2,6 +2,7 @@
 import { Grid, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useSelector } from 'react-redux';
+import Loader from '../Loader';
 import PastTrip from './PastTrip';
 
 // === MUI
@@ -23,6 +24,9 @@ const PastTrips = () => {
   const { myBookings } = useSelector((state) => state.booking);
   const now = new Date();
   const myPastTrips = myBookings.filter((myBooking) => new Date(myBooking.enddate) < now);
+
+  const { loading } = useSelector((state) => state.displayOptions);
+  if (loading) return <Loader />;
 
   if (myPastTrips.length === 0) {
     return (

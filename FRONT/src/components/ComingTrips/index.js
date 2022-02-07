@@ -9,6 +9,7 @@ import { makeStyles } from '@mui/styles';
 
 import ArtTrackIcon from '@mui/icons-material/ArtTrack';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import Loader from '../Loader';
 
 // === MUI
 const useStyles = makeStyles((theme) => ({
@@ -62,6 +63,9 @@ const ComingTrips = () => {
 
   const now = new Date();
   const myComingTrip = myBookings.find((myBooking) => new Date(myBooking.enddate) >= now);
+
+  const { loading } = useSelector((state) => state.displayOptions);
+  if (loading) return <Loader />;
 
   return (
     myComingTrip
