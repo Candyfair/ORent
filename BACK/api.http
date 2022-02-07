@@ -161,7 +161,7 @@ GET {{host}}/bookings/me
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY0Mzk4MTMyMywiZXhwIjoxNjQ0NTg2MTIzfQ.t_e2mtFO6jsqUHQMIWjbRGoNacVxhWXC1dvjZF4CZ0Q
 
 ### Un booking
-GET {{host}}/bookings/4
+GET {{host}}/bookings/3
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY0Mzk3NzM5NywiZXhwIjoxNjQ0NTgyMTk3fQ.NdKKlt-N2TXQfZSJWNmyQNkc_CIgLya8DDzxLNUnhHo
 
 ### envoi du mail de confirmation de booking
