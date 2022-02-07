@@ -5,6 +5,7 @@ import { Box } from '@mui/system';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
+import NoResults from '../../components/NoResults';
 import PropertiesCards from '../../components/PropertiesCards';
 import PropertiesMap from '../../components/PropertiesMap';
 import { searchDestination } from '../../redux/actions/search';
@@ -15,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
   search: {
     padding: `${theme.spacing(2)} 0`,
     width: '100%',
+    [theme.breakpoints.down('md')]: {
+      height: 'calc(100vh - 88px)'
+    },
   },
   cards: {
     width: '50%',
@@ -52,7 +56,7 @@ const SearchPage = () => {
     }, []);
 
   if (loading) return null
-  if (searchResults.length === 0) return null
+  if (searchResults.length === 0) return <NoResults />
 
   return (
     <Stack

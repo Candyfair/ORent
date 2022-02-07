@@ -16,10 +16,12 @@ import { useState } from 'react';
 // MaterialUI theme import
 const useStyles = makeStyles((theme) => ({
   search: {
-    paddingLeft: theme.spacing(2),
-    backgroundColor: alpha(theme.palette.text.disabled, 0.03),
+    backgroundColor: alpha(theme.palette.text.disabled, 0.05),
     maxWidth: '700px',
     borderRadius: 5,
+    [theme.breakpoints.down('md')]: {
+      width: '330px'
+    }
   },
   form:{
     width: '500px',
@@ -31,9 +33,11 @@ const useStyles = makeStyles((theme) => ({
   searchButton: {
     color: theme.palette.common.white,
     width: '20%',
-    borderRadius: '0 5px 5px 0' 
+    borderRadius: '0 5px 5px 0',
+    border: `1px solid ${alpha(theme.palette.text.disabled, 0.05)}` 
   },
   country: {
+    paddingLeft: theme.spacing(2),
     flexGrow: 1,
     color: theme.palette.text.primary,
     height: '100%'
@@ -77,8 +81,6 @@ const SearchBar = () => {
       setSearchError(true)
     } else {
       navigate(`/search?destination=${country}&people=${capacity}`, { replace: false })
-      dispatch(changeSearchField('Destination', 'country'))
-      dispatch(changeSearchField('', 'capacity'))
       setSearchError(false)
       location.reload();
     }
