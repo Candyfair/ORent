@@ -59,7 +59,7 @@ const App = () => {
             <Route path="/:username/properties/:id/management" element={<ManagePropertyForm />} />
             <Route path="/:username/add-property" element={<AddPropertyForm />} />
             <Route path="/:username/properties/" element={<UserProperties />} />
-            <Route path="/trips" element={<BookingsList />} />
+            <Route path="/:username/trips" element={<BookingsList />} />
             <Route path="/:username/trips/:tripId" element={<BookingDetails />} />
             <Route path="/terms-of-use" element={<TermsOfUse />} />
             <Route path="/about" element={<About />} />
