@@ -41,6 +41,7 @@ const VacanciesList = () => {
                   key={vacancy.id}
                   startDate={vacancy.startdate}
                   endDate={vacancy.enddate}
+                  vacancyId={vacancy.id}
                 />
               ))}
           </Stack>

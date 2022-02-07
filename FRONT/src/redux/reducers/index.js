@@ -8,6 +8,7 @@ import formErrorsReducer from './formErrors';
 import propertyCurrentReducer from './propertyCurrent';
 import propertyCreateReducer from './propertyCreate';
 import vacancyReducer from './vacancy';
+import bookingReducer from './booking';
 
 const rootReducer = combineReducers({
   modals: modalsReducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   propertyCurrent: propertyCurrentReducer,
   propertyCreate: propertyCreateReducer,
   vacancy: vacancyReducer,
+  booking: bookingReducer,
 });
 
 export default rootReducer;
