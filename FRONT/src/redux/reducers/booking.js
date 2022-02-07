@@ -1,4 +1,4 @@
-import { SAVE_MY_BOOKING } from '../actions/booking';
+import { SAVE_MY_BOOKING, SAVE_MY_BOOKINGS } from '../actions/booking';
 
 export const initialState = {
   id: '',
@@ -30,6 +30,8 @@ export const initialState = {
   propertyzipcode: '',
   updated_at: '',
   vacancy_id: '',
+
+  myBookings: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -38,6 +40,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         ...action.data,
+      };
+    case SAVE_MY_BOOKINGS:
+      return {
+        ...state,
+        myBookings: action.data,
       };
     default:
       return state;

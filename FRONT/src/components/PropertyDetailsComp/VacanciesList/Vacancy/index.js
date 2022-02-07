@@ -22,11 +22,14 @@ const Vacancy = ({
   startDate,
   endDate,
   vacancyId,
+  booked,
 }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { username } = useSelector((state) => state.userCurrent);
+
+  if (booked) return null;
 
   return (
 
@@ -47,7 +50,6 @@ const Vacancy = ({
             type="submit"
             onClick={() => {
               dispatch(makeBooking(vacancyId));
-              navigate(`/${username}/trips/${vacancyId}`); // tripId = vacancyId ?
             }}
           >
             Book
@@ -63,6 +65,7 @@ Vacancy.propTypes = {
   startDate: PropTypes.string.isRequired,
   endDate: PropTypes.string.isRequired,
   vacancyId: PropTypes.number.isRequired,
+  booked: PropTypes.bool.isRequired,
 };
 
 export default Vacancy;

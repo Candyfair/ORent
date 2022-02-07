@@ -10,3 +10,20 @@ export const saveMyBooking = (data) => ({
   type: SAVE_MY_BOOKING,
   data,
 });
+
+export const FETCH_MY_BOOKING = 'FETCH_MY_BOOKING';
+export const fetchMyBooking = (bookingId) => ({
+  type: FETCH_MY_BOOKING,
+  bookingId,
+});
+
+export const FETCH_MY_BOOKINGS = 'FETCH_MY_BOOKINGS';
+export const fetchMyBookings = () => ({
+  type: FETCH_MY_BOOKINGS,
+});
+
+export const SAVE_MY_BOOKINGS = 'SAVE_MY_BOOKINGS';
+export const saveMyBookings = (data) => ({
+  type: SAVE_MY_BOOKINGS,
+  data,
+});

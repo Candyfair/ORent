@@ -42,6 +42,7 @@ const VacanciesList = () => {
                   startDate={vacancy.startdate}
                   endDate={vacancy.enddate}
                   vacancyId={vacancy.id}
+                  booked={vacancy.booked}
                 />
               ))}
           </Stack>

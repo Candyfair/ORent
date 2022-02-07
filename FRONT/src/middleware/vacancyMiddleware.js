@@ -1,5 +1,11 @@
 import {
-  ADD_VACANCY, DELETE_VACANCY, fetchPropertyVacancies, FETCH_PROPERTY_VACANCIES, resetCalendar, setNewVacancy, setPropertyVacancies,
+  ADD_VACANCY,
+  DELETE_VACANCY,
+  fetchPropertyVacancies,
+  FETCH_PROPERTY_VACANCIES,
+  resetCalendar,
+  setNewVacancy,
+  setPropertyVacancies,
 } from '../redux/actions/vacancy';
 import { setLoading, setSnackbar } from '../redux/actions/displayOptions';
 
@@ -19,7 +25,7 @@ const vacancyMiddleware = (store) => (next) => (action) => {
             console.log('Réussite sur la route POST /vacancies : ', response);
             store.dispatch(setLoading(false));
             store.dispatch(setNewVacancy(response.data));
-            store.dispatch(setSnackbar(true, 'The vacancy was successfull added !', 'success'));
+            store.dispatch(setSnackbar(true, 'The vacancy was successfully added !', 'success'));
             store.dispatch(resetCalendar());
           },
         ).catch((error) => {
@@ -54,10 +60,12 @@ const vacancyMiddleware = (store) => (next) => (action) => {
           (response) => {
             console.log(`Réussite sur la route DELETE /vacancie/${action.vacancyId} :`, response);
             store.dispatch(fetchPropertyVacancies(action.propertyId));
+            store.dispatch(setSnackbar(true, 'The vacancy was successfully deleted !', 'success'));
             store.dispatch(setLoading(false));
           },
         ).catch((error) => {
           console.log(`error sur la route DELETE /vacancies/${action.vacancyId} :`, error);
+          store.dispatch(setSnackbar(true, 'An error occured !', 'error'));
           store.dispatch(setLoading(false));
         });
       next(action);

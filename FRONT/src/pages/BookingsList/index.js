@@ -1,8 +1,11 @@
 // === IMPORTS
 import { Stack, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ComingTrips from '../../components/ComingTrips';
 import PastTrips from '../../components/PastTrips';
+import { fetchMyBookings } from '../../redux/actions/booking';
 
 // === MUI
 const useStyles = makeStyles((theme) => ({
@@ -22,6 +25,15 @@ const useStyles = makeStyles((theme) => ({
 // === COMPONENT
 const BookingsList = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const { myBookings } = useSelector((state) => state.booking);
+
+  useEffect(
+    () => {
+      dispatch(fetchMyBookings());
+    }, [],
+  );
+
   return (
     <Stack
       className={classes.bookingsList}

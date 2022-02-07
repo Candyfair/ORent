@@ -41,16 +41,25 @@ export default function Calendar() {
         - From {moment(vacancy.startdate).format('DD/MM/YYYY')} to {moment(vacancy.enddate).format('DD/MM/YYYY')}
       </Stack>
       <Stack>
-        <Button
-          variant="text"
-          disableElevation
-          size="large"
-          type="submit"
-          onClick={() => dispatch(deleteVacancy(vacancy.id, id))}
-          startIcon={<Stack direction="row" justifyContent="center" alignItems="center"><DeleteForeverIcon /></Stack>}
-        >
-          Delete
-        </Button>
+        {
+        vacancy.booked ? (
+          <Typography>
+            Booked
+          </Typography>
+        )
+          : (
+            <Button
+              variant="text"
+              disableElevation
+              size="large"
+              type="submit"
+              onClick={() => dispatch(deleteVacancy(vacancy.id, id))}
+              startIcon={<Stack direction="row" justifyContent="center" alignItems="center"><DeleteForeverIcon /></Stack>}
+            >
+              Delete
+            </Button>
+          )
+      }
       </Stack>
     </Stack>
   ));

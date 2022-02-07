@@ -1,14 +1,16 @@
 // === IMPORTS
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router';
 
 import {
   Button, Stack, Typography,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
+import { useEffect } from 'react';
 import BookingDetailsComp from '../../components/BookingDetailsComp';
 import Loader from '../../components/Loader';
+import { fetchMyBooking } from '../../redux/actions/booking';
 
 // === MUI
 const useStyles = makeStyles((theme) => ({
@@ -49,9 +51,18 @@ const BookingDetails = () => {
   const navigate = useNavigate();
 
   const { loading } = useSelector((state) => state.displayOptions);
-  const { propertyDetails } = useSelector((state) => state.propertyCurrent);
-  const { startdate, enddate } = useSelector((state) => state.booking);
-  console.log('Property détails : ', propertyDetails);
+  const {
+    propertyhost, images, propertyname, propertyslug, propertyid,
+  } = useSelector((state) => state.booking);
+
+  const dispatch = useDispatch();
+  const { tripId } = useParams();
+
+  useEffect(
+    () => {
+      dispatch(fetchMyBooking(tripId));
+    }, [],
+  );
 
   if (loading) return <Loader />;
 
@@ -65,7 +76,7 @@ const BookingDetails = () => {
         className={classes.header}
         gutterBottom
       >
-        Your stay at {propertyDetails.host}'s place
+        Your stay at {propertyhost}'s place
       </Typography>
       <Stack
         flexDirection="row"
@@ -76,27 +87,16 @@ const BookingDetails = () => {
           className={classes.imageSide}
         >
           <img
-            src={`${propertyDetails.images[0]}`}
-            alt={propertyDetails.name}
+            src={`${images[0]}`}
+            alt={propertyname}
           />
         </Stack>
-        <BookingDetailsComp
-          startDate={startdate}
-          endDate={enddate}
-          streetNumber={propertyDetails.streetnumber}
-          streetName={propertyDetails.streetname}
-          zipCode={propertyDetails.zipcode}
-          city={propertyDetails.city}
-          country={propertyDetails.country}
-          host={propertyDetails.host}
-          hostEmail={propertyDetails.hostemail}
-          weekPrice={propertyDetails.weekprice}
-        />
+        <BookingDetailsComp />
       </Stack>
       <Button
         variant="text"
         className={classes.showlisting}
-        onClick={() => navigate(`/homes/${propertyDetails.slug}/${propertyDetails.id}`)}
+        onClick={() => navigate(`/homes/${propertyslug}/${propertyid}`)}
       >
         Show listing
       </Button>
