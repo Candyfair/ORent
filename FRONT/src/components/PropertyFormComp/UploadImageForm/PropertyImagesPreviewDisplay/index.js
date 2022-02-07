@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@mui/styles';
 
 import {
-    ImageList, ImageListItem, Stack, Typography
+  ImageList, ImageListItem, Stack, Typography,
 } from '@mui/material/';
 
 import PhotoSizeSelectActualIcon from '@mui/icons-material/PhotoSizeSelectActual';
@@ -19,12 +19,12 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: theme.shape.borderRadius,
   },
   textPreview: {
-      color: theme.palette.text.secondary,
-      backgroundColor: theme.palette.action.hover,
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-  }
+    color: theme.palette.text.secondary,
+    backgroundColor: theme.palette.action.hover,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 
 }));
 
@@ -36,28 +36,27 @@ const PropertyImagesPreviewDisplay = () => {
   const dispatch = useDispatch();
 
   const {
-    images
+    images,
   } = useSelector((state) => state.propertyCreate);
-
 
   return (
 
     <ImageList className={classes.PropertyImagesPreviewDisplay} cols={3} rowHeight={164}>
-    { images.length === 0 && (
-        <ImageListItem className={classes.textPreview}>
-            <PhotoSizeSelectActualIcon sx={{fontSize: '5rem'}} />
-            <Typography>Pictures Preview</Typography>
-        </ImageListItem>
-    )}
-    {images.map((image) => (
+      { images.length === 0 && (
+      <ImageListItem className={classes.textPreview}>
+        <PhotoSizeSelectActualIcon sx={{ fontSize: '5rem' }} />
+        <Typography>Pictures Preview</Typography>
+      </ImageListItem>
+      )}
+      {images.map((image) => (
         <ImageListItem key={image}>
-            <img
-                src={image}
-                alt={image}
-                loading="lazy"
-            />
+          <img
+            src={image}
+            alt={image}
+            loading="lazy"
+          />
         </ImageListItem>
-    ))}
+      ))}
     </ImageList>
 
   );

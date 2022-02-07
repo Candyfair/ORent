@@ -42,3 +42,12 @@ export const addPropertyImage = (url, name, propertyId) => ({
   name,
   propertyId,
 });
+
+export const CHANGE_CURRENT_PROPERTY_FIELD = 'CHANGE_CURRENT_PROPERTY_FIELD';
+export const changeCurrentPropertyField = (value, fieldname) => (
+  {
+    type: CHANGE_CURRENT_PROPERTY_FIELD,
+    value,
+    fieldname,
+  }
+);

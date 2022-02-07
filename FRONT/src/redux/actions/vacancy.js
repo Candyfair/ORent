@@ -40,7 +40,8 @@ export const resetCalendar = () => ({
 });
 
 export const DELETE_VACANCY = 'DELETE_VACANCY';
-export const deleteVacancy = (propertyId) => ({
+export const deleteVacancy = (vacancyId, propertyId) => ({
   type: DELETE_VACANCY,
+  vacancyId,
   propertyId,
 });

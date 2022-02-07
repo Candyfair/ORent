@@ -32,8 +32,6 @@ const ManagePropertyForm = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { propertyDetails } = useSelector((state) => state.propertyCurrent);
-  console.log('Property détails : ', propertyDetails);
 
   useEffect(() => {
     dispatch(fetchProperty(id));
@@ -62,22 +60,7 @@ const ManagePropertyForm = () => {
         gap={5}
       >
 
-        <ManagePropertyFormComp
-          name={propertyDetails.name}
-          type={propertyDetails.type}
-          number={propertyDetails.streetnumber}
-          street={propertyDetails.streetname}
-          zipcode={propertyDetails.zipcode}
-          city={propertyDetails.city}
-          country={propertyDetails.country}
-          capacity={propertyDetails.capacity}
-          bedrooms={propertyDetails.bedroomscount}
-          beds={propertyDetails.bedscount}
-          bathrooms={propertyDetails.bathroomscount}
-          description={propertyDetails.description}
-          price={propertyDetails.weekprice}
-          images={propertyDetails.images}
-        />
+        <ManagePropertyFormComp />
         <VacanciesForm />
       </Stack>
     </Stack>

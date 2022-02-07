@@ -46,7 +46,7 @@ export default function Calendar() {
           disableElevation
           size="large"
           type="submit"
-          onClick={() => dispatch(deleteVacancy(id))}
+          onClick={() => dispatch(deleteVacancy(vacancy.id, id))}
           startIcon={<Stack direction="row" justifyContent="center" alignItems="center"><DeleteForeverIcon /></Stack>}
         >
           Delete

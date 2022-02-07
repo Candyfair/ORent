@@ -1,5 +1,5 @@
 import {
-  ADD_VACANCY, FETCH_PROPERTY_VACANCIES, resetCalendar, setNewVacancy, setPropertyVacancies,
+  ADD_VACANCY, DELETE_VACANCY, fetchPropertyVacancies, FETCH_PROPERTY_VACANCIES, resetCalendar, setNewVacancy, setPropertyVacancies,
 } from '../redux/actions/vacancy';
 import { setLoading, setSnackbar } from '../redux/actions/displayOptions';
 
@@ -41,6 +41,23 @@ const vacancyMiddleware = (store) => (next) => (action) => {
           },
         ).catch((error) => {
           console.log(`error sur la route GET /vacancies/property/${action.id} :`, error);
+          store.dispatch(setLoading(false));
+        });
+      next(action);
+      break;
+    }
+    case DELETE_VACANCY: {
+      store.dispatch(setLoading(true));
+      console.log(`/vacancies/${action.vacancyId}`);
+      api.delete(`/vacancies/${action.vacancyId}`)
+        .then(
+          (response) => {
+            console.log(`Réussite sur la route DELETE /vacancie/${action.vacancyId} :`, response);
+            store.dispatch(fetchPropertyVacancies(action.propertyId));
+            store.dispatch(setLoading(false));
+          },
+        ).catch((error) => {
+          console.log(`error sur la route DELETE /vacancies/${action.vacancyId} :`, error);
           store.dispatch(setLoading(false));
         });
       next(action);
