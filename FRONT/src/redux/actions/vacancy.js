@@ -45,3 +45,9 @@ export const deleteVacancy = (vacancyId, propertyId) => ({
   vacancyId,
   propertyId,
 });
+
+export const SET_VACANCY_ID = 'SET_VACANCY_ID';
+export const setVacancyId = (vacancyId) => ({
+  type: SET_VACANCY_ID,
+  vacancyId,
+});

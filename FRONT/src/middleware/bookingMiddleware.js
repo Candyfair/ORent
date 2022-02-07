@@ -1,8 +1,9 @@
 import {
   FETCH_MY_BOOKING,
-  FETCH_MY_BOOKINGS, MAKE_BOOKING, saveMyBooking, saveMyBookings,
+  FETCH_MY_BOOKINGS, MAKE_BOOKING, saveMyBooking, saveMyBookings, sendBookingMails, SEND_BOOKING_MAILS,
 } from '../redux/actions/booking';
 import { setLoading, setSnackbar } from '../redux/actions/displayOptions';
+import { setModal } from '../redux/actions/modals';
 import { fetchPropertyVacancies } from '../redux/actions/vacancy';
 import api from './api';
 
@@ -28,6 +29,8 @@ const bookingMiddleware = (store) => (next) => (action) => {
             store.dispatch(setSnackbar(true, 'Your booking was successfully added ! You can see your booking details on the section myTrips', 'success'));
             store.dispatch(saveMyBooking(response.data));
             store.dispatch(fetchPropertyVacancies(response.data.propertyid));
+            store.dispatch(sendBookingMails(response.data))
+            store.dispatch(setModal(false, ''));
             store.dispatch(setLoading(false));
           },
         ).catch((error) => {
@@ -74,6 +77,25 @@ const bookingMiddleware = (store) => (next) => (action) => {
       next(action);
       break;
     }
+
+    case SEND_BOOKING_MAILS: {
+      console.log(`Je suis bien sur la route POST /bookings/mailing`);
+
+      api.post(`/bookings/mailing`,
+        action.data,
+      )
+        .then(
+          (response) => {
+            console.log('Retour positif, les mails ont bien été envoyés :', response);
+          },
+        ).catch((error) => {
+          console.log(`error sur la route POST /bookings/mailing : `, error);
+ 
+        });
+      next(action);
+      break;
+    }
+
     default:
       next(action);
   }

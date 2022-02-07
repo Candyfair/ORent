@@ -1,8 +1,12 @@
 /* eslint-disable linebreak-style */
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+
 import { makeStyles } from '@mui/styles';
 import { Button, Stack, Typography } from '@mui/material';
 import { setModal } from '../../../../redux/actions/modals';
+import { deleteAccount } from '../../../../redux/actions/userCurrent';
+import { makeBooking } from '../../../../redux/actions/booking';
 
 const useStyles = makeStyles((theme) => ({
   BookingLoginNeeded: {
@@ -32,16 +36,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const BookingLoginNeeded = () => {
+const BookWarning = () => {
   const dispatch = useDispatch();
-
   const classes = useStyles();
 
   const { isLogged } = useSelector((state) => state.userCurrent);
   const { element } = useSelector((state) => state.modals);
+  const { vacancyId } = useSelector((state) => state.vacancy)
+
+  const handleClickBook = () => {
+    dispatch(makeBooking(vacancyId))
+  }
 
   if (element !== 'bookWarning') return null;
-  if (isLogged) return null;
+  if (!isLogged) return null;
 
   return (
     <Stack
@@ -54,30 +62,38 @@ const BookingLoginNeeded = () => {
         variant="h6"
         className={classes.title}
       >
-        You need to be logged to make a booking. Please login
+        Do you really want to book this trip?
       </Typography>
-      <Button
-        className={classes.button}
-        variant="contained"
-        disableElevation
-        size="large"
-        type="submit"
-        onClick={() => dispatch(setModal(true, 'login'))}
+      <Stack
+        flexDirection='row'
+        gap={2}
       >
-        Login
-      </Button>
-      <Button
-        className={classes.button}
-        variant="text"
-        disableElevation
-        size="large"
-        type="submit"
-        onClick={() => dispatch(setModal(true, 'register'))}
-      >
-        Register
-      </Button>
+        <Button
+            className={classes.button}
+            variant="contained"
+            disableElevation
+            size="large"
+            type="submit"
+            onClick={() => dispatch(setModal(false, ''))}
+            fullWidth
+        >
+            No
+        </Button>
+        <Button
+            className={classes.button}
+            variant="text"
+            disableElevation
+            size="large"
+            type="submit"
+            onClick={handleClickBook}
+            fullWidth
+        >
+            Yes
+        </Button>
+      </Stack>
+
     </Stack>
   );
 };
 
-export default BookingLoginNeeded;
+export default BookWarning;

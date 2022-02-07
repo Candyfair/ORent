@@ -27,3 +27,9 @@ export const saveMyBookings = (data) => ({
   type: SAVE_MY_BOOKINGS,
   data,
 });
+
+export const SEND_BOOKING_MAILS = 'SEND_BOOKING_MAILS';
+export const sendBookingMails = (data) => ({
+  type: SEND_BOOKING_MAILS,
+  data,
+});

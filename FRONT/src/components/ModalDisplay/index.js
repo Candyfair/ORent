@@ -12,6 +12,7 @@ import LoginForm from './Modals/LoginForm';
 import BookingLoginNeeded from './Modals/BookingLoginNeeded';
 import RegisterForm from './Modals/RegisterForm';
 import DeleteAccountWarning from './Modals/DeleteAccountWarning';
+import BookWarning from './Modals/BookWarning';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -60,6 +61,7 @@ const LoginButton = () => {
           <LoginForm />
           <RegisterForm />
           <BookingLoginNeeded />
+          <BookWarning />
         </Stack>
       </Box>
     </Modal>

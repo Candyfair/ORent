@@ -9,6 +9,8 @@ import {
 
 import moment from 'moment';
 import { makeBooking } from '../../../../redux/actions/booking';
+import { setModal } from '../../../../redux/actions/modals';
+import { setVacancyId } from '../../../../redux/actions/vacancy';
 
 // MUI STYLES
 const useStyles = makeStyles((theme) => ({
@@ -49,7 +51,8 @@ const Vacancy = ({
             size="large"
             type="submit"
             onClick={() => {
-              dispatch(makeBooking(vacancyId));
+              dispatch(setModal(true, 'bookWarning'));
+              dispatch(setVacancyId(vacancyId));
             }}
           >
             Book

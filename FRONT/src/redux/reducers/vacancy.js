@@ -1,8 +1,9 @@
-import { RESET_CALENDAR, SET_END_DATE, SET_START_DATE } from '../actions/vacancy';
+import { RESET_CALENDAR, SET_END_DATE, SET_START_DATE, SET_VACANCY_ID } from '../actions/vacancy';
 
 export const initialState = {
   startDate: '',
   endDate: '',
+  vacancyId: '',
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -23,6 +24,11 @@ const reducer = (state = initialState, action = {}) => {
         startDate: '',
         endDate: '',
       };
+    case SET_VACANCY_ID:
+      return {
+        ...state,
+        vacancyId: action.vacancyId,
+      }
     default:
       return state;
   }
