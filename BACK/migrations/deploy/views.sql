@@ -105,7 +105,8 @@ SELECT DISTINCT
     "property".longitude AS propertyLongitude,
     "property".user_id AS host_id,
     "properties".host AS propertyHost,
-    "properties".hostEmail AS porpertyHostEmail
+    "properties".hostEmail AS propertyHostEmail,
+    "property".week_price AS propertyWeekPrice
 FROM "booking"
     LEFT JOIN "user" ON "user".id = "booking".user_id
     LEFT JOIN "vacancy" ON "vacancy".id = "booking".vacancy_id

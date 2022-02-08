@@ -34,6 +34,10 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(2),
     },
   },
+  buttonyes: {
+    textTransform: 'none',
+    color: theme.palette.common.white,
+  }
 }));
 
 const BookWarning = () => {
@@ -70,7 +74,7 @@ const BookWarning = () => {
       >
         <Button
             className={classes.button}
-            variant="contained"
+            variant="text"
             disableElevation
             size="large"
             type="submit"
@@ -80,8 +84,8 @@ const BookWarning = () => {
             No
         </Button>
         <Button
-            className={classes.button}
-            variant="text"
+            className={classes.buttonyes}
+            variant="contained"
             disableElevation
             size="large"
             type="submit"
