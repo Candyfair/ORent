@@ -10,6 +10,7 @@ import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
 import NightShelterIcon from '@mui/icons-material/NightShelter';
 import SingleBedIcon from '@mui/icons-material/SingleBed';
 import BathtubOutlinedIcon from '@mui/icons-material/BathtubOutlined';
+import { capitalizeFirstLetter } from '../../../utils/utils';
 
 // MUI STYLES
 const useStyles = makeStyles((theme) => ({
@@ -46,7 +47,7 @@ const Description = ({
       className={classes.description}
     >
       <Typography variant="h5">
-        {type} in {city}, {country}
+        {capitalizeFirstLetter(type)} in {city}, {country}
       </Typography>
       <Typography variant="body">
         Hosted by {host} - {weekprice}€ per week

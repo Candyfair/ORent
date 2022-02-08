@@ -34,7 +34,7 @@ const PropertiesCards = ({ cards }) => {
         <Box key={card.id} className={classes.box}>
           <PropertyCard
             name={card.name}
-            image={card.images[0]}
+            image={card.images[card.images.length-1]}
             description={card.description}
             weekprice={card.weekprice}
             type={card.type}

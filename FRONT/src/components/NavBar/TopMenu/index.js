@@ -85,13 +85,6 @@ const TopMenu = () => {
           <ListItemText>My trips</ListItemText>
         </MenuItem>
 
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <FavoriteIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Wishlist</ListItemText>
-        </MenuItem>
-
         <MenuItem onClick={() => {
           navigate(`/${username.toLowerCase()}/properties/`);
           handleClose();
