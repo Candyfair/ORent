@@ -15,10 +15,10 @@ import { capitalizeFirstLetter } from '../../../utils/utils';
 // === Styles
 const useStyles = makeStyles((theme) => ({
   userPropertyCard: {
-    boxShadow: theme.custom.shadow.primary
+    boxShadow: theme.custom.shadow.primary,
   },
   content: {
-    padding: theme.spacing(2)
+    padding: theme.spacing(2),
   },
   image: {
     height: '200px',
@@ -28,11 +28,11 @@ const useStyles = makeStyles((theme) => ({
   },
   name: {
 
-    fontWeight: 700
+    fontWeight: 700,
   },
   buttonsContainer: {
 
-  }
+  },
 
 }));
 
@@ -78,30 +78,30 @@ const UserPropertyCard = ({
         >
           {capitalizeFirstLetter(name)}
         </Typography>
-            <Stack
-              className={classes.buttonsContainer}
-              gap={3}
-              direction='row'
-            >
-              <Button
-                className={classes.button}
-                size="small"
-                color="primary"
-                fullWidth
-                onClick={() => navigate(`/homes/${slug}/${id}`)}
-              >
-                View
-              </Button>
-              <Button
-                className={classes.button}
-                variant="outlined"
-                fullWidth
-                color="primary"
-                onClick={() => navigate(`/${name}/properties/${id}/management`)}
-              >
-                Manage
-              </Button>
-            </Stack>
+        <Stack
+          className={classes.buttonsContainer}
+          gap={3}
+          direction="row"
+        >
+          <Button
+            className={classes.button}
+            size="small"
+            color="primary"
+            fullWidth
+            onClick={() => navigate(`/homes/${slug}/${id}`)}
+          >
+            View
+          </Button>
+          <Button
+            className={classes.button}
+            variant="outlined"
+            fullWidth
+            color="primary"
+            onClick={() => navigate(`/${name}/properties/${id}/management`)}
+          >
+            Manage
+          </Button>
+        </Stack>
       </Stack>
     </Stack>
   );

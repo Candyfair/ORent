@@ -1,6 +1,8 @@
 import { useSelector } from 'react-redux';
 import moment from 'moment';
-import { Button, Card, CardContent, CardMedia, Divider, Stack, Typography } from '@mui/material';
+import {
+  Button, Card, CardContent, CardMedia, Divider, Stack, Typography,
+} from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useNavigate } from 'react-router';
 import { Box } from '@mui/system';
@@ -18,23 +20,23 @@ const useStyles = makeStyles((theme) => ({
     height: '70vh',
     width: '100%',
     boxShadow: theme.custom.shadow.primaryTop,
-    [theme.breakpoints.down('md')]:{
+    [theme.breakpoints.down('md')]: {
       flexDirection: 'column',
       height: '100%',
-    }
+    },
   },
-  image:{
+  image: {
 
     height: '100%',
     width: '50%',
     objectFit: 'cover',
-    [theme.breakpoints.down('md')]:{
+    [theme.breakpoints.down('md')]: {
       width: '100%',
-    }
+    },
   },
   '.MuiCardMedia-media': {
-    border: "none",
-    boxShadow: "none",
+    border: 'none',
+    boxShadow: 'none',
     outline: 'none',
   },
   content: {
@@ -42,9 +44,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     gap: theme.spacing(4),
-    [theme.breakpoints.down('md')]:{
+    [theme.breakpoints.down('md')]: {
       width: '100%',
-    }
+    },
   },
   contentBlock: {
     width: '100%',
@@ -68,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 5,
     border: `3px solid ${theme.palette.primary.main}`,
     padding: theme.spacing(2),
-    gap: theme.spacing(2)
+    gap: theme.spacing(2),
   },
   titles: {
     textTransform: 'uppercase',
@@ -77,10 +79,10 @@ const useStyles = makeStyles((theme) => ({
   },
   fieldset: {
     height: '100%',
-    width: '15%'
+    width: '15%',
   },
   email: {
-    fontWeight: 700
+    fontWeight: 700,
   },
   buttonDetails: {
     color: theme.palette.common.white,
@@ -112,35 +114,35 @@ const BookingDetailsComp = () => {
 
   const classes = useStyles();
 
-  if (loading) return <Loader />
-  
+  if (loading) return <Loader />;
+
   return (
     <Card
       className={classes.BookingDetailsComp}
     >
-      <CardMedia      
-        component='img'
-        height='100%'
+      <CardMedia
+        component="img"
+        height="100%"
         className={classes.image}
-        image={images[0]}
+        image={images[images.length - 1]}
       />
 
       <CardContent
         className={classes.content}
       >
         <Stack
-          flexDirection='row'
+          flexDirection="row"
           flexGrow={1}
           className={`${classes.dates} ${classes.contentBlock}`}
         >
           <Stack
-            alignItems='center'
-            justifyContent='space-evenly'
-            flexDirection='row'
-            width='100%'
+            alignItems="center"
+            justifyContent="space-evenly"
+            flexDirection="row"
+            width="100%"
           >
             <Stack
-              alignItems='center'
+              alignItems="center"
               className={classes.check}
             >
               <Typography
@@ -149,13 +151,13 @@ const BookingDetailsComp = () => {
                 Check-in
               </Typography>
               <Typography
-                variant='subtitle1'
+                variant="subtitle1"
               >
                 {moment(startdate).format('DD/MM/YYYY')}
               </Typography>
             </Stack>
             <Stack
-              alignItems='center'
+              alignItems="center"
               className={classes.check}
             >
               <Typography
@@ -164,7 +166,7 @@ const BookingDetailsComp = () => {
                 Check-out
               </Typography>
               <Typography
-                variant='subtitle1'
+                variant="subtitle1"
               >
                 {moment(enddate).format('DD/MM/YYYY')}
               </Typography>
@@ -173,7 +175,7 @@ const BookingDetailsComp = () => {
         </Stack>
         <Divider />
         <Stack
-          flexDirection='column'
+          flexDirection="column"
           className={`${classes.address} ${classes.contentBlock}`}
         >
           <Typography
@@ -185,10 +187,10 @@ const BookingDetailsComp = () => {
             {capitalizeFirstLetter(propertyhost)}'s {propertytype}
           </Typography>
           <Typography>
-              {propertystreetnumber}, {propertystreetname}
+            {propertystreetnumber}, {propertystreetname}
           </Typography>
           <Typography>
-            {propertycity}
+            {propertyzipcode} {propertycity}
           </Typography>
           <Typography>
             {propertycountry}
@@ -196,7 +198,7 @@ const BookingDetailsComp = () => {
         </Stack>
         <Divider />
         <Stack
-          flexDirection='column'
+          flexDirection="column"
           className={`${classes.contact} ${classes.contentBlock}`}
         >
           <Typography
@@ -210,7 +212,7 @@ const BookingDetailsComp = () => {
         </Stack>
         <Divider />
         <Stack
-          flexDirection='column'
+          flexDirection="column"
           flexGrow={1}
           className={`${classes.price} ${classes.contentBlock}`}
         >
@@ -226,7 +228,7 @@ const BookingDetailsComp = () => {
           </Typography>
         </Stack>
         <Stack
-          flexDirection='row'
+          flexDirection="row"
           className={`${classes.buttons}`}
           gap={2}
         >
