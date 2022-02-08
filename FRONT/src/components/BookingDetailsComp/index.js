@@ -13,8 +13,8 @@ const BookingDetailsComp = () => {
     propertycity,
     propertycountry,
     propertyhost,
-    porpertyhostemail, // à corriger
-    // weekPrice, à rajouter pour booking details
+    propertyhostemail,
+    propertyweekprice,
   } = useSelector((state) => state.booking);
 
   return (
@@ -86,7 +86,7 @@ const BookingDetailsComp = () => {
         <Typography
           fontSize="0.9rem"
         >
-          Username : {propertyhost} - Email : {porpertyhostemail}
+          Username : {propertyhost} - Email : {propertyhostemail}
         </Typography>
       </Stack>
       <Stack>
@@ -103,45 +103,7 @@ const BookingDetailsComp = () => {
           <Typography
             fontSize="0.9rem"
           >
-            500€ x 1 week
-          </Typography>
-          <Typography
-            fontSize="0.9rem"
-          >
-            500€
-          </Typography>
-        </Stack>
-        <Stack
-          flexDirection="row"
-          gap={12}
-        >
-          <Typography
-            fontSize="0.9rem"
-          >
-            Service fee
-          </Typography>
-          <Typography
-            fontSize="0.9rem"
-          >
-            included
-          </Typography>
-        </Stack>
-
-        <Stack
-          flexDirection="row"
-          gap={20}
-        >
-          <Typography
-            fontWeight="700"
-            fontSize="0.9rem"
-          >
-            Total
-          </Typography>
-          <Typography
-            fontWeight="700"
-            fontSize="0.9rem"
-          >
-            500€
+            {propertyweekprice}€ per week
           </Typography>
         </Stack>
       </Stack>

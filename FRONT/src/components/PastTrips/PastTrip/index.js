@@ -32,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     gap: theme.spacing(2),
     width: '70%',
-    // gap: theme.spacing(1),
     [theme.breakpoints.down('md')]: {
       width: '100%',
     },
