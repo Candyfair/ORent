@@ -36,6 +36,7 @@ const VacanciesList = () => {
         <CardContent>
           <Stack spacing={2}>
             {isLogged
+              && propertyVacancies
               && propertyVacancies.map((vacancy) => (
                 <Vacancy
                   key={vacancy.id}
@@ -46,6 +47,15 @@ const VacanciesList = () => {
                 />
               ))}
           </Stack>
+          {isLogged
+            && (propertyVacancies.length === 0)
+            && (
+            <Stack>
+              <Typography>
+                No availabilities for the moment.
+              </Typography>
+            </Stack>
+            )}
           {!isLogged
             && (
             <Stack spacing={2}>

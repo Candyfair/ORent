@@ -1,6 +1,5 @@
 // IMPORTS
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@mui/styles';
 import {
@@ -8,7 +7,6 @@ import {
 } from '@mui/material/';
 
 import moment from 'moment';
-import { makeBooking } from '../../../../redux/actions/booking';
 import { setModal } from '../../../../redux/actions/modals';
 import { setVacancyId } from '../../../../redux/actions/vacancy';
 
@@ -28,8 +26,6 @@ const Vacancy = ({
 }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { username } = useSelector((state) => state.userCurrent);
 
   if (booked) return null;
 
