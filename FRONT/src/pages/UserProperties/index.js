@@ -35,7 +35,7 @@ const UserProperties = () => {
         className={classes.header}
         variant="h4"
         align="center"
-        margin='16px 0'
+        margin="16px 0"
       >
         List of my properties
       </Typography>

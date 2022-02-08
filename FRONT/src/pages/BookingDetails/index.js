@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   showlisting: {
-    marginTop: theme.spacing(2)
+    marginTop: theme.spacing(2),
   },
 
 }));
@@ -63,11 +63,11 @@ const BookingDetails = () => {
       >
         Your stay at {propertyhost}'s place
       </Typography>
-        <BookingDetailsComp />
+      <BookingDetailsComp />
       <Button
         variant="text"
         className={classes.showlisting}
-        onClick={() => navigate(`/homes`)}
+        onClick={() => navigate('/homes')}
       >
         Show all listings
       </Button>

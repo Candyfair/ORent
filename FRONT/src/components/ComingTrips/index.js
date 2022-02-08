@@ -76,7 +76,7 @@ const ComingTrips = () => {
           <CardMedia
             className={classes.image}
             component="img"
-            image={myComingTrip.images[0]}
+            image={myComingTrip.images[myComingTrip.images.length - 1]}
             alt={myComingTrip.propertyname}
           />
           <CardContent

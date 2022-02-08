@@ -62,7 +62,7 @@ const PastTrip = ({ myPastTrip }) => {
       <CardMedia
         className={classes.image}
         component="img"
-        image={myPastTrip.images[0]}
+        image={myPastTrip.images[myPastTrip.images.length - 1]}
         alt={myPastTrip.propertyname}
       />
       <CardContent

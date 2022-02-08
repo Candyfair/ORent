@@ -3,9 +3,7 @@
 import PropTypes from 'prop-types';
 import { makeStyles } from '@mui/styles';
 import {
-  Box,
   Grid,
-  Stack,
 } from '@mui/material';
 import UserPropertyCard from './UserPropertyCard';
 import AddPropertyButton from './AddPropertyButton';
@@ -16,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     padding: `0 0 ${theme.spacing(2)} ${theme.spacing(2)}`,
     [theme.breakpoints.down('md')]: {
       padding: `0 0 ${theme.spacing(2)} 0`,
-    }
+    },
   },
 }));
 
@@ -24,21 +22,21 @@ const useStyles = makeStyles((theme) => ({
 const UserPropertiesCards = ({ cards }) => {
   const classes = useStyles();
   return (
-    <Grid  
+    <Grid
       container
       spacing={2}
       className={classes.userPropertiesCards}
     >
       {cards.map((card) => (
-        <Grid 
+        <Grid
           item
-          key={card.id} 
+          key={card.id}
           xs={12}
           md={4}
         >
           <UserPropertyCard
             name={card.name}
-            image={card.images[0]}
+            image={card.images[card.images.length - 1]}
             type={card.type}
             slug={card.slug}
             id={card.id}
@@ -49,7 +47,7 @@ const UserPropertiesCards = ({ cards }) => {
         <AddPropertyButton />
       </Grid>
     </Grid>
-    
+
   );
 };
 
