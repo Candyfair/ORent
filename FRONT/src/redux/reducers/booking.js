@@ -30,6 +30,7 @@ export const initialState = {
   propertyzipcode: '',
   updated_at: '',
   vacancy_id: '',
+  propertyweekprice: '',
 
   myBookings: [],
 };

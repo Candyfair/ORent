@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
 const BookingsList = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { myBookings } = useSelector((state) => state.booking);
 
   useEffect(
     () => {
