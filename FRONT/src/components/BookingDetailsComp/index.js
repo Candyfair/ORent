@@ -9,6 +9,7 @@ import LuggageIcon from '@mui/icons-material/Luggage';
 import HomeIcon from '@mui/icons-material/Home';
 
 import { capitalizeFirstLetter } from '../../utils/utils';
+import Loader from '../Loader';
 
 const useStyles = makeStyles((theme) => ({
   BookingDetailsComp: {
@@ -89,7 +90,8 @@ const useStyles = makeStyles((theme) => ({
 const BookingDetailsComp = () => {
   const navigate = useNavigate();
 
-  const { username } = useSelector((state) => state.userCurrent)
+  const { username } = useSelector((state) => state.userCurrent);
+  const { loading } = useSelector((state) => state.displayOptions);
 
   const {
     startdate,
@@ -110,6 +112,8 @@ const BookingDetailsComp = () => {
 
   const classes = useStyles();
 
+  if (loading) return <Loader />
+  
   return (
     <Card
       className={classes.BookingDetailsComp}

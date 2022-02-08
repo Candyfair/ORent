@@ -6,6 +6,7 @@ import { makeStyles } from '@mui/styles';
 import {
   Card, CardMedia, Button, Typography, Stack,
 } from '@mui/material/';
+import { capitalizeFirstLetter } from '../../../utils/utils';
 
 // === MUI
 const useStyles = makeStyles((theme) => ({
@@ -107,14 +108,14 @@ const PropertyCard = ({
             variant="subtitle1"
             component="h5"
           >
-            {type} hosted by
+            {capitalizeFirstLetter(type)} hosted by
           </Typography>
           <Typography
             className={classes.host}
             variant="subtitle1"
             component="h5"
           >
-            {host}
+            {capitalizeFirstLetter(host)}
           </Typography>
 
         </Stack>
