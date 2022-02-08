@@ -17,7 +17,7 @@ module.exports = async (request, response, next) => {
             }
         });
         console.log(`request.body : `, request.body)
-        const { id, bookerid, bookername, bookeremail, startdate, enddate, images, propertyname, propertyslug, propertydescription, propertycapacity, propertybedroomscount, propertybathroomscount, propertytype, propertystreetnumber, propertystreetname, propertyzipcode, propertycity, propertycountry, propertyhost, porpertyhostemail} = request.body
+        const { id, bookerid, bookername, bookeremail, startdate, enddate, images, propertyname, propertyslug, propertydescription, propertycapacity, propertybedroomscount, propertybathroomscount, propertytype, propertystreetnumber, propertystreetname, propertyzipcode, propertycity, propertycountry, propertyhost, propertyhostemail} = request.body
         console.log(`jenvoie un mail au booker ${bookername} <${bookeremail}>: `)
         let messageToBooker = {
             to: `${bookername} <${bookeremail}>`,
@@ -26,14 +26,14 @@ module.exports = async (request, response, next) => {
             html: `<p>Hello <b>${bookername}</b></p>
         <p>Thank you for booking with ORent for your next trip to ${propertyhost}'s ${propertytype} in ${propertycountry}</p>
         <p>You will receive an email from ${propertyhost} with all the information for the payment</p>
-        <p>You can also directly contact ${propertyhost} by email ${porpertyhostemail}</p>
+        <p>You can also directly contact ${propertyhost} by email ${propertyhostemail}</p>
         <p>We wish you a wonderful trip! Encoy</p>`,
         }
-        console.log(`jenvoie un mail à l'host ${propertyhost} <${porpertyhostemail}>: `)
+        console.log(`jenvoie un mail à l'host ${propertyhost} <${propertyhostemail}>: `)
         let messageToHost = {
-            to: `${propertyhost} <${porpertyhostemail}>`,
+            to: `${propertyhost} <${propertyhostemail}>`,
             subject: `Your property was succesfullyBooked`,
-            html: `<p>Hello<b>${propertyhost}</b></p>
+            html: `<p>Hello <b>${propertyhost}</b></p>
         <p>We would like to advise that your property ${propertyname} in ${propertycity}, ${propertycountry} was booked </p>
         <p>Can you please send all the information to ${bookername} at ${bookeremail}</p>
         <p>We thank you for sharing your property with our customers!</p>`,
