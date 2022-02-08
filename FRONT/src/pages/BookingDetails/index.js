@@ -17,30 +17,16 @@ const useStyles = makeStyles((theme) => ({
   bookingDetails: {
 
   },
-  container: {
-    width: '100vw',
-    boxShadow: theme.custom.shadow.primary,
-    [theme.breakpoints.down('sm')]: {
-      flexDirection: 'column',
-    },
-  },
   header: {
+    marginBottom: theme.spacing(2),
     [theme.breakpoints.down('sm')]: {
       fontSize: '1.38rem',
       marginTop: '32px',
       width: '100%',
     },
   },
-  imageSide: {
-    width: '50%',
-    height: '400px',
-    marginRight: '16px',
-    [theme.breakpoints.down('sm')]: {
-      width: '520px',
-    },
-  },
   showlisting: {
-
+    marginTop: theme.spacing(2)
   },
 
 }));
@@ -74,31 +60,16 @@ const BookingDetails = () => {
       <Typography
         variant="h5"
         className={classes.header}
-        gutterBottom
       >
         Your stay at {propertyhost}'s place
       </Typography>
-      <Stack
-        flexDirection="row"
-        gap={1}
-        className={classes.container}
-      >
-        <Stack
-          className={classes.imageSide}
-        >
-          <img
-            src={images[0]}
-            alt={propertyname}
-          />
-        </Stack>
         <BookingDetailsComp />
-      </Stack>
       <Button
         variant="text"
         className={classes.showlisting}
-        onClick={() => navigate(`/homes/${propertyslug}/${propertyid}`)}
+        onClick={() => navigate(`/homes`)}
       >
-        Show listing
+        Show all listings
       </Button>
     </Stack>
 
