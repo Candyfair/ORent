@@ -20,13 +20,23 @@ const DarkModeSwitch = () => {
 
   const dispatch = useDispatch();
 
+  const handleDarkModeChange = () => {
+    if (mode === "light") {
+        dispatch(setMode("dark"))
+        localStorage.setItem('darkModeLS', JSON.stringify("dark"));
+    } else {
+        dispatch(setMode("light"))
+        localStorage.setItem('darkModeLS', JSON.stringify("light"));
+    }
+  }
+
   return (
     <Tooltip
       title={mode === 'light' ? 'Dark Mode' : 'Light Mode'}
       arrow
     >
       <IconButton
-        onClick={() => dispatch(setMode(mode === 'light' ? 'dark' : 'light'))}
+        onClick={handleDarkModeChange}
         className={classes.switch}
       >
         {mode === 'dark'
