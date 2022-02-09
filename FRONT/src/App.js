@@ -31,6 +31,7 @@ import About from './pages/About';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Error404 from './pages/Error404';
 import SnackbarModule from './components/SnackbarModule';
+import { setMode } from './redux/actions/displayOptions';
 
 // == Composant
 const App = () => {
@@ -42,7 +43,9 @@ const App = () => {
     () => {
       // If there's a refresh token in localStorage, runs the /refresh-token route
       const refreshTokenLS = localStorage.getItem('userRefreshToken');
+      const darkMode = localStorage.getItem('darkModeLS')
       if (refreshTokenLS) dispatch(refreshToken());
+      if (darkMode) dispatch(setMode(darkMode));
     }, [],
   );
 
