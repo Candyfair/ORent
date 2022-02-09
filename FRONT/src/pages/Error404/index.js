@@ -74,7 +74,7 @@ const ErrorPage = () => {
           variant="h5"
           className={classes.subtitle}
         >
-          What don't you explore our other properties?
+          Why don't you explore our other properties?
         </Typography>
         <Button
           onClick={() => navigate('/homes')}
