@@ -62,7 +62,7 @@ const About = () => {
         Please note that this website is for demo purpose only, and it's not currently possible to rent properties.
       </Typography>
       <Typography variant="body1">
-        This site has been coded by a team of 3 full-stack developers as an end-of-study project:
+        This site has been coded by a <span className={classes.bold}>team of 3 full-stack developers</span> as an end-of-study project:
       </Typography>
 
       {/* Avatars */}
